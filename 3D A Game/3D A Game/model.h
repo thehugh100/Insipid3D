@@ -614,7 +614,7 @@ inline float triArea3(HUtils::XYZ *p0, HUtils::XYZ *p1, HUtils::XYZ *p2)
 }
 inline bool isInside(HUtils::XYZ *p, HUtils::XYZ *t1, HUtils::XYZ *t2, HUtils::XYZ *t3)
 {
-	float actArea = triArea3(t1, t2, t3);
+	float actArea = triArea3(t1, t2, t3) * 1.005f;
 	float a1 = triArea3(p, t1, t2);
 	if (a1 > actArea) return false;
 	float a2 = triArea3(p, t2, t3);
