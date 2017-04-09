@@ -2,7 +2,7 @@
 Hugh Nixon
 17/12/2016
 
-Last edited 02/04/2017
+Last edited 09/04/2017
 Simple Header that does some usefull keyoard / mouse / game engine stuff...
 */
 #pragma once
@@ -118,6 +118,10 @@ namespace HUtils
 		}
 		float x, y, z;
 	};
+	inline float distance2XYZ(XYZ p1, XYZ p2)
+	{
+		return sqrtf(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2) + pow(p2.z - p1.z, 2));
+	}
 	inline float fastDist(XYZ a, XYZ b)
 	{
 		return abs(a.x - b.x) + abs(a.y - b.y) + abs(a.z - b.z);

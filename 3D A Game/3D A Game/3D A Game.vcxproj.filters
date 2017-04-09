@@ -81,6 +81,12 @@
     <ClInclude Include="mutexes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="entityMine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="entityExplosion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -98,5 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

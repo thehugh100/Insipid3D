@@ -170,8 +170,10 @@
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityBouncyBall.h" />
     <ClInclude Include="entityEnviroment.h" />
+    <ClInclude Include="entityExplosion.h" />
     <ClInclude Include="entityInterop.h" />
     <ClInclude Include="entityManager.h" />
+    <ClInclude Include="entityMine.h" />
     <ClInclude Include="entityPlayer.h" />
     <ClInclude Include="entityWorld.h" />
     <ClInclude Include="globals.h" />
@@ -193,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

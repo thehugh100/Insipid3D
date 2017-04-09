@@ -16,6 +16,7 @@
 #include <chrono>
 #include "entityEnviroment.h"
 #include "collider.h"
+#include "entityMine.h"
 struct CEngine
 {
 	CEngine(int argc, char **argv)
@@ -40,7 +41,9 @@ struct CEngine
 		dynamic_cast<entWorld*>(entityManager->addEntity(new entWorld(new CModel("models\\crossfire\\crossfire.obj", HUtils::XYZ(0, 0, 0), "models\\crossfire\\", 1))))->mesh->mapColorize();
 		entityManager->addEntity(new entPlayer(HUtils::XYZ(-1,0.2,-1)));
 		entityManager->addEntity(new entEnviroment(0.7, 0.7, 0.95, 0.01f));
-
+		entityManager->addEntity(new entMine(HUtils::XYZ(2, 4, 16)));
+		entityManager->addEntity(new entMine(HUtils::XYZ(-20, 5, 6)));
+		entityManager->addEntity(new entMine(HUtils::XYZ(8.5, 5, 34)));
 		camera->detatch();
 	}
 	void run()
@@ -60,8 +63,14 @@ struct CEngine
 			{
 				globals->averageTimeDelta = globals->timeDeltaAccum / (float)globals->timeDeltaAverageRate;
 				globals->timeDeltaAccum = 0;
-				cout << globals->timeDelta << "ms Average: " << globals->averageTimeDelta << "\r";
+				//cout << globals->timeDelta << "ms Average: " << globals->averageTimeDelta << "\r";
 			}
+			/*60 ticks a second*/
+			/*while (std::chrono::duration<double, std::milli>(std::chrono::system_clock::now() - begin).count() < 4)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(1));
+			}*/
+
 			//cout << globals->timeDelta << endl;
 		}
 	}

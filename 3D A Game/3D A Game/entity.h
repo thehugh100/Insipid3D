@@ -11,7 +11,10 @@ using namespace std;
 
 struct CEntity
 {
+
 	HUtils::XYZ pos;
+	HUtils::XYZ vel;
+
 	virtual void tick()
 	{
 

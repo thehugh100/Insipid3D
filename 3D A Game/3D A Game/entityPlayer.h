@@ -23,9 +23,10 @@ struct entPlayer : CEntity
 	}
 	void simulatePhysics()
 	{
-		float horizontalFriction = 1.009;
+		float horizontalFriction = 1.008;
+		
 		float airFriction = 1.0005;
-		float gravity = -0.000018 * globals->timeDelta;
+		float gravity = -globals->gravity * globals->timeDelta;
 		onGround = 0;
 
 		trace ground = collider->findCollision(pos, HUtils::XYZ(0, -1, 0), dynamic_cast<entWorld*>(entityInterop->getWorld())->mesh);
@@ -34,23 +35,23 @@ struct entPlayer : CEntity
 			float groundAngle = abs(90 - (asin(ground.hitNormal.y) * 180.0f / 3.141592));
 			//cout << "groundAngle: " << std::fixed <<  groundAngle << "\r\n";
 
-			if (groundAngle > 2 && groundAngle < 40 && ground.distance < 1.1) /*Standard slope we can walk up*/
+			if (groundAngle > 2 && groundAngle < 40 && ground.distance < playerHeight + 0.1) /*Standard slope we can walk up*/
 			{
-				pos.y = ground.hitPos.y + 1;
+				pos.y = ground.hitPos.y + playerHeight;
 				onGround = 1;
 				vel.y = 0;
 			}
-			if (ground.distance <= 1.01 && groundAngle >= 45) /*slide off*/
+			if (ground.distance <= playerHeight + 0.01 && groundAngle >= 45) /*slide off*/
 			{
 				gravity /= 5.0f;
 				vel.x += ground.hitNormal.x * gravity * -3.6;
 				vel.z += ground.hitNormal.z * gravity * -3.6;
-				pos.y = ground.hitPos.y + 1;
+				pos.y = ground.hitPos.y + playerHeight;
 			}
-			if (ground.distance <= 1)
+			if (ground.distance <= playerHeight)
 			{
 				vel.y = 0;
-				pos.y = ground.hitPos.y + 1;
+				pos.y = ground.hitPos.y + playerHeight;
 				onGround = 1;
 			}
 		}
@@ -79,7 +80,15 @@ struct entPlayer : CEntity
 		}
 		vel += HUtils::XYZ(0, gravity, 0);
 		
-		float maxSpeed = 0.008;
+		float maxSpeed = 0.02;
+
+		/*If we're moving don't apply the same amount of ground friction*/
+		if (movVel.magnitude() > 0.001)
+		{
+			horizontalFriction /= 3;
+		}
+		//cout << vel.magnitude() << endl;
+
 		/*HUtils::XYZ hozVel = HUtils::XYZ(movVel.x, 0, movVel.z);
 		if (hozVel.magnitude() > maxSpeed)
 		{
@@ -110,7 +119,7 @@ struct entPlayer : CEntity
 	void tick()
 	{
 		speedMultiplier = globals->timeDelta / 100;
-		float acceleration = 0.0046;
+		float acceleration = 0.0096;
 
 		if (!onGround)
 		{
@@ -163,6 +172,8 @@ struct entPlayer : CEntity
 		globals->cX = pos.x;
 		globals->cY = pos.y;
 		globals->cZ = pos.z;
+
+		//pos.print();
 	}
 	void render()
 	{
@@ -173,7 +184,7 @@ struct entPlayer : CEntity
 		return "entPlayer";
 	}
 	float speedMultiplier = 0.0006;
+	float playerHeight = 1.4;
 	bool onGround = 0;
-	HUtils::XYZ vel;
 	HUtils::XYZ movVel;
 };

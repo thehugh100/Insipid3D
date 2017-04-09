@@ -47,9 +47,6 @@ struct entBounceyBall : CEntity
 			{
 				cout << "World not found\n";
 			}
-			
-			
-			
 		}
 	}
 	virtual void render()

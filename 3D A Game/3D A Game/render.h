@@ -55,6 +55,7 @@ struct CRenderer
 	void run()
 	{
 		glutInitWindowSize(globals->windowWidth, globals->windowHeight);
+		glutInitWindowPosition(10, 10);
 		glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE | GLUT_MULTISAMPLE);
 		glutCreateWindow(globals->windowName.c_str());
 		glEnable(GL_DEPTH_TEST);
