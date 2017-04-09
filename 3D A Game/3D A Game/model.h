@@ -595,11 +595,6 @@ inline bool isInside(HUtils::XYZ *p, HUtils::XYZ *t1, HUtils::XYZ *t2, HUtils::X
 	return totArea <= actArea*1.005f;
 }
 
-inline bool isInside(HUtils::XYZ *p, HUtils::XYZ *t1, HUtils::XYZ *t2, HUtils::XYZ *t3)
-{
-
-}
-
 struct traceProperties
 {
 	float t;
