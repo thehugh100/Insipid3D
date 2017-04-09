@@ -1,0 +1,93 @@
+﻿  3D A Game.cpp
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(133): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(140): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(212): warning C4800: 'char': forcing value to bool 'true' or 'false' (performance warning)
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(439): warning C4838: conversion from 'char' to 'unsigned char' requires a narrowing conversion
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(511): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(523): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(598): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(624): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(657): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(662): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(692): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(736): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(759): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(38): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(40): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\cameracontroller.h(60): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\render.h(57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\render.h(72): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\render.h(72): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\render.h(69): warning C4101: 'filter': unreferenced local variable
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\entityinterop.h(11): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\tiny_obj_loader.h(1092): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(2254): note: see declaration of 'sscanf'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\tiny_obj_loader.h(1116): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(2254): note: see declaration of 'sscanf'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(136): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(160): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(172): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(185): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(208): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(238): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(240): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(257): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(288): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(294): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(301): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(303): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(306): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(308): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(311): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(313): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(321): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(323): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(328): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(334): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(336): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(339): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(362): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(368): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(415): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(421): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(428): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(430): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(433): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(435): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(438): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(440): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(448): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(450): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(455): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(461): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(463): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(466): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(489): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(495): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(524): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(527): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(530): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(636): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(645): warning C4305: 'initializing': truncation from 'int' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\model.h(648): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\entitybouncyball.h(33): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\entityplayer.h(66): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\entityplayer.h(46): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\engine.h(20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\engine.h(35): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\engine.h(36): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(72): warning C4172: returning address of local variable or temporary
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(50): warning C4172: returning address of local variable or temporary
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\hutils.h(42): warning C4172: returning address of local variable or temporary
+c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\entityinterop.h(17): warning C4715: 'CEntityInterop::findEntityByClass': not all control paths return a value
+  3D A Game.vcxproj -> C:\Users\Hugh\Dropbox\C++ Projects\3D A Game\Debug\3D A Game.exe
+  3D A Game.vcxproj -> C:\Users\Hugh\Dropbox\C++ Projects\3D A Game\Debug\3D A Game.pdb (Full PDB)

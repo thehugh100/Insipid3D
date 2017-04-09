@@ -1,0 +1,3140 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>hutils.h</FILENAME>
+      <LINE>562</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>6335</DEFECTCODE>
+    <DESCRIPTION>Leaking process information handle 'processInfo.hProcess'.</DESCRIPTION>
+    <FUNCTION>CScriptEngine::StandardLib::_createProcess</FUNCTION>
+    <DECORATED>?_createProcess@StandardLib@CScriptEngine@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@4@@Z</DECORATED>
+    <FUNCLINE>558</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>890</LINE>
+      <COLUMN>39</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'output':  the writable size is 'x*y*comp*sizeof(float)' bytes, but '8' bytes might be written.</DESCRIPTION>
+    <FUNCTION>ldr_to_hdr</FUNCTION>
+    <DECORATED>?ldr_to_hdr@@YAPAMPAEHHH@Z</DECORATED>
+    <FUNCLINE>879</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>881</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>881</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>881</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>882</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'output' is a 0 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>883</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'output==0' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>885</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'comp' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>885</LINE>
+        <COLUMN>34</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>886</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>886</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;x*y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>887</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>887</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>890</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'k&lt;comp')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>890</LINE>
+        <COLUMN>39</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>886</LINE>
+        <COLUMN>22</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'i' may equal 1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>886</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Continue this loop, (assume 'i&lt;x*y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>887</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>887</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>890</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>8</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'k&lt;comp')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>890</LINE>
+        <COLUMN>39</COLUMN>
+        <KEYEVENT>
+          <ID>9</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'output', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>915</LINE>
+      <COLUMN>28</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'output':  the writable size is 'x*y*comp' bytes, but '2' bytes might be written.</DESCRIPTION>
+    <FUNCTION>hdr_to_ldr</FUNCTION>
+    <DECORATED>?hdr_to_ldr@@YAPAEPAMHHH@Z</DECORATED>
+    <FUNCLINE>897</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>899</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>899</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>899</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>900</LINE>
+        <COLUMN>11</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'output' is a 0 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>901</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'output==0' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>903</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'comp' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>903</LINE>
+        <COLUMN>34</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>904</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>904</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;x*y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>905</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>905</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'k&lt;n' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>911</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'k&lt;comp')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>912</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>913</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>914</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>915</LINE>
+        <COLUMN>28</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>904</LINE>
+        <COLUMN>22</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'i' may equal 1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>904</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>8</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Continue this loop, (assume 'i&lt;x*y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>905</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>905</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>9</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'k&lt;n' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>911</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>10</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'k&lt;comp')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>912</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>913</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>914</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>915</LINE>
+        <COLUMN>28</COLUMN>
+        <KEYEVENT>
+          <ID>11</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'output', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>1464</LINE>
+      <COLUMN>28</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'm' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '1427' of 'c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\stb_image.h'.</DESCRIPTION>
+    <FUNCTION>process_marker</FUNCTION>
+    <DECORATED>?process_marker@@YAHPAUjpeg@@H@Z</DECORATED>
+    <FUNCLINE>1427</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1427</LINE>
+        <COLUMN>40</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>1682</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6244</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'input' hides previous declaration at line '31' of 'c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\input.h'.</DESCRIPTION>
+    <FUNCTION>resample_row_h_2</FUNCTION>
+    <DECORATED>?resample_row_h_2@@YAPAEPAE00HH@Z</DECORATED>
+    <FUNCLINE>1678</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>input.h</FILENAME>
+        <LINE>31</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>1893</LINE>
+      <COLUMN>18</COLUMN>
+    </SFA>
+    <DEFECTCODE>6001</DEFECTCODE>
+    <DESCRIPTION>Using uninitialized memory 'coutput'.</DESCRIPTION>
+    <FUNCTION>load_jpeg_image</FUNCTION>
+    <DECORATED>?load_jpeg_image@@YAPAEPAUjpeg@@PAH11H@Z</DECORATED>
+    <FUNCLINE>1808</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1810</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1810</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1812</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1813</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1816</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1819</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1821</LINE>
+        <COLUMN>24</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1824</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1828</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1829</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1829</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1830</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1831</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'coutput' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1833</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1835</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1835</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'k&lt;decode_n' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1858</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1859</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '!output' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1862</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1862</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'j&lt;z-&gt;s-&gt;img_y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1863</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1864</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1864</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'k&lt;decode_n' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1878</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'n&gt;=3' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1893</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'coutput' is used, but may not have been initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>2017</LINE>
+      <COLUMN>16</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'k' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '1986' of 'c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\stb_image.h'.</DESCRIPTION>
+    <FUNCTION>zbuild_huffman</FUNCTION>
+    <DECORATED>?zbuild_huffman@@YAHPAUzhuffman@@PAEH@Z</DECORATED>
+    <FUNCLINE>1984</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>1986</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>2080</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>6385</DEFECTCODE>
+    <DESCRIPTION>Reading invalid data from 'z-&gt;size':  the readable size is '288' bytes, but 'b' bytes may be read.</DESCRIPTION>
+    <FUNCTION>zhuffman_decode</FUNCTION>
+    <DECORATED>?zhuffman_decode@@YAHPAUzbuf@@PAUzhuffman@@@Z</DECORATED>
+    <FUNCLINE>2074</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2076</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2076</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2076</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2077</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2078</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2079</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'b&lt;65535')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2080</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid read from 'z-&gt;size[65534]', (readable range is 0 to 287)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>2083</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>6385</DEFECTCODE>
+    <DESCRIPTION>Reading invalid data from 'z-&gt;value':  the readable size is '576' bytes, but 'b' bytes may be read.</DESCRIPTION>
+    <FUNCTION>zhuffman_decode</FUNCTION>
+    <DECORATED>?zhuffman_decode@@YAHPAUzbuf@@PAUzhuffman@@@Z</DECORATED>
+    <FUNCLINE>2074</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2076</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2076</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2076</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2077</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2078</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2079</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'b&lt;65535')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2080</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2081</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2082</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2083</LINE>
+        <COLUMN>6</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid read from 'z-&gt;value[65534]', (readable range is 0 to 287)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>2187</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>6001</DEFECTCODE>
+    <DESCRIPTION>Using uninitialized memory 'lencodes'.</DESCRIPTION>
+    <FUNCTION>compute_huffman_codes</FUNCTION>
+    <DECORATED>?compute_huffman_codes@@YAHPAUzbuf@@@Z</DECORATED>
+    <FUNCLINE>2160</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2162</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2163</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2164</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'lencodes' is not initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2165</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2166</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2166</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2168</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2169</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2170</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2172</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2173</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2173</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2177</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '&lt;branch condition&gt;' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2179</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2180</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'n&lt;hlit+hdist')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2181</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2183</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'c&lt;16' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2185</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'c==16')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2186</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2187</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'lencodes' is used, but may not have been initialized</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>2187</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>6385</DEFECTCODE>
+    <DESCRIPTION>Reading invalid data from 'lencodes':  the readable size is '455' bytes, but '-1' bytes may be read.</DESCRIPTION>
+    <FUNCTION>compute_huffman_codes</FUNCTION>
+    <DECORATED>?compute_huffman_codes@@YAHPAUzbuf@@@Z</DECORATED>
+    <FUNCLINE>2160</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2162</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2163</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2164</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'lencodes' is an array of 455 elements (455 bytes)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2165</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2166</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2166</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2168</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2169</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2170</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2172</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2173</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2173</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2177</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '&lt;branch condition&gt;' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2179</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2180</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'n&lt;hlit+hdist')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2181</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2183</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'c&lt;16' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2185</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'c==16')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2186</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2187</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid read from 'lencodes[-1]', (readable range is 0 to 454)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>2548</LINE>
+      <COLUMN>21</COLUMN>
+    </SFA>
+    <DEFECTCODE>6387</DEFECTCODE>
+    <DESCRIPTION>'final+((j*yspc[p]+yorig[p]))*a-&gt;s-&gt;img_x*out_n+((i*xspc[p]+xorig[p]))*out_n' could be '0':  this does not adhere to the specification for the function 'memcpy'. </DESCRIPTION>
+    <FUNCTION>create_png_image</FUNCTION>
+    <DECORATED>?create_png_image@@YAHPAUpng@@PAEIHH@Z</DECORATED>
+    <FUNCLINE>2520</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2522</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2523</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2524</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2525</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2527</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2528</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2531</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'final' may be NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2532</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2532</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'p&lt;7')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2533</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2534</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2535</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2536</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2537</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2537</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2537</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2537</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2539</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2540</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2541</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'x&amp;&amp;y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2542</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '&lt;branch condition&gt;' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2546</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2546</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'j&lt;y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2547</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2547</LINE>
+        <COLUMN>24</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;x')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2548</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'final' is an In/Out argument to 'memcpy' (declared at c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_string.h:40)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2548</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>8</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'final+((j*yspc[p]+yorig[p]))*a-&gt;s-&gt;img_x*out_n+((i*xspc[p]+xorig[p]))*out_n' should not be NULL, because this is not consistent with the SAL annotation on 'memcpy'</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>2609</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'p':  the writable size is 'pixel_count*pal_img_n' bytes, but '2' bytes might be written.</DESCRIPTION>
+    <FUNCTION>expand_palette</FUNCTION>
+    <DECORATED>?expand_palette@@YAHPAUpng@@PAEHH@Z</DECORATED>
+    <FUNCLINE>2586</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2588</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2588</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2589</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2589</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2589</LINE>
+        <COLUMN>24</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2591</LINE>
+        <COLUMN>5</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'p' is a 0 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2592</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'p==0' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2595</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2597</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'pal_img_n==3' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2606</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2606</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;pixel_count')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2607</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2608</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2609</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'p', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>3103</LINE>
+      <COLUMN>24</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'out':  the writable size is 'target*s-&gt;img_x*s-&gt;img_y' bytes, but '3' bytes might be written.</DESCRIPTION>
+    <FUNCTION>bmp_load</FUNCTION>
+    <DECORATED>?bmp_load@@YAPAEPAUstbi@@PAH11H@Z</DECORATED>
+    <FUNCLINE>2951</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2953</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2954</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2954</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2954</LINE>
+        <COLUMN>26</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2954</LINE>
+        <COLUMN>31</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2954</LINE>
+        <COLUMN>37</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2955</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2956</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2956</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2956</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2956</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2956</LINE>
+        <COLUMN>30</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2957</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2957</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2957</LINE>
+        <COLUMN>29</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2957</LINE>
+        <COLUMN>34</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2957</LINE>
+        <COLUMN>42</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2957</LINE>
+        <COLUMN>50</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2958</LINE>
+        <COLUMN>22</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2959</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2960</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2961</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2962</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2963</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2964</LINE>
+        <COLUMN>43</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2965</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2966</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2967</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2972</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2973</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2974</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2975</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2976</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2977</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>2978</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3034</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3035</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3038</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3039</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'out' is a 0 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3040</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '!out' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3041</LINE>
+        <COLUMN>11</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'bpp&lt;16' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>28</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>37</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>46</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>55</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>64</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3077</LINE>
+        <COLUMN>73</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3078</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'z' is NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3079</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3080</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3081</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'bpp==24')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3081</LINE>
+        <COLUMN>27</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3084</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3085</LINE>
+        <COLUMN>14</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'bpp==24')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3086</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3091</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '!easy' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3099</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3099</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>8</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'j&lt;(int)s-&gt;img_y')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3100</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>9</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'easy')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3101</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3101</LINE>
+        <COLUMN>24</COLUMN>
+        <KEYEVENT>
+          <ID>10</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&lt;(int)s-&gt;img_x')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3102</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3103</LINE>
+        <COLUMN>24</COLUMN>
+        <KEYEVENT>
+          <ID>11</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'out', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>3430</LINE>
+      <COLUMN>29</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Buffer overrun while writing to 'tga_data':  the writable size is 'tga_width*tga_height*req_comp' bytes, but '2' bytes might be written.</DESCRIPTION>
+    <FUNCTION>tga_load</FUNCTION>
+    <DECORATED>?tga_load@@YAPAEPAUstbi@@PAH11H@Z</DECORATED>
+    <FUNCLINE>3224</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3227</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3228</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3229</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3230</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3231</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3232</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3233</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3234</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3235</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3236</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3237</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3238</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3239</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3241</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3242</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3243</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3243</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3244</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3245</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3246</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3247</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3248</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3251</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3257</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3262</LINE>
+        <COLUMN>51</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3271</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3277</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3278</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3279</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3287</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3289</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'tga_data' is a 0 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3290</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '!tga_data' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3293</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3295</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'tga_indexed' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3309</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3310</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3310</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;tga_width*tga_height' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3421</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'tga_inverted')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3423</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3423</LINE>
+        <COLUMN>22</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'j*2&lt;tga_height')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3425</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3426</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>42</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&gt;0')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3429</LINE>
+        <COLUMN>26</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3430</LINE>
+        <COLUMN>29</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3431</LINE>
+        <COLUMN>29</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3432</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>8</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'index1' may equal 1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3433</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>47</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>42</COLUMN>
+        <KEYEVENT>
+          <ID>9</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Continue this loop, (assume 'i&gt;0')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3429</LINE>
+        <COLUMN>26</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3430</LINE>
+        <COLUMN>29</COLUMN>
+        <KEYEVENT>
+          <ID>10</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid write to 'tga_data', (outside its writable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>3429</LINE>
+      <COLUMN>26</COLUMN>
+    </SFA>
+    <DEFECTCODE>6385</DEFECTCODE>
+    <DESCRIPTION>Reading invalid data from 'tga_data':  the readable size is 'tga_width*tga_height*req_comp' bytes, but '2' bytes may be read.</DESCRIPTION>
+    <FUNCTION>tga_load</FUNCTION>
+    <DECORATED>?tga_load@@YAPAEPAUstbi@@PAH11H@Z</DECORATED>
+    <FUNCLINE>3224</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3227</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3228</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3229</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3230</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3231</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3232</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3233</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3234</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3235</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3236</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3237</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3238</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3239</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3241</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3242</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3243</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3243</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3244</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3245</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3246</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3247</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3248</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3251</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3257</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3262</LINE>
+        <COLUMN>51</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3271</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3277</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3278</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3279</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3287</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3289</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'tga_data' is a 0 byte array</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3290</LINE>
+        <COLUMN>7</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume '!tga_data' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3293</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3295</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this branch, (assume 'tga_indexed' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3309</LINE>
+        <COLUMN>17</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3310</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3310</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Skip this loop, (assume 'i&lt;tga_width*tga_height' is false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3421</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this branch, (assume 'tga_inverted')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3423</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3423</LINE>
+        <COLUMN>22</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'j*2&lt;tga_height')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3425</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3426</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>42</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Enter this loop, (assume 'i&gt;0')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3429</LINE>
+        <COLUMN>26</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3430</LINE>
+        <COLUMN>29</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3431</LINE>
+        <COLUMN>29</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3432</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>8</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'index1' may equal 1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3433</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>47</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3427</LINE>
+        <COLUMN>42</COLUMN>
+        <KEYEVENT>
+          <ID>9</ID>
+          <KIND>branch</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Continue this loop, (assume 'i&gt;0')</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3429</LINE>
+        <COLUMN>26</COLUMN>
+        <KEYEVENT>
+          <ID>10</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Invalid read from 'tga_data', (outside its readable range)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>3774</LINE>
+      <COLUMN>25</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'i' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '3769' of 'c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\stb_image.h'.</DESCRIPTION>
+    <FUNCTION>pic_load2</FUNCTION>
+    <DECORATED>?pic_load2@@YAPAEPAUstbi@@HHPAHPAE@Z</DECORATED>
+    <FUNCLINE>3696</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3769</LINE>
+        <COLUMN>40</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>3826</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6387</DEFECTCODE>
+    <DESCRIPTION>'result' could be '0':  this does not adhere to the specification for the function 'memset'. </DESCRIPTION>
+    <FUNCTION>pic_load</FUNCTION>
+    <DECORATED>?pic_load@@YAPAEPAUstbi@@PAH11H@Z</DECORATED>
+    <FUNCLINE>3807</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3809</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3810</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3810</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3810</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3812</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3812</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3813</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3812</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3812</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3813</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3812</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3812</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3815</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3816</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3817</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3818</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3820</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3821</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3822</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3825</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'result' may be NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3826</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>declaration</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>'result' is an In/Out argument to 'memset' (declared at c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_string.h:60)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3826</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>usage</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>'result' should not be NULL, because this is not consistent with the SAL annotation on 'memset'</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>3933</LINE>
+      <COLUMN>28</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '18524' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>stbi_gif_info_raw</FUNCTION>
+    <DECORATED>?stbi_gif_info_raw@@YAHPAUstbi@@PAH11@Z</DECORATED>
+    <FUNCLINE>3933</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>4016</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'code' hides declaration of the same name in outer scope. For additional information, see previous declaration at line '3982' of 'c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\stb_image.h'.</DESCRIPTION>
+    <FUNCTION>stbi_process_gif_raster</FUNCTION>
+    <DECORATED>?stbi_process_gif_raster@@YAPAEPAUstbi@@PAUstbi_gif_struct@@@Z</DECORATED>
+    <FUNCLINE>3979</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>stb_image.h</FILENAME>
+        <LINE>3982</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>4173</LINE>
+      <COLUMN>29</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '18532' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>stbi_gif_load</FUNCTION>
+    <DECORATED>?stbi_gif_load@@YAPAEPAUstbi@@PAH11H@Z</DECORATED>
+    <FUNCLINE>4173</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>4238</LINE>
+      <COLUMN>23</COLUMN>
+    </SFA>
+    <DEFECTCODE>6244</DEFECTCODE>
+    <DESCRIPTION>Local declaration of 'input' hides previous declaration at line '31' of 'c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\input.h'.</DESCRIPTION>
+    <FUNCTION>hdr_convert</FUNCTION>
+    <DECORATED>?hdr_convert@@YAXPAMPAEH@Z</DECORATED>
+    <FUNCLINE>4238</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+        <FILENAME>input.h</FILENAME>
+        <LINE>31</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>tiny_obj_loader.h</FILENAME>
+      <LINE>862</LINE>
+      <COLUMN>12</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '21160' bytes of stack:  exceeds /analyze:stacksize '16384'.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>tinyobj::LoadObj</FUNCTION>
+    <DECORATED>?LoadObj@tinyobj@@YA_NAAV?$vector@Ushape_t@tinyobj@@V?$allocator@Ushape_t@tinyobj@@@std@@@std@@AAV?$vector@Umaterial_t@tinyobj@@V?$allocator@Umaterial_t@tinyobj@@@std@@@3@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@AAV?$basic_istream@DU?$char_traits@D@std@@@3@AAVMaterialReader@1@_N@Z</DECORATED>
+    <FUNCLINE>862</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>tiny_obj_loader.h</FILENAME>
+      <LINE>1092</LINE>
+      <COLUMN>12</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: 'sscanf'.</DESCRIPTION>
+    <FUNCTION>tinyobj::LoadObj</FUNCTION>
+    <DECORATED>?LoadObj@tinyobj@@YA_NAAV?$vector@Ushape_t@tinyobj@@V?$allocator@Ushape_t@tinyobj@@@std@@@std@@AAV?$vector@Umaterial_t@tinyobj@@V?$allocator@Umaterial_t@tinyobj@@@std@@@3@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@AAV?$basic_istream@DU?$char_traits@D@std@@@3@AAVMaterialReader@1@_N@Z</DECORATED>
+    <FUNCLINE>862</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\hugh\dropbox\c++ projects\3d a game\3d a game\</FILEPATH>
+      <FILENAME>tiny_obj_loader.h</FILENAME>
+      <LINE>1116</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>6031</DEFECTCODE>
+    <DESCRIPTION>Return value ignored: 'sscanf'.</DESCRIPTION>
+    <FUNCTION>tinyobj::LoadObj</FUNCTION>
+    <DECORATED>?LoadObj@tinyobj@@YA_NAAV?$vector@Ushape_t@tinyobj@@V?$allocator@Ushape_t@tinyobj@@@std@@@std@@AAV?$vector@Umaterial_t@tinyobj@@V?$allocator@Umaterial_t@tinyobj@@@std@@@3@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@AAV?$basic_istream@DU?$char_traits@D@std@@@3@AAVMaterialReader@1@_N@Z</DECORATED>
+    <FUNCLINE>862</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>
