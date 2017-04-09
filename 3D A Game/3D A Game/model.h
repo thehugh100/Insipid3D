@@ -578,6 +578,31 @@ inline float distancef(float x1, float y1, float z1, float x2, float y2, float z
 }
 
 HUtils::XYZ projP = HUtils::XYZ(0, 0, 0);
+// 
+//inline float fast_s(float f)
+//{
+//	int i = 0x1FBD1DF5 + (*(int*)&f >> 1);
+//	return *(float*)&i;
+//}
+//inline float triArea32(HUtils::XYZ *p0, HUtils::XYZ *p1, HUtils::XYZ *p2)
+//{
+//	float d1 = (p1->y - p0->y)*(p2->z - p0->z) - (p1->z - p0->z)*(p2->y - p0->y);
+//	float d2 = (p1->z - p0->z)*(p2->x - p0->x) - (p1->x - p0->x)*(p2->z - p0->z);
+//	float d3 = (p1->x - p0->x)*(p2->y - p0->y) - (p1->y - p0->y)*(p2->x - p0->x);
+//
+//	return fast_s(d1*d1 + d2*d2 + d3*d3);
+//}
+//inline bool isInside2(HUtils::XYZ *p, HUtils::XYZ *t1, HUtils::XYZ *t2, HUtils::XYZ *t3)
+//{
+//	float actArea = triArea3(t1, t2, t3) * 1.0545f;
+//	float a1 = triArea3(p, t1, t2);
+//	if (a1 > actArea) return false;
+//	float a2 = triArea3(p, t2, t3);
+//	if (a2 > actArea) return false;
+//	float a3 = triArea3(p, t3, t1);
+//	if (a3 > actArea) return false;
+//	return a1 + a2 + a3 <= actArea;
+//}
 
 inline float triArea3(HUtils::XYZ *p0, HUtils::XYZ *p1, HUtils::XYZ *p2)
 {
@@ -585,15 +610,20 @@ inline float triArea3(HUtils::XYZ *p0, HUtils::XYZ *p1, HUtils::XYZ *p2)
 	float d2 = (p1->z - p0->z)*(p2->x - p0->x) - (p1->x - p0->x)*(p2->z - p0->z);
 	float d3 = (p1->x - p0->x)*(p2->y - p0->y) - (p1->y - p0->y)*(p2->x - p0->x);
 
-	return Qsqrt(d1*d1 + d2*d2 + d3*d3) / 2;
+	return sqrtf(d1*d1 + d2*d2 + d3*d3);
 }
-
 inline bool isInside(HUtils::XYZ *p, HUtils::XYZ *t1, HUtils::XYZ *t2, HUtils::XYZ *t3)
 {
-	float totArea = triArea3(p, t1, t2) + triArea3(p, t2, t3) + triArea3(p, t3, t1);
 	float actArea = triArea3(t1, t2, t3);
-	return totArea <= actArea*1.005f;
+	float a1 = triArea3(p, t1, t2);
+	if (a1 > actArea) return false;
+	float a2 = triArea3(p, t2, t3);
+	if (a2 > actArea) return false;
+	float a3 = triArea3(p, t3, t1);
+	if (a3 > actArea) return false;
+	return a1 + a2 + a3 <= actArea;
 }
+
 
 struct traceProperties
 {
@@ -602,23 +632,6 @@ struct traceProperties
 	bool hit;
 	tri _tri;
 };
-
-///* not called */
-//inline traceProperties traceTri(tri * _tri, HUtils::XYZ origin, HUtils::XYZ p1, HUtils::XYZ d1)
-//{
-//	traceProperties tp;
-//	tp.hitPos = HUtils::XYZ();
-//	tp.t = 0.0f;
-//	plane p = plane(_tri->t[0] + origin, _tri->t[1] + origin, _tri->t[2] + origin);
-//	float t = (p.k - p.a * p1.x - p.b * p1.y - p.c * p1.z) / (p.a * d1.x + p.b * d1.y + p.c * d1.z);
-//	HUtils::XYZ intPoint = HUtils::XYZ(p1.x + d1.x * t, p1.y + d1.y * t, p1.z + d1.z * t);
-//	tp.hit = t > 0.0f ? isInside(intPoint, p.tris[0], p.tris[1], p.tris[2]) : 0;
-//	tp.t = t;
-//	tp.hitPos = intPoint;
-//	tp._tri = tri(_tri->t[0] + origin, _tri->t[1] + origin, _tri->t[2] + origin);
-//	return tp;
-//}
-
 
 struct trace
 {
@@ -646,53 +659,6 @@ trace _2k17trace(HUtils::XYZ eye, HUtils::XYZ eyedir, CModel *mesh)
 	return q;
 }
 
-///*old*/
-//inline trace rayTrace1(HUtils::XYZ eye, HUtils::XYZ eyeDir, CModel *mesh)
-//{
-//	eyeDir.normalize();
-//	trace newTrace;
-//	newTrace.traceFailed = 0;
-//	newTrace.didHit = 0;
-//	newTrace.hitNormal = HUtils::XYZ();
-//	newTrace.hitPos = HUtils::XYZ();
-//	vector<traceProperties> hitplanes;
-//
-//	for (int i = 0; i < mesh->planes.size(); i++)
-//	{
-//		mesh->planes[i].hit = false;
-//		mesh->planes[i].hitpos = HUtils::XYZ(0, 0, 0);
-//		traceProperties ttp = traceTri(&mesh->triangles[i], mesh->origin, eye, eyeDir);
-//		if (ttp.hit)
-//			hitplanes.push_back(ttp);
-//	}
-//
-//	float min = INT_MAX;
-//	traceProperties minp;
-//	bool found = false;
-//	for (int i = 0; i < hitplanes.size(); ++i)
-//	{
-//		if (hitplanes[i].t > 0.0f && hitplanes[i].t < min)
-//		{
-//			min = hitplanes[i].t;
-//			minp = hitplanes[i];
-//			found = true;
-//		}
-//	}
-//	if (found)
-//	{
-//		//minp->hit = true;
-//		projP = minp.hitPos;
-//		newTrace.hitPos = minp.hitPos;
-//		newTrace.didHit = 1;
-//		minp._tri.calcNomral();
-//		newTrace.hitNormal = minp._tri.normal;
-//		newTrace._tri = minp._tri;
-//		newTrace.distance = distancef(eye.x, eye.y, eye.z, newTrace.hitPos.x, newTrace.hitPos.y, newTrace.hitPos.z);
-//		return newTrace;
-//	}
-//	return newTrace;
-//}
-
 inline trace rayTrace(HUtils::XYZ eye, HUtils::XYZ eyeDir, CModel *mesh)
 {
 	eyeDir.normalize();
@@ -714,7 +680,7 @@ inline trace rayTrace(HUtils::XYZ eye, HUtils::XYZ eyeDir, CModel *mesh)
 		tp.t = 0.0f;
 		p = &mesh->planes[i];
 		float t = (p->k - p->a * eye.x - p->b * eye.y - p->c * eye.z) / (p->a * eyeDir.x + p->b * eyeDir.y + p->c * eyeDir.z);
-		if (t <= 0.0f)
+		if (t < 0.0f)
 			continue;
 		HUtils::XYZ intPoint = HUtils::XYZ(eye.x + eyeDir.x * t, eye.y + eyeDir.y * t, eye.z + eyeDir.z * t);
 		tp.hit = isInside(&intPoint, &p->tris[0], &p->tris[1], &p->tris[2]);
