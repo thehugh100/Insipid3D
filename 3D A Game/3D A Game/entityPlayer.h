@@ -10,8 +10,9 @@
 #include "entityInterop.h"
 #include "entityWorld.h"
 #include "collider.h"
+#include "entityPhysicsObject.h"
 #include <iomanip>
-struct entPlayer : CEntity
+struct entPlayer : entPhysicsObject
 {
 	entPlayer()
 	{
@@ -30,6 +31,8 @@ struct entPlayer : CEntity
 		onGround = 0;
 
 		trace ground = collider->findCollision(pos, HUtils::XYZ(0, -1, 0), dynamic_cast<entWorld*>(entityInterop->getWorld())->mesh);
+		
+		float prevYVel = vel.y; //calculate the difference in y velocity before and after we hit the floor
 		if (ground.didHit && !ground.traceFailed)
 		{
 			float groundAngle = abs(90 - (asin(ground.hitNormal.y) * 180.0f / 3.141592));
@@ -55,6 +58,7 @@ struct entPlayer : CEntity
 				onGround = 1;
 			}
 		}
+		camera->pitchAdditive -= (prevYVel - vel.y) * 250; //apply a pitch additive based on how much our velocity changed to shake our crosshair
 
 		trace wall = collider->findCollision(pos + HUtils::XYZ(0,0.1,0), vel.normalized(), dynamic_cast<entWorld*>(entityInterop->getWorld())->mesh);
 
@@ -172,6 +176,10 @@ struct entPlayer : CEntity
 		globals->cX = pos.x;
 		globals->cY = pos.y;
 		globals->cZ = pos.z;
+
+		globals->cVX = vel.x;
+		globals->cVY = vel.y;
+		globals->cVZ = vel .z;
 
 		//pos.print();
 	}

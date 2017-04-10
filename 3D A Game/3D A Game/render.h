@@ -12,6 +12,8 @@
 /*Sorry, not clever enough*/
 HUtils::XYZ cameraPos;
 HUtils::XYZ lookPos;
+HUtils::XYZ cameraVel;
+HUtils::XYZ upVec;
 
 struct CRenderer
 {
@@ -36,11 +38,18 @@ struct CRenderer
 		ShowCursor(!camera->lockMouse);
 		cameraPos = camera->pos;
 		lookPos = camera->lookPos;
+		cameraVel = camera->vel;
+		upVec = camera->upVec;
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		float shakeFrequency = 180.0f;
+		float shakeX = sin((globals->tick - 20) / shakeFrequency) * camera->rumble;
+		float shakeY = sin((globals->tick + 1) / shakeFrequency) * camera->rumble;
+		float shakeZ = cos((globals->tick + 10) / shakeFrequency) * camera->rumble;
+
 		glLoadIdentity();
-		gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, lookPos.x, lookPos.y, lookPos.z, camera->upVec.x, camera->upVec.y, camera->upVec.z);
+		gluLookAt(cameraPos.x + shakeX, cameraPos.y + shakeY, cameraPos.z + shakeZ, lookPos.x, lookPos.y, lookPos.z, upVec.x, upVec.y, upVec.z);
 		
 		entityManager->render();
 		//glutSolidSphere(1, 100, 100);

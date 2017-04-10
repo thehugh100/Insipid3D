@@ -25,5 +25,9 @@ struct entEnviroment : CEntity
 	{
 		glClearColor(col[0], col[1], col[2], col[3]);
 	}
+	virtual std::string getClass()
+	{
+		return "entEnviroment";
+	}
 	float col[4];
 };

@@ -10,7 +10,7 @@ struct CEngineGlobals
 	float windowHeight;
 	
 	//this is painful
-	float cX, cY, cZ;
+	float cX, cY, cZ, cVX, cVY, cVZ;
 
 	float yaw;
 	float pitch;

@@ -34,7 +34,8 @@ struct CEntityManager
 	{
 		if (entityList.size() - 1 == maxEntities)
 		{
-			MessageBoxA(0, "Sorry, we've run out of entites for you, we hope to get some more at some point.", "Sorry, dave", 0);
+			//MessageBoxA(0, "Sorry, we've run out of entites for you, we hope to get some more at some point.", "Sorry, dave", 0);
+			cout << "Error: No space for more entities.\r\n";
 		}
 		else
 		{

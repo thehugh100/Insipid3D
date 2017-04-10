@@ -2,7 +2,7 @@
 Hugh Nixon
 17/12/2016
 
-Last edited 09/04/2017
+Last edited 10/04/2017
 Simple Header that does some usefull keyoard / mouse / game engine stuff...
 */
 #pragma once
@@ -14,6 +14,7 @@ Simple Header that does some usefull keyoard / mouse / game engine stuff...
 #include <sstream>
 #include <map>
 #include <math.h>
+#include <minmax.h>
 using namespace std;
 namespace HUtils
 {
@@ -147,6 +148,11 @@ namespace HUtils
 	{
 		string gWindowName;
 	};
+
+	float clamp(float in, float lowerBound, float upperBound)
+	{
+		return max(lowerBound, min(upperBound, in));
+	}
 
 	CGlobals_ global;
 

@@ -10,7 +10,8 @@
 #include "model.h"
 #include "entityWorld.h"
 #include "entityExplosion.h"
-struct entMine : CEntity
+#include "entityPhysicsObject.h"
+struct entMine : entPhysicsObject
 {
 	entMine()
 	{
@@ -115,7 +116,11 @@ struct entMine : CEntity
 			glPopMatrix();
 		}
 	}
-	HUtils::XYZ vel;
+	virtual std::string getClass()
+	{
+		return "entMine";
+	}
+
 	HUtils::XYZ bodyAngle;
 	int mineSet = 0;
 	int triggered = 0;

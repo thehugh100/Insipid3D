@@ -1,27 +1,27 @@
 ﻿  3D A Game.cpp
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(137): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(144): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(216): warning C4800: 'char': forcing value to bool 'true' or 'false' (performance warning)
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(443): warning C4838: conversion from 'char' to 'unsigned char' requires a narrowing conversion
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(515): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(527): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(602): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(628): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(661): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(666): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(696): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(740): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(763): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(58): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(60): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\render.h(57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\render.h(70): warning C4101: 'filter': unreferenced local variable
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(138): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(145): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(222): warning C4800: 'char': forcing value to bool 'true' or 'false' (performance warning)
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(449): warning C4838: conversion from 'char' to 'unsigned char' requires a narrowing conversion
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(521): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(533): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(608): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(634): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(667): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(672): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(702): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(746): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(769): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(60): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(61): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(62): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(73): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\render.h(66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\render.h(79): warning C4101: 'filter': unreferenced local variable
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityInterop.h(21): warning C4018: '<': signed/unsigned mismatch
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\tiny_obj_loader.h(1092): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(2254): note: see declaration of 'sscanf'
@@ -60,21 +60,21 @@ c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(654): warni
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(673): warning C4018: '<': signed/unsigned mismatch
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(697): warning C4018: '<': signed/unsigned mismatch
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityBouncyBall.h(32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(35): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(47): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(117): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(121): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityExplosion.h(37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityExplosion.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityMine.h(70): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityMine.h(78): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(30): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(38): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(50): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(51): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(121): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(125): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityExplosion.h(38): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityExplosion.h(42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityMine.h(71): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityMine.h(79): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\engine.h(24): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  1 of 2402 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  2 of 2412 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   3D A Game.vcxproj -> C:\Users\Hugh\Documents\GitHub\Insipid3D\3D A Game\3D A Game\Release\3D A Game.exe
   3D A Game.vcxproj -> C:\Users\Hugh\Documents\GitHub\Insipid3D\3D A Game\3D A Game\Release\3D A Game.pdb (Full PDB)

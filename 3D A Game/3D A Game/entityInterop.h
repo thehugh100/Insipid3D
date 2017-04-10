@@ -20,10 +20,10 @@ struct CEntityInterop
 	{
 		for (int i = 0; i < entityManager->entityList.size(); i++)
 		{
-			if (i >= afterIndex && findEntity(i)->getClass() == class_)
+			if (i >= afterIndex && findEntity(i)->getClass().compare(class_) == 0)
 				return findEntity(i);
-			return nullptr;
 		}
+		return nullptr;
 	}
 	/*Returns a pointer to a list of entities of a certain class (must be freed)*/
 	CEntityList *findEntitiesByClass(string class_)
@@ -31,7 +31,7 @@ struct CEntityInterop
 		CEntityList *list = new CEntityList;
 		for (auto i : entityManager->entityList)
 		{
-			if (i->getClass() == class_)
+			if (i->getClass().compare(class_) == 0)
 				list->entities.push_back(i);
 		}
 		return list;

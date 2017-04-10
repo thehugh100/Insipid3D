@@ -87,6 +87,9 @@
     <ClInclude Include="entityExplosion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="entityPhysicsObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
