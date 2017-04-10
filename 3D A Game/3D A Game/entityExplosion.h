@@ -22,8 +22,11 @@ struct entExplosion : CEntity
 			/*Make this more generic so it affects all phys objects*/
 			for (auto i : entityInterop->findEntitiesByClass("entPlayer")->entities)
 			{
+				if (!entityInterop->entityVisible(this, i))
+					continue;
 				float magnitude = min(10.0f / entityInterop->entityDistance(this, i), 0.04f); //clamp maximum velocity
 				camera->rumble = min(10.0f / entityInterop->entityDistance(this, i), 0.6f);
+				camera->fovAdditive += min(10000.1f / entityInterop->entityDistance(this, i), 50.0f);
 				HUtils::XYZ direction = (pos - i->pos).normalized();
 				i->vel += direction * magnitude;
 				i->pos += HUtils::XYZ(0, 0.1, 0); //kick player off ground so they don't get stuck

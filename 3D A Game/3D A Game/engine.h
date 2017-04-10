@@ -44,6 +44,7 @@ struct CEngine
 		entityManager->addEntity(new entMine(HUtils::XYZ(2, 4, 16)));
 		entityManager->addEntity(new entMine(HUtils::XYZ(-20, 5, 6)));
 		entityManager->addEntity(new entMine(HUtils::XYZ(8.5, 5, 34)));
+
 		camera->detatch();
 	}
 	void run()

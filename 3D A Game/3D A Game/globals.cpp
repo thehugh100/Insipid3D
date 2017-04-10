@@ -15,5 +15,5 @@ void CEngineGlobals::init()
 	cVX = 0;
 	cVY = 0;
 	cVZ = 0;
-	gravity = 0.000018;
+	gravity = 0.000012;
 }

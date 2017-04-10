@@ -17,13 +17,14 @@ struct CCameraController
 		mouseDy = 0;
 		rumble = 0;
 		sway = HUtils::XYZ(0, 1, 0);
+		fov = 90;
+		fovAdditive = 0;
 	}
 	void update(HUtils::XYZ pos_, HUtils::XYZ vel)
 	{
 		sensitivity = 0.2;
 		//unfreeze mouse
-		if (input->keyboard->keyDownEvent('Q'))
-			lockMouse = !lockMouse; 
+		
 		oldMouseX = mouseX;
 		oldMouseY = mouseY;
 		mouseX = input->mouse->x;
@@ -70,6 +71,7 @@ struct CCameraController
 		pitchAdditive /= 1.1;
 		yawAdditive /= 1.1;
 		rumble /= 1.045;
+		fovAdditive /= 1.045;
 		normalizedLookDir = HUtils::XYZ(cos((yaw) * 3.1415 / 180.0f), tan(pitch * 3.1415 / 180.0f), sin((yaw) * 3.1415 / 180.0f)).normalized();
 	}
 
@@ -106,5 +108,7 @@ struct CCameraController
 	float sensitivity = 0.26;
 	float pitchAdditive = 0;
 	float yawAdditive = 0;
+	float fov = 90;
+	float fovAdditive = 0;
 };
 CCameraController *camera;

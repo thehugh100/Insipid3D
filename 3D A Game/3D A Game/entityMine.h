@@ -85,18 +85,21 @@ struct entMine : entPhysicsObject
 				}
 				else
 				{
-					CEntityList* ents = entityInterop->findEntitiesByClass("entPlayer");
-					for (auto i : ents->entities)
+					if (globals->tick % 60 == 0)
 					{
-						if (entityInterop->entityDistance(this, i) < 4)
+						CEntityList* ents = entityInterop->findEntitiesByClass("entPlayer");
+						for (auto i : ents->entities)
 						{
-							triggered = 1;
-							vel += HUtils::XYZ(0, 0.0057, 0);
-							timer = std::chrono::system_clock::now();
-							break;
+							if (entityInterop->entityDistance(this, i) < 4 && entityInterop->entityVisible(this, i))
+							{
+								triggered = 1;
+								vel += HUtils::XYZ(0, 0.0057, 0);
+								timer = std::chrono::system_clock::now();
+								break;
+							}
 						}
+						delete(ents);
 					}
-					delete(ents);
 				}
 			}
 			pos += vel/* * globals->timeDelta*/;

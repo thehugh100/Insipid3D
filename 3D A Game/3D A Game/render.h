@@ -29,7 +29,7 @@ struct CRenderer
 		glViewport(0, 0, w, h);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		gluPerspective(90, (float)w / (float)h, 0.1, 1000000);
+		gluPerspective(camera->fov + camera->fovAdditive, (float)w / (float)h, 0.1, 1000000);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 	}
@@ -52,8 +52,8 @@ struct CRenderer
 		gluLookAt(cameraPos.x + shakeX, cameraPos.y + shakeY, cameraPos.z + shakeZ, lookPos.x, lookPos.y, lookPos.z, upVec.x, upVec.y, upVec.z);
 		
 		entityManager->render();
-		//glutSolidSphere(1, 100, 100);
 
+		reshape(globals->windowWidth, globals->windowHeight);
 		glutSwapBuffers();
 		glutPostRedisplay();
 	}
@@ -89,6 +89,7 @@ struct CRenderer
 		glFogf(GL_FOG_END, 900.0f);               // Fog End Depth
 		glEnable(GL_FOG);
 		//glEnable(GLUT_MULTISAMPLE);
+		
 		glutMainLoop();
 	}
 	/*Detatch the renderer into a seperate thread*/
