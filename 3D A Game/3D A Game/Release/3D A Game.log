@@ -56,9 +56,9 @@ c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(461): warni
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(489): warning C4018: '<': signed/unsigned mismatch
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(495): warning C4018: '<': signed/unsigned mismatch
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(524): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(641): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(707): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(731): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(654): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(673): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\model.h(697): warning C4018: '<': signed/unsigned mismatch
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityBouncyBall.h(32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityPlayer.h(35): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -72,7 +72,7 @@ c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityMine.h(70): w
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityMine.h(78): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\engine.h(24): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  2 of 2402 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 2402 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
