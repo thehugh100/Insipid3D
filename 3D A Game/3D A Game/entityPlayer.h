@@ -24,21 +24,30 @@ struct entPlayer : entPhysicsObject
 	}
 	void simulatePhysics()
 	{
-		float horizontalFriction = 1.008;
-		
-		float airFriction = 1.0005;
-		float gravity = -globals->gravity * globals->timeDelta;
-		onGround = 0;
+		float airFriction = 1.005;
+		float horizontalFriction = 1.005;		
 
-		trace ground = collider->findCollision(pos, HUtils::XYZ(0, -1, 0), dynamic_cast<entWorld*>(entityInterop->getWorld())->mesh);
-		
+		float gravity = -globals->gravity * globals->timeDelta;
+
+		onGround = 0;	
+
+		// ground slope special cases //
+
+		// find collision with ground
+		trace ground = collider->findCollision(
+			pos,
+			HUtils::XYZ(0, -1, 0),
+			dynamic_cast<entWorld*>(entityInterop->getWorld())->mesh);
+
 		float prevYVel = vel.y; //calculate the difference in y velocity before and after we hit the floor
 		if (ground.didHit && !ground.traceFailed)
 		{
 			float groundAngle = abs(90 - (asin(ground.hitNormal.y) * 180.0f / 3.141592));
 			//cout << "groundAngle: " << std::fixed <<  groundAngle << "\r\n";
 
-			if (groundAngle > 2 && groundAngle < 40 && ground.distance < playerHeight + 0.1) /*Standard slope we can walk up*/
+			if (groundAngle > 2 && 
+				groundAngle < 40 && 
+				ground.distance < playerHeight + 0.1) /*Standard slope we can walk up*/
 			{
 				pos.y = ground.hitPos.y + playerHeight;
 				onGround = 1;
@@ -64,7 +73,14 @@ struct entPlayer : entPhysicsObject
 		//if (potentialFovAdd > camera->fovAdditive)
 		//	camera->fovAdditive = potentialFovAdd;
 
-		trace wall = collider->findCollision(pos + HUtils::XYZ(0,0.1,0), vel.normalized(), dynamic_cast<entWorld*>(entityInterop->getWorld())->mesh);
+
+		// wall collision //
+
+		// find collision with wall
+		trace wall = collider->findCollision(
+			pos + HUtils::XYZ(0,0.1,0), 
+			vel.normalized(), 
+			dynamic_cast<entWorld*>(entityInterop->getWorld())->mesh);
 
 		if (wall.didHit && !wall.traceFailed && wall.distance < 0.5)
 		{
@@ -78,7 +94,7 @@ struct entPlayer : entPhysicsObject
 		{
 			horizontalFriction = airFriction;
 		}
-		else
+		else // jumping
 		{
 			if (input->keyboard->keyDown(VK_SPACE))
 			{
@@ -88,39 +104,51 @@ struct entPlayer : entPhysicsObject
 		}
 		vel += HUtils::XYZ(0, gravity, 0);
 		
-		float maxSpeed = 0.003;
+		float maxSpeed = 0.01;
 
 		/*If we're moving don't apply the same amount of ground friction*/
-		if (movVel.magnitude() > 0.001)
+		if (movVel.magnitude() > 0.003)
 		{
 			horizontalFriction /= 3;
 		}
 
-		if (vel.magnitude() > maxSpeed && movVel.magnitude() >= 0.00001)
-		{
-			movVel = movVel.normalized() * maxSpeed * -movVel.magnitude();
-		}
-		
-		vel += movVel;
+		//if (vel.magnitude() > maxSpeed && movVel.magnitude() >= 0.00001)
+		//{
+		//	movVel = movVel.normalized() * maxSpeed * -movVel.magnitude();
+		//}
+		//
 
+		vel += movVel;
 		movVel *= 0;
 
 		vel.x /= horizontalFriction;
 		vel.z /= horizontalFriction;
 
+		// new velocity cap //
+		float currentSpeed = vel.magnitude();
+		if (currentSpeed > maxSpeed)
+		{
+			vel = vel.normalized() * maxSpeed;
+		}
+
+		//cout << vel.magnitude() << endl;
+
 		pos += vel;
 	}
 	void tick()
 	{
-		speedMultiplier = globals->timeDelta / 100;
-		float acceleration = 0.0062;
+		speedMultiplier = globals->timeDelta;
 
+		float acceleration = 0.0003;
 		if (!onGround)
-		{
-			acceleration = 0.00034;
-		}
+			acceleration = 0.0003;
 
-		simulatePhysics();
+		
+
+		// player movement inputs ///
+
+		//simulatePhysics();
+
 		if (input->keyboard->keyDown('W'))
 		{
 			//pos = pos + (camera->normalizedLookDir * HUtils::XYZ(1,0,1)).normalized() * HUtils::XYZ(speedMultiplier, 0, speedMultiplier);
@@ -139,22 +167,32 @@ struct entPlayer : entPhysicsObject
 		{
 			movVel += (yRotate(camera->normalizedLookDir, 90) * HUtils::XYZ(1, 0, 1)).normalized() * HUtils::XYZ(speedMultiplier, 0, speedMultiplier) * acceleration;
 		}
-		if (movVel.magnitude() > 0.001)
+
+
+		// acceleration cap //
+
+		/*if (movVel.magnitude() > 0.0005)
 		{
 			float prevMag = movVel.magnitude();
 			movVel.normalize();
 			movVel *= prevMag;
 		}
+		*/
 
+		// other key inputs //
+
+		// exit
 		if (input->keyboard->keyDownEvent('E'))
 		{
 			exit(0);
 		}
+		// new bouncy ball
 		if (input->keyboard->keyDownEvent('F'))
 		{
 			for(int i = 0; i < 1; i++)
 				entityManager->addEntity(new entBounceyBall(HUtils::XYZ(0,0,0), HUtils::randVec()*0.1));
 		}
+		// print all entities
 		if (input->keyboard->keyDownEvent('G'))
 		{
 			int s = entityInterop->getEntityCount();
@@ -164,13 +202,17 @@ struct entPlayer : entPhysicsObject
 			}
 			Sleep(1000);
 		}
+		// toggle mouse lock
 		if (input->keyboard->keyDownEvent('Q'))
+		{
 			camera->lockMouse = !camera->lockMouse;
-
+		}
+		// lmao jet pack
 		if (input->keyboard->keyDown(VK_LBUTTON))
 		{
-			vel += camera->normalizedLookDir.normalized() * -0.00004;
+			vel += camera->normalizedLookDir.normalized() * -0.00004;	
 		}
+		// crouch
 		if (input->keyboard->keyDown(VK_CONTROL)) //crouched
 		{
 			crouched = 1;
@@ -181,6 +223,9 @@ struct entPlayer : entPhysicsObject
 			crouched = 0;
 			targetPlayerHeight = 1.4;
 		}
+
+		simulatePhysics();
+
 
 		playerHeight += ((targetPlayerHeight - playerHeight) / 100.0f) * globals->timeDelta;
 

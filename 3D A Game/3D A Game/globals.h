@@ -18,6 +18,7 @@ struct CEngineGlobals
 	double timeDelta;
 	double averageTimeDelta;
 	double timeDeltaAccum;
+	double tickTime;
 	float gravity;
 	/*Game ticks untill average*/
 	int timeDeltaAverageRate;

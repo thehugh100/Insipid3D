@@ -17,6 +17,9 @@
 #include "entityEnviroment.h"
 #include "collider.h"
 #include "entityMine.h"
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+
 struct CEngine
 {
 	CEngine(int argc, char **argv)
@@ -52,12 +55,26 @@ struct CEngine
 		engineInit();
 		while (engineRunning)
 		{
-			std::chrono::system_clock::time_point begin = std::chrono::system_clock::now();
+			std::chrono::high_resolution_clock::time_point start, finish;
+			start = std::chrono::high_resolution_clock::now();
+
+			//cout << "lol";
+			//cout << "lol";
+
 			input->run();
 			entityManager->tick();
-			std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
-			std::chrono::duration<double, std::milli> dif = end - begin;
-			globals->timeDelta = dif.count();
+
+			finish = std::chrono::high_resolution_clock::now();
+
+			// larger it is, the bigger the time delta needs to be
+			double dif = std::chrono::duration_cast<std::chrono::microseconds>(finish - start).count();
+
+			// processWait is the base speed for one tick
+			// if the machine is under performing, dif will be higher than processWait
+			// this yields a fraction > 1, so will 'speed' physics up
+			// similar is true for over performing machines, physics will be slowed down
+			globals->timeDelta = dif / globals->tickTime;
+
 			globals->timeDeltaAccum += globals->timeDelta;
 			globals->tick++;
 			if (globals->tick % globals->timeDeltaAverageRate == 0)
@@ -65,6 +82,7 @@ struct CEngine
 				globals->averageTimeDelta = globals->timeDeltaAccum / (float)globals->timeDeltaAverageRate;
 				globals->timeDeltaAccum = 0;
 				//cout << globals->timeDelta << "ms Average: " << globals->averageTimeDelta << "\r";
+				//cout << us << " ns" << "\r";
 			}
 			/*60 ticks a second*/
 			/*while (std::chrono::duration<double, std::milli>(std::chrono::system_clock::now() - begin).count() < 4)
