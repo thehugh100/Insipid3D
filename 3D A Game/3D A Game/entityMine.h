@@ -11,6 +11,7 @@
 #include "entityWorld.h"
 #include "entityExplosion.h"
 #include "entityPhysicsObject.h"
+#include <memory>
 struct entMine : entPhysicsObject
 {
 	entMine()
@@ -30,7 +31,7 @@ struct entMine : entPhysicsObject
 		entExplosion *exp = new entExplosion(pos);
 		entityManager->addEntity(exp);
 
-		CEntityList* ents = entityInterop->findEntitiesByClass("entPlayer");
+		unique_ptr<CEntityList> ents(entityInterop->findEntitiesByClass("entPlayer"));
 		for (auto i : ents->entities)
 		{
 			if (entityInterop->entityDistance(this, i) < 20)
@@ -87,7 +88,7 @@ struct entMine : entPhysicsObject
 				{
 					if (globals->tick % 60 == 0)
 					{
-						CEntityList* ents = entityInterop->findEntitiesByClass("entPlayer");
+						unique_ptr<CEntityList> ents(entityInterop->findEntitiesByClass("entPlayer"));
 						for (auto i : ents->entities)
 						{
 							if (entityInterop->entityDistance(this, i) < 4 && entityInterop->entityVisible(this, i))
@@ -98,7 +99,6 @@ struct entMine : entPhysicsObject
 								break;
 							}
 						}
-						delete(ents);
 					}
 				}
 			}

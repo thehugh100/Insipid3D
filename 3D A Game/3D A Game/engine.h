@@ -56,10 +56,6 @@ struct CEngine
 		{
 			std::chrono::high_resolution_clock::time_point start, finish;
 			start = std::chrono::high_resolution_clock::now();
-
-			//cout << "lol";
-			//cout << "lol";
-
 			input->run();
 			entityManager->tick();
 
@@ -83,13 +79,6 @@ struct CEngine
 				//cout << globals->timeDelta << "ms Average: " << globals->averageTimeDelta << "\r";
 				//cout << us << " ns" << "\r";
 			}
-			/*60 ticks a second*/
-			/*while (std::chrono::duration<double, std::milli>(std::chrono::system_clock::now() - begin).count() < 4)
-			{
-				std::this_thread::sleep_for(std::chrono::milliseconds(1));
-			}*/
-
-			//cout << globals->timeDelta << endl;
 		}
 	}
 	bool engineRunning;

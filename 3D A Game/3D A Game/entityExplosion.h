@@ -20,7 +20,8 @@ struct entExplosion : CEntity
 		if (affectPlayers)
 		{
 			/*Make this more generic so it affects all phys objects*/
-			for (auto i : entityInterop->findEntitiesByClass("entPlayer")->entities)
+			unique_ptr<CEntityList> ents(entityInterop->findEntitiesByClass("entPlayer"));
+			for (auto i : ents->entities)
 			{
 				if (!entityInterop->entityVisible(this, i))
 					continue;
