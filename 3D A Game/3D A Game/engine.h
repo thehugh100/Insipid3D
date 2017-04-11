@@ -17,8 +17,7 @@
 #include "entityEnviroment.h"
 #include "collider.h"
 #include "entityMine.h"
-#define MIN(a,b) (((a)<(b))?(a):(b))
-#define MAX(a,b) (((a)>(b))?(a):(b))
+#include <minmax.h>
 
 struct CEngine
 {
