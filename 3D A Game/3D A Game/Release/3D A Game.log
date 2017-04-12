@@ -3,15 +3,15 @@ c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(138): warn
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(145): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(222): warning C4800: 'char': forcing value to bool 'true' or 'false' (performance warning)
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(449): warning C4838: conversion from 'char' to 'unsigned char' requires a narrowing conversion
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(521): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(533): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(608): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(634): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(667): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(672): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(702): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(746): warning C4018: '<': signed/unsigned mismatch
-c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(769): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(520): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(532): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(607): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(633): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(666): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(671): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(701): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(745): warning C4018: '<': signed/unsigned mismatch
+c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\HUtils.h(768): warning C4018: '<': signed/unsigned mismatch
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\cameraController.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -74,9 +74,9 @@ c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\entityMine.h(80): w
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\engine.h(26): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\hugh\documents\github\insipid3d\3d a game\3d a game\engine.h(65): warning C4244: 'initializing': conversion from '__int64' to 'double', possible loss of data
   Generating code
-  2 of 2439 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  0 of 2439 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+    32 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   3D A Game.vcxproj -> C:\Users\Hugh\Documents\GitHub\Insipid3D\3D A Game\3D A Game\Release\3D A Game.exe
   3D A Game.vcxproj -> C:\Users\Hugh\Documents\GitHub\Insipid3D\3D A Game\3D A Game\Release\3D A Game.pdb (Full PDB)

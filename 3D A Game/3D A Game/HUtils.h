@@ -447,7 +447,6 @@ namespace HUtils
 		{ 0xDD, ']', '}' },
 		{ 0x20, ' ', ' ' }
 	};
-
 }
 
 void(*conCall)(string);
