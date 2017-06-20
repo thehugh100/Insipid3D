@@ -1,1 +1,2 @@
-"# Insipid3D"  git init git add README.md git commit -m "first commit" git remote add origin https://github.com/thehugh100/Insipid3D.git git push -u origin master
+# Inspid 3D
+This is a remake of [this](https://www.youtube.com/watch?v=AYRhSKjlKws) engine in a more structured way
