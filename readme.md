@@ -8,5 +8,5 @@ A few years ago I wrote [this](https://www.youtube.com/watch?v=AYRhSKjlKws) and 
 
 Insipid3D is dependent on:
 
-[Bullet 3] (https://github.com/bulletphysics/bullet3)
-[Open Asset Import Library] (https://github.com/assimp/assimp)
+[Bullet 3](https://github.com/bulletphysics/bullet3)
+[Open Asset Import Library](https://github.com/assimp/assimp)
