@@ -16,6 +16,11 @@ CollisionState::CollisionState(Map* map)
 
 void CollisionState::loadMesh()
 {
+	if (map->getMesh() == nullptr)
+	{
+		std::cout << "Cannot load collision mesh.\r\n";
+	}
+
 	for (int i = 0; i < map->getMesh()->meshEntries.size(); ++i)
 	{
 		aiMesh* pMesh = map->getMesh()->meshEntries[i]->meshRef;

@@ -1,7 +1,10 @@
 #include "Console.h"
 #include "engine.h"
 #include <GLFW/glfw3.h>
+#include <filesystem>
+#include <fstream>
 #include "Variable.h"
+#include "map.h"
 
 Console::Console(Engine* enginePtr)
 	:engine(enginePtr)
@@ -13,6 +16,28 @@ Console::Console(Engine* enginePtr)
 	{
 		this->engine->shaderManager->flushShaders();
 		return "done.";
+	};
+
+	commands["generateLightmap"] = [this](std::string params)
+	{
+		engine->map->generateLightmap();
+		return "done.";
+	};
+
+	commands["loadMap"] = [this](std::string params)
+	{
+		std::string mapPath = "worlds/" + params;
+		if (!std::experimental::filesystem::exists(mapPath))
+		{
+			return std::string("Could not find map: " + mapPath);
+		}
+
+		Map *nMap = new Map(mapPath, engine->textureManager);
+
+		if (nMap->map->scene != nullptr)
+			engine->map = nMap;
+
+		return  std::string("done.");
 	};
 
 	commands["help"] = [this](std::string params)
@@ -51,7 +76,7 @@ void Console::parseCommand(std::string command)
 		hasParameters = 1;
 	}
 
-	if (commands.find(command) != commands.end())
+	if (commands.find(commandName) != commands.end())
 	{
 		consolePrint(commands[commandName](parameters));
 	}

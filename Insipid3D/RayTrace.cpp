@@ -54,6 +54,13 @@ rayHit RayTrace::rayTrace(glm::vec3 origin, glm::vec3 rayDir, Mesh* mesh)
 	rayHit r;
 	r.hit = 0;
 	r.distance = 1000000000;
+
+	if (mesh == nullptr || mesh->scene == nullptr)
+	{
+		std::cout << "Raytrace failed, mesh was nullptr." << std::endl;
+		return r;
+	}
+
 	for (int i = 0; i < mesh->scene->mNumMeshes; ++i)
 	{
 		aiMesh* m = mesh->scene->mMeshes[i];

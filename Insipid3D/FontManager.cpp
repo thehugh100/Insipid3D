@@ -6,7 +6,7 @@ FontManager::FontManager()
 	if (FT_Init_FreeType(&ft))
 		std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
 
-	defaultFont = new Font(&ft, "fonts/arial.ttf", 32);
+	defaultFont = new Font(&ft, "fonts/Roboto_Mono/RobotoMono-Regular.ttf", 32);
 }
 
 FontManager::~FontManager()
