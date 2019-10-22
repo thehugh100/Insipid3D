@@ -22,8 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{C4C2C2FD-7E26-4A80-A480-B2357E1490A2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>freegluttests</RootNamespace>
+    <RootNamespace>Insipid3D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Insipid3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -83,8 +84,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\bullet3-master\src;C:\Program Files\Assimp\include;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -177,7 +178,7 @@
     <ClCompile Include="EntityTraits.cpp" />
     <ClCompile Include="FlyCam.cpp" />
     <ClCompile Include="FontManager.cpp" />
-    <ClCompile Include="freeglut tests.cpp" />
+    <ClCompile Include="Insipid3D.cpp" />
     <ClCompile Include="GLShader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Light.cpp" />
