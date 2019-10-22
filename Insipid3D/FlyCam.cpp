@@ -15,13 +15,13 @@ FlyCam::FlyCam(Engine* enginePtr)
 
 void FlyCam::control()
 {
-	float flyingSpeed = 10.;
+	float flyingSpeed = engine->variables->getVarOrCreate("flycam_speed", "10.0", Variable::valFloat)->getFloat();
 
 	glm::vec3 wishDir = glm::vec3(0, 0, 0);
 	bool keyPressed = 0;
 	bool aP = 0, dP = 0;
 
-	if (glfwGetKey(engine->window, GLFW_KEY_LEFT_SHIFT)) { flyingSpeed *= 2.f; }
+	if (glfwGetKey(engine->window, GLFW_KEY_LEFT_SHIFT)) { flyingSpeed *= engine->variables->getVarOrCreate("flycam_speed_sprint_multiplier", "2.0", Variable::valFloat)->getFloat(); }
 	if (glfwGetKey(engine->window, GLFW_KEY_W)) { wishDir += engine->camera->lookVec; keyPressed = 1; }
 	if (glfwGetKey(engine->window, GLFW_KEY_S)) { wishDir -= engine->camera->lookVec; keyPressed = 1; }
 	if (glfwGetKey(engine->window, GLFW_KEY_A)) { wishDir += glm::rotateY(glm::vec3(engine->camera->lookVec.x, 0., engine->camera->lookVec.z), 3.1415f / 2.f); keyPressed = 1; aP = 1; }
