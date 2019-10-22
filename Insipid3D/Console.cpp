@@ -11,6 +11,10 @@ Console::Console(Engine* enginePtr)
 {
 	consoleShowing = 0;
 	commandHistoryIndex = 0;
+	lastAutocompleteIndex = -1;
+	preAutocompleteInputBuf = "";
+
+	consoleBuffer = { "-- INSIPID 3D --", "Type: 'help' for a list of commands."};
 
 	commands["reloadShaders"] = [this](std::string params)
 	{
@@ -45,6 +49,15 @@ Console::Console(Engine* enginePtr)
 		std::string r = "";
 		for (auto& i : this->commands)
 			r += i.first + "\n";
+
+		return r;
+	};
+
+	commands["debugVariables"] = [this](std::string params)
+	{
+		std::string r = "";
+		for (auto& i : *engine->variables->getVariables())
+			r += i.first + ": " + i.second->toString() + "\n";
 
 		return r;
 	};
@@ -107,21 +120,22 @@ void Console::tick()
 	{
 		engine->input->keyboardBuffer = "";
 		consoleShowing = !consoleShowing;
+		lastAutocompleteIndex = -1;
 	}
 	if (consoleShowing)
 	{
 		if (engine->input->keyPressed(GLFW_KEY_ENTER))
 		{
+			lastAutocompleteIndex = -1;
 			consolePrint(">> " + engine->input->keyboardBuffer);
-
 			parseCommand(engine->input->keyboardBuffer);
-
 			engine->input->keyboardBuffer = "";
 		}
 		if (engine->input->keyPressed(GLFW_KEY_UP))
 		{
 			if (commandHistory.size() > 0)
 			{
+				lastAutocompleteIndex = -1;
 				commandHistoryIndex--;
 				engine->input->keyboardBuffer = commandHistory[commandHistoryIndex % commandHistory.size()];
 			}
@@ -130,6 +144,7 @@ void Console::tick()
 		{
 			if (commandHistory.size() > 0)
 			{
+				lastAutocompleteIndex = -1;
 				commandHistoryIndex++;
 				engine->input->keyboardBuffer = commandHistory[commandHistoryIndex % commandHistory.size()];
 			}
@@ -137,6 +152,8 @@ void Console::tick()
 		if (engine->input->keyPressed(GLFW_KEY_TAB))
 		{
 			std::string keyboardBuf = engine->input->keyboardBuffer;
+			preAutocompleteInputBuf = keyboardBuf;
+
 			std::vector<std::string> posibilities;
 
 			Variables::variables_t variables = *engine->variables->getVariables();
@@ -148,11 +165,17 @@ void Console::tick()
 			{
 				posibilities.push_back(i.first);
 			}
+			int idx = 0;
 			for (auto& i : posibilities)
 			{
-				if (i.find(keyboardBuf) == 0)
+				if (i.find(preAutocompleteInputBuf) == 0 && idx > lastAutocompleteIndex)
+				{
 					engine->input->keyboardBuffer = i;
+					lastAutocompleteIndex = idx;
+				}
+				idx++;
 			}
+
 		}
 	}
 }

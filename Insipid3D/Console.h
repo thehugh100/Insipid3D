@@ -18,6 +18,9 @@ struct Console
 	int commandHistoryIndex;
 	std::vector<std::string> consoleBuffer;
 	std::vector<std::string> commandHistory;
+	std::string preAutocompleteInputBuf;
+	int lastAutocompleteIndex;
+
 	std::map<std::string, std::function<std::string(std::string)>> commands;
 	Engine* engine;
 };

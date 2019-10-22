@@ -49,7 +49,9 @@ void Input::tick(uint64_t frameNum)
 		if (keyPressed(GLFW_KEY_BACKSPACE) || (glfwGetTime() > backspacePressedAt + rolloverSpeed))
 		{
 			if (keyboardBuffer.size() > 0)
+			{
 				keyboardBuffer = keyboardBuffer.substr(0, keyboardBuffer.length() - 1);
+			}
 			backspacePressedAt = glfwGetTime();
 			if(!keyPressed(GLFW_KEY_BACKSPACE))
 				rolloverSpeed = 0.05;

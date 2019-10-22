@@ -291,6 +291,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 void character_callback(GLFWwindow* window, unsigned int codepoint)
 {
 	engine->input->keyboardBuffer += codepoint;
+	engine->console->lastAutocompleteIndex = -1;
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
