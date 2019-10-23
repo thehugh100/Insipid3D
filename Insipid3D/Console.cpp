@@ -128,7 +128,6 @@ void Console::parseCommand(std::string command)
 {
 	commandHistory.push_back(command);
 	commandHistoryIndex = commandHistory.size();
-	consoleLines = 16;
 
 	size_t spacePos = command.find(" ");
 	std::string commandName = command.substr(0, spacePos);
