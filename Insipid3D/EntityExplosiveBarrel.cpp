@@ -4,9 +4,7 @@
 
 EntityExplosiveBarrel::EntityExplosiveBarrel(glm::vec3 origin_)
 {
-	entityTraits.setTrait("EntityPhysicsProp");
 	entityTraits.setTrait("EntityExplosiveBarrel");
-	entityTraits.setTrait("PhysicsEntity");
 	modelName = "models/barrel.glb";
 	origin = origin_;
 

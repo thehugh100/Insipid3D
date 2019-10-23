@@ -15,6 +15,7 @@ public:
 	void render();
 	Entity* addEntity(Entity* e);
 	bool getEntityByTraits(std::string trait, EntityList* entityList);
+	void getAllEntities(EntityList* entityList);
 private:
 	Engine* engine;
 	std::vector<Entity *> entities;

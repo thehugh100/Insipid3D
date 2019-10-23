@@ -62,6 +62,35 @@ Console::Console(Engine* enginePtr)
 		return r;
 	};
 
+	commands["listEntities"] = [this](std::string params)
+	{
+		std::string r = "";
+		EntityList e;
+		engine->entityManger->getAllEntities(&e);
+
+		int index = 0;
+
+		for (auto& i : e)
+		{
+			std::string traits = "";
+			int tIndex = 0;
+			for (auto& t : *i->entityTraits.getTraits())
+			{
+				traits += t;
+				if (tIndex < i->entityTraits.getTraits()->size() - 1)
+					traits += ", ";
+
+				tIndex++;
+			}
+
+			r += std::to_string(index) + ": (" + traits + ")\n";
+
+			index++;
+		}
+
+		return r;
+	};
+
 	commands["exit"] = [this](std::string params)
 	{
 		exit(0);

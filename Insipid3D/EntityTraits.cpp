@@ -12,3 +12,8 @@ bool EntityTraits::hasTrait(std::string trait)
 
 	return false;
 }
+
+EntityTraits::EntityTraits_t* EntityTraits::getTraits()
+{
+	return &traits;
+}

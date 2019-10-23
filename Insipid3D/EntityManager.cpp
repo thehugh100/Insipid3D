@@ -51,3 +51,18 @@ bool EntityManager::getEntityByTraits(std::string trait, EntityList* entityList)
 
 	return 0;
 }
+
+void EntityManager::getAllEntities(EntityList* entityList)
+{
+	if (entityList != nullptr)
+	{
+		int count = 0;
+		for (auto& i : entities)
+		{
+
+			entityList->push_back(i);
+			count++;
+
+		}
+	}
+}

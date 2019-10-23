@@ -9,7 +9,9 @@ class EntityTraits
 public:
 	void setTrait(std::string trait);
 	bool hasTrait(std::string trait);
+	typedef std::vector<std::string> EntityTraits_t;
 
+	EntityTraits_t* getTraits();
 private:
-	std::vector<std::string> traits;
+	EntityTraits_t traits;
 };
