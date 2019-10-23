@@ -9,6 +9,7 @@ The goal of the project is to build a networked game engine with graphics that s
 # Building
 
 Insipid3D is dependent on:
+
 [Bullet 3](https://github.com/bulletphysics/bullet3)
 
 [Open Asset Import Library](https://github.com/assimp/assimp)
@@ -20,6 +21,7 @@ Insipid3D is dependent on:
 [Freetype2](https://github.com/aseprite/freetype2)
 
 Header only:
+
 [GLM](https://github.com/g-truc/glm)
 
 [stb_image & stb_image_write](https://github.com/nothings/stb)
