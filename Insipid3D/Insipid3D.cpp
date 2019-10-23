@@ -44,6 +44,8 @@
 #include "EntityExplosiveBarrel.h"
 #include "Player.h"
 
+#include "Console.h"
+
 #include <assimp\mesh.h>
 #include <btBulletDynamicsCommon.h>
 
@@ -301,11 +303,13 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
 int main(int argc, char** argv)
 {
-	std::cout << "glfwInit" << std::endl;
+	Console* console = new Console(nullptr);
+
+	*console << "glfwInit" << std::endl;
 	glfwSetErrorCallback(&glfwError);
 	if (!glfwInit())
 		return -1;
-	std::cout << "glfwInit Done" << std::endl;
+	*console << "glfwInit Done" << std::endl;
 
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_REFRESH_RATE, INT_MAX);
@@ -333,9 +337,9 @@ int main(int argc, char** argv)
 	{
 		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 	}
-	fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
-	printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
+	*console << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
+	*console << "OpenGL version supported by this platform (" << glGetString(GL_VERSION) << ")" << std::endl;
 
 	glEnable(GL_TEXTURE);
 	glEnable(GL_SMOOTH);
@@ -349,6 +353,8 @@ int main(int argc, char** argv)
 	glfwGetWindowSize(window, &width, &height);
 
 	engine = new Engine();
+	console->engine = engine;
+	engine->console = console;
 	engine->window = window;
 	engine->screen = glm::vec2(width, height);
 	engine->input->window = window;

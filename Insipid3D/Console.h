@@ -3,6 +3,8 @@
 #include <string>
 #include <functional>
 #include <map>
+#include <iostream>
+#include <sstream>
 
 struct Engine;
 
@@ -24,4 +26,23 @@ struct Console
 	int consoleLines;
 	std::map<std::string, std::function<std::string(std::string)>> commands;
 	Engine* engine;
+
+	std::stringstream conSSBuf;
+	template <class T>
+	Console& operator<< (T const& in)
+	{
+		conSSBuf << in;
+		return *this;
+	}
+	Console& operator<< (std::ostream& (*f)(std::ostream&))
+	{
+		/* This is a bit much but it works... */
+		if (f == (std::basic_ostream<char> & (*)(std::basic_ostream<char>&)) & std::endl)
+		{
+			consolePrint(conSSBuf.str());
+			conSSBuf.clear();
+			conSSBuf.str("");
+		}
+		return *this;
+	}
 };
