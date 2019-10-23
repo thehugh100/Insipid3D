@@ -20,7 +20,8 @@ struct Console
 	std::vector<std::string> commandHistory;
 	std::string preAutocompleteInputBuf;
 	int lastAutocompleteIndex;
-
+	int consoleScroll;
+	int consoleLines;
 	std::map<std::string, std::function<std::string(std::string)>> commands;
 	Engine* engine;
 };

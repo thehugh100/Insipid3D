@@ -23,7 +23,6 @@ void EntityExplosiveBarrel::tick()
 
 		if (jolt >= 30.0f) // force required to explode
 		{
-			
 			EntityList e;
 			engine->entityManger->getEntityByTraits("EntityPhysicsProp", &e);
 

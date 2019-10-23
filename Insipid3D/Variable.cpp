@@ -32,7 +32,7 @@ float Variable::getFloat()
 
 int Variable::getInt()
 {
-	if (vType != Variable::valFloat)
+	if (vType != Variable::valInt)
 		std::cout << val.first << " is not an int.\r\n";
 
 	return atoi(val.second.c_str());
@@ -40,7 +40,7 @@ int Variable::getInt()
 
 std::string Variable::getString()
 {
-	if (vType != Variable::valFloat)
+	if (vType != Variable::valString)
 		std::cout << val.first << " is not a string.\r\n";
 
 	return val.second;

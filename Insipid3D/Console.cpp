@@ -13,6 +13,7 @@ Console::Console(Engine* enginePtr)
 	commandHistoryIndex = 0;
 	lastAutocompleteIndex = -1;
 	preAutocompleteInputBuf = "";
+	consoleScroll = 0;
 
 	consoleBuffer = { "-- INSIPID 3D --", "Type: 'help' for a list of commands."};
 
@@ -107,6 +108,7 @@ void Console::parseCommand(std::string command)
 {
 	commandHistory.push_back(command);
 	commandHistoryIndex = commandHistory.size();
+	consoleLines = 16;
 
 	size_t spacePos = command.find(" ");
 	std::string commandName = command.substr(0, spacePos);
@@ -204,8 +206,10 @@ void Console::tick()
 				}
 				idx++;
 			}
-
 		}
+		consoleLines = engine->variables->getVarOrCreate("consoleHeightLines", "16", Variable::valInt)->getInt();
+		consoleScroll += engine->input->scrollOffsetY;
+		consoleScroll = glm::clamp(consoleScroll, 0, glm::max((int)consoleBuffer.size() - consoleLines, 0));
 	}
 }
 
@@ -216,7 +220,6 @@ void Console::render()
 		std::string consoleFont = "fonts/Roboto_Mono/RobotoMono-Regular.ttf";
 		int fontSize = 18;
 
-
 		bool showCursor = ((int)engine->getElapsedTimeMS() / 250) % 2 == 0;
 		char cursorVal[2] = {' ', '_'};
 
@@ -224,7 +227,13 @@ void Console::render()
 
 		glDepthMask(GL_FALSE);
 
-		for (int i = glm::max((int)consoleBuffer.size()- fontSize, 0); i < consoleBuffer.size(); i++)
+		int historyStartIdx = glm::max((int)consoleBuffer.size() - consoleLines - consoleScroll, 0);
+		int historyEndIdx = glm::min(consoleBuffer.size() - consoleScroll, consoleBuffer.size());
+
+		historyEndIdx = glm::clamp(historyEndIdx, 0, (int)consoleBuffer.size());
+		historyStartIdx = glm::clamp(historyStartIdx, 0, (int)consoleBuffer.size());
+
+		for (int i = historyStartIdx; i < historyEndIdx; i++)
 		{
 			engine->drawDebugText(engine->fontManager->getFont(consoleFont, fontSize), 2, yOffset, consoleBuffer[i], glm::vec3(0.f));
 			engine->drawDebugText(engine->fontManager->getFont(consoleFont, fontSize), 3, yOffset - 1, consoleBuffer[i]);
