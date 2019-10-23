@@ -32,7 +32,7 @@ Console::Console(Engine* enginePtr)
 	commands["loadMap"] = [this](std::string params)
 	{
 		std::string mapPath = "worlds/" + params;
-		if (!std::experimental::filesystem::exists(mapPath))
+		if (!std::filesystem::exists(mapPath))
 		{
 			return std::string("Could not find map: " + mapPath);
 		}

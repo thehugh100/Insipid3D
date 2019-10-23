@@ -18,7 +18,7 @@ Map::Map(std::string fname, TextureManager* textureManager)
 void Map::generateLightmap()
 {
 	std::string lightmapName = fname + ".png";
-	if (std::experimental::filesystem::exists(lightmapName))
+	if (std::filesystem::exists(lightmapName))
 	{
 		map->hasLightmap = 1;
 		map->lightmap = textureManager->loadTexture(lightmapName.c_str(), 1);
