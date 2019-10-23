@@ -6,6 +6,8 @@ Input::Input()
 	window = nullptr;
 	backspacePressedAt = 0;
 	rolloverSpeed = 0.4;
+	scrollOffsetY = 0;
+
 	for (int i = 0; i < GLFW_KEY_LAST; ++i)
 		keyState[i] = GLFW_RELEASE;
 }

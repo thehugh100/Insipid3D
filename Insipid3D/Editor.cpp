@@ -8,6 +8,7 @@
 
 Editor::Editor(Engine *enginePtr)
 {
+	distanceToSelected = 10;
 	engine = enginePtr;
 }
 
