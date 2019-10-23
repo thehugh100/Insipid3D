@@ -14,8 +14,8 @@ struct Entity
 	virtual void tick() = 0;
 	virtual void render() = 0;
 	virtual void init() = 0;
-	
+	virtual void remove() = 0;
+	bool active;
 	EntityTraits entityTraits;
-
 	Engine* engine;
 };

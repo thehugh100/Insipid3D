@@ -45,6 +45,19 @@ Console::Console(Engine* enginePtr)
 		return  std::string("done.");
 	};
 
+	commands["removeEntityByID"] = [this](std::string params)
+	{
+		int id = atoi(params.c_str());
+		EntityList e;
+		engine->entityManger->getAllEntities(&e);
+		if (id < 0 || id >= e.size())
+			return "Index out of range";
+
+		e[id]->remove();
+
+		return "done.";
+	};
+
 	commands["help"] = [this](std::string params)
 	{
 		std::string r = "";
@@ -74,6 +87,7 @@ Console::Console(Engine* enginePtr)
 		for (auto& i : e)
 		{
 			std::string traits = "";
+			std::string rm = "";
 			int tIndex = 0;
 			for (auto& t : *i->entityTraits.getTraits())
 			{
@@ -84,7 +98,13 @@ Console::Console(Engine* enginePtr)
 				tIndex++;
 			}
 
-			r += std::to_string(index) + ": (" + traits + ")\n";
+			if (i->active == 0)
+			{
+				index++;
+				continue;
+			}
+
+			r += std::to_string(index) + ":" + rm + " (" + traits + ")\n";
 
 			index++;
 		}

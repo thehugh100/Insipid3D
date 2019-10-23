@@ -28,6 +28,4 @@ struct EntityPhysicsProp : Entity
 	btRigidBody* body;
 
 	bool backfaceCull;
-
-	bool active;
 };
