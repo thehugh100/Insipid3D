@@ -3,6 +3,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/normal.hpp>
 #include "Raytrace.h"
+#include "Util.h"
 
 VisibleLumel::VisibleLumel(LightmapLumel* lumel, float distance, glm::vec3 dir)
 	:lumel(lumel), distance(distance), dir(dir)
@@ -257,15 +258,26 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 			rayHit r;
 			if (sunDot > 0)
 			{
-				r = RayTrace::rayTrace(cl->wPos + sunDir * .15f, sunDir, mesh);
-				if (!r.hit)
+				const int sampleCount = 16;
+				float sunSpread = 0.01f;
+				if (sampleCount == 1)
+					sunSpread = 0;
+
+				for (int samples = 0; samples < sampleCount; ++samples)
 				{
-					lightVal += glm::vec3(1.f, 0.95f, 0.9f) * glm::vec3((float)glm::max(sunDot, 0.f) * 4095.0f);
+					r = RayTrace::rayTrace(cl->wPos + sunDir * .15f, sunDir + Util::randVec() * sunSpread, mesh);
+					if (!r.hit)
+					{
+						lightVal += (glm::vec3(1.f, 0.95f, 0.9f) * glm::vec3((float)glm::max(sunDot, 0.f) * 4095.0f)) / (float)sampleCount;
+					}
 				}
 			}
 			for (auto& l : lights)
 			{
 				glm::vec3 dirToLight = glm::normalize(l.pos - cl->wPos);
+
+				//dirToLight += Util::randVec() * .01f;
+
 				float dot = glm::dot(dirToLight, i->normal);
 				if (dot < 0)
 					continue;
