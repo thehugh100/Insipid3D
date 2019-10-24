@@ -77,6 +77,13 @@ glm::vec3 LightmapGenerator::getAt(int x, int y, int lightMapRes, int* data)
 	return ret;
 }
 
+inline btDynamicsWorld::ClosestRayResultCallback fastRaytrace(btVector3 start, btVector3 end, btDynamicsWorld* world)
+{
+	btDynamicsWorld::ClosestRayResultCallback r(start, end);
+	world->rayTest(start, end, r);
+	return r;
+}
+
 void LightmapGenerator::buildLightmapData(Mesh* mesh, std::vector<LightmapFace>* lightmapFaces)
 {
 	int meshCount = mesh->scene->mNumMeshes;
@@ -258,15 +265,17 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 			rayHit r;
 			if (sunDot > 0)
 			{
-				const int sampleCount = 16;
-				float sunSpread = 0.01f;
+				const int sampleCount = 64;
+				float sunSpread = 0.014f;
 				if (sampleCount == 1)
 					sunSpread = 0;
 
 				for (int samples = 0; samples < sampleCount; ++samples)
 				{
-					r = RayTrace::rayTrace(cl->wPos + sunDir * .15f, sunDir + Util::randVec() * sunSpread, mesh);
-					if (!r.hit)
+					//r = RayTrace::rayTrace(cl->wPos + sunDir * .15f, sunDir + Util::randVec() * sunSpread, mesh);
+					if(!fastRaytrace(Util::vec3Conv(cl->wPos + sunDir * .02f), 
+						Util::vec3Conv(cl->wPos + (sunDir + Util::randVec() * sunSpread) * 1000.f),
+						map->collisionState->world).hasHit())
 					{
 						lightVal += (glm::vec3(1.f, 0.95f, 0.9f) * glm::vec3((float)glm::max(sunDot, 0.f) * 4095.0f)) / (float)sampleCount;
 					}
@@ -281,11 +290,16 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 				float dot = glm::dot(dirToLight, i->normal);
 				if (dot < 0)
 					continue;
+
 				float distanceToLight = glm::distance(l.pos, cl->wPos);
 				float diffuse = (glm::max(dot, 0.f) * l.intensity);
-				r = RayTrace::rayTrace(cl->wPos + dirToLight * .15f, dirToLight, mesh);
+				//r = RayTrace::rayTrace(cl->wPos + dirToLight * .15f, dirToLight, mesh);
 
-				if (r.distance >= distanceToLight)
+				auto rr = fastRaytrace(Util::vec3Conv(cl->wPos + dirToLight * .02f), 
+					Util::vec3Conv(cl->wPos + dirToLight * 1000.0f), 
+					map->collisionState->world);
+				
+				if(!rr.hasHit() || glm::distance(Util::vec3Conv(rr.m_hitPointWorld), cl->wPos) >= distanceToLight)
 				{
 					if (l.type == LIGHT_SPOT)
 						diffuse *= pow(glm::max(glm::dot(l.dir, -dirToLight), 0.0f), 4.f);
