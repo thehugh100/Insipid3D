@@ -11,6 +11,11 @@ btVector3 Util::vec3Conv(glm::vec3 in)
 	return btVector3(in.x, in.y, in.z);
 }
 
+float Util::distanceSquared(glm::vec3 a, glm::vec3 b)
+{
+	return ((b.x - a.x) * (b.x - a.x)) + ((b.y - a.y) * (b.y - a.y)) + ((b.z - a.z) * (b.z - a.z));
+}
+
 float Util::randFloat()
 {
 	return (float)rand() / RAND_MAX;

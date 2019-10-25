@@ -138,14 +138,16 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 			glm::vec2 uv = glm::vec2(u, v) + glm::vec2(lightMapStep * .5f);
 			for (auto& i : lightmapFaces)
 			{
-				//if (u > i.maxX || u < i.minX || v > i.maxY || v < i.minY)
-					//continue;
+				if (u > i.maxX || u < i.minX || v > i.maxY || v < i.minY)
+					continue;
 
 				if (inside_trigon(uv, i.uvs[0], i.uvs[1], i.uvs[2]))
 				{
-					cl->uv = uv;
 					barycentric(uv, i.uvs[0], i.uvs[1], i.uvs[2], cl->bu, cl->bv, cl->bw);
 
+					//std::cout << cl->bu << " " << cl->bv << " " << cl->bw << std::endl;
+
+					cl->uv = uv;
 					cl->wPos = cl->bu * i.tri[0] + cl->bv * i.tri[1] + cl->bw * i.tri[2];
 					i.normal = glm::triangleNormal(i.tri[0], i.tri[1], i.tri[2]) * 0.05f;
 					cl->face = &i;
@@ -265,7 +267,7 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 			rayHit r;
 			if (sunDot > 0)
 			{
-				const int sampleCount = 64;
+				const int sampleCount = 1;
 				float sunSpread = 0.014f;
 				if (sampleCount == 1)
 					sunSpread = 0;
@@ -291,20 +293,19 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 				if (dot < 0)
 					continue;
 
-				float distanceToLight = glm::distance(l.pos, cl->wPos);
+				float distanceToLightSquared = Util::distanceSquared(l.pos, cl->wPos);
 				float diffuse = (glm::max(dot, 0.f) * l.intensity);
-				//r = RayTrace::rayTrace(cl->wPos + dirToLight * .15f, dirToLight, mesh);
 
 				auto rr = fastRaytrace(Util::vec3Conv(cl->wPos + dirToLight * .02f), 
 					Util::vec3Conv(cl->wPos + dirToLight * 1000.0f), 
 					map->collisionState->world);
 				
-				if(!rr.hasHit() || glm::distance(Util::vec3Conv(rr.m_hitPointWorld), cl->wPos) >= distanceToLight)
+				if(!rr.hasHit() || Util::distanceSquared(Util::vec3Conv(rr.m_hitPointWorld), cl->wPos) >= distanceToLightSquared)
 				{
 					if (l.type == LIGHT_SPOT)
 						diffuse *= pow(glm::max(glm::dot(l.dir, -dirToLight), 0.0f), 4.f);
 
-					lightVal += l.col * glm::vec3((float)(diffuse / (distanceToLight * distanceToLight) * 255.f));
+					lightVal += l.col * glm::vec3((float)(diffuse / (distanceToLightSquared) * 255.f));
 				}
 			}
 
