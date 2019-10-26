@@ -41,15 +41,16 @@ void main()
 
 	for(int i = 0; i < numLights; i++)
 	{
-		float distToLight = distance(lights[i].pos, fragPos);
-		vec3 dirToLight = normalize(lights[i].pos - fragPos);
+		vec3 deltaToLight = lights[i].pos - fragPos;
+		float distToLightSquared = dot(deltaToLight, deltaToLight);
+		vec3 dirToLight = normalize(deltaToLight);
 		float d = dot(dirToLight, norm);
 
 		vec3 reflectDir = reflect(-dirToLight, norm); 
 		vec3 halfwayDir = normalize(dirToLight + viewDir);
 		float ldiffuse = max(d, 0.f) * (lights[i].intensity * .25);
 
-		diffuse += lights[i].col * (ldiffuse / (distToLight * distToLight));
+		diffuse += lights[i].col * (ldiffuse / distToLightSquared);
 		specular += lights[i].col * pow(max(dot(normal, halfwayDir), 0.0), 32.0) * lights[i].intensity * .015;
 	}
 

@@ -267,8 +267,8 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 			rayHit r;
 			if (sunDot > 0)
 			{
-				const int sampleCount = 1;
-				float sunSpread = 0.014f;
+				const int sampleCount = 64;
+				float sunSpread = 0.017f;
 				if (sampleCount == 1)
 					sunSpread = 0;
 
