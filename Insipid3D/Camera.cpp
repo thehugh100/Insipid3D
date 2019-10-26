@@ -30,6 +30,18 @@ glm::mat4 Camera::getProjectionMatrix()
 	return glm::perspective(glm::radians(fov), 1.0f * engine->screen.x / engine->screen.y, zNear, zFar);
 }
 
+bool Camera::worldToScreen(glm::vec3 point, glm::vec2& coords)
+{
+	glm::vec4 clipSpacePos = getProjectionMatrix() * (getViewMatrix() * glm::vec4(point, 1.0));
+	glm::vec3 ndcSpacePos = glm::vec3(clipSpacePos) / clipSpacePos.w;
+	coords = ((glm::vec2(ndcSpacePos) + 1.0f) / 2.0f) * engine->screen;
+
+	if (clipSpacePos.w < 0 || coords.x < 0 || coords.x > engine->screen.x || coords.y < 0 || coords.y > engine->screen.y)
+		return false;
+
+	return true;
+}
+
 void Camera::update()
 {
 	double mX, mY;

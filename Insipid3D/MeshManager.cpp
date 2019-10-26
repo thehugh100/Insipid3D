@@ -12,7 +12,7 @@ Mesh* MeshManager::getMesh(std::string fname, unsigned int flags)
 	{
 		if (i->filename == fname)
 		{
-			std::cout << "Loading Mesh: " << fname << ", already loaded." << std::endl;
+			//std::cout << "Loading Mesh: " << fname << ", already loaded." << std::endl;
 			return i;
 		}
 	}

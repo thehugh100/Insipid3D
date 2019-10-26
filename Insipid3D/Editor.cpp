@@ -33,6 +33,7 @@ void Editor::tick()
 	{
 		if (engine->input->mousePressed(GLFW_MOUSE_BUTTON_LEFT))
 		{
+			//Find physics object to select
 			auto world = engine->getMap()->collisionState->world;
 
 			btVector3 start = Util::vec3Conv(engine->camera->pos);
@@ -72,24 +73,29 @@ void Editor::tick()
 			{
 				selectedEntity = nullptr;
 			}
+			// Find point entity to select
+
 		}
 
-		if (engine->input->mouseDown(GLFW_MOUSE_BUTTON_LEFT) && selectedEntity != nullptr)
+		if (engine->input->mouseDown(GLFW_MOUSE_BUTTON_LEFT))
 		{
-			distanceToSelected += engine->input->scrollOffsetY * 2.0f;
+			if (selectedEntity != nullptr)
+			{
+				distanceToSelected += engine->input->scrollOffsetY * 2.0f;
 
-			EntityPhysicsProp* ent = (EntityPhysicsProp*)selectedEntity;
-			glm::vec3 vel = glm::normalize(engine->camera->pos - Util::vec3Conv(ent->body->getWorldTransform().getOrigin())) * ent->body->getMass() * 150.0f;
-			ent->body->activate();
+				EntityPhysicsProp* ent = (EntityPhysicsProp*)selectedEntity;
+				glm::vec3 vel = glm::normalize(engine->camera->pos - Util::vec3Conv(ent->body->getWorldTransform().getOrigin())) * ent->body->getMass() * 150.0f;
+				ent->body->activate();
 
-			btTransform nt;
-			nt.setIdentity();
-			nt.setRotation(btQuaternion(glm::radians(engine->camera->ang.z + grabWorldYaw), 0, 0));
+				btTransform nt;
+				nt.setIdentity();
+				nt.setRotation(btQuaternion(glm::radians(engine->camera->ang.z + grabWorldYaw), 0, 0));
 
-			nt.setOrigin(Util::vec3Conv(engine->camera->pos + (engine->camera->lookVec * distanceToSelected) - grabOffset));
-			ent->body->setWorldTransform(nt);
-			ent->body->setLinearVelocity(btVector3(0, 0, 0));
-			ent->body->setAngularVelocity(btVector3(0, 0, 0));
+				nt.setOrigin(Util::vec3Conv(engine->camera->pos + (engine->camera->lookVec * distanceToSelected) - grabOffset));
+				ent->body->setWorldTransform(nt);
+				ent->body->setLinearVelocity(btVector3(0, 0, 0));
+				ent->body->setAngularVelocity(btVector3(0, 0, 0));
+			}
 		}
 	}
 }

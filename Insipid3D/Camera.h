@@ -10,6 +10,8 @@ struct Camera
 	glm::mat4 getViewMatrix();
 	glm::mat4 getProjectionMatrix();
 
+	bool worldToScreen(glm::vec3 point, glm::vec2& coords);
+
 	void update();
 
 	float fov;
