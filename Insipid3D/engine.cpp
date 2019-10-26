@@ -30,7 +30,7 @@ Engine::Engine()
 
 bool Engine::loadMap(std::string fname)
 {
-	map = new Map(fname, textureManager);
+	map = new Map(fname, this);
 	return true;
 }
 

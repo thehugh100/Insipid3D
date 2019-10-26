@@ -21,5 +21,5 @@ struct Editor
 	float grabWorldYaw;
 
 	Engine* engine;
-	bool inEditor = 0;
+	bool inEditor;
 };

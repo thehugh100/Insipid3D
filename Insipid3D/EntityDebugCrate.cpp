@@ -94,7 +94,7 @@ void EntityDebugCrate::render()
 		float vis = 1;
 
 		btVector3 start = body->getWorldTransform().getOrigin();
-		btVector3 end = Util::vec3Conv(engine->getMap()->lights[i].pos);
+		btVector3 end = Util::vec3Conv(engine->getMap()->lights[i]->pos);
 
 		btCollisionWorld::AllHitsRayResultCallback r(start, end);
 		engine->getMap()->collisionState->world->rayTest(start, end, r);
@@ -108,10 +108,10 @@ void EntityDebugCrate::render()
 			}
 		}
 
-		glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".pos").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i].pos));
-		glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".col").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i].col));
-		glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".dir").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i].dir));
-		glUniform1f(glGetUniformLocation(shader, std::string(lightID + ".intensity").c_str()), engine->getMap()->lights[i].intensity * vis);
+		glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".pos").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->pos));
+		glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".col").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->col));
+		glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".dir").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->dir));
+		glUniform1f(glGetUniformLocation(shader, std::string(lightID + ".intensity").c_str()), engine->getMap()->lights[i]->intensity * vis);
 	}
 
 	model->render();

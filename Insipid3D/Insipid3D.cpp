@@ -231,42 +231,9 @@ void render()
 		glUniform1iARB(glGetUniformLocation(mapShader, "tex"), 0);
 		glUniform1iARB(glGetUniformLocation(mapShader, "lightmap"), 1);
 
-		//glEnable(GL_CULL_FACE);
-
 		engine->getMap()->render();
 
 		engine->render();
-
-		rayHit r = RayTrace::rayTrace(engine->camera->pos, engine->camera->lookVec, engine->getMap()->getMesh());
-
-		GLuint flatShader = engine->shaderManager->getShader("shaders/flat");
-		glUseProgram(flatShader);
-		glActiveTexture(GL_TEXTURE0);
-		glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(glGetUniformLocation(flatShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(glGetUniformLocation(flatShader, "proj"), 1, GL_FALSE, glm::value_ptr(proj));
-		glUniform3f(glGetUniformLocation(flatShader, "col"), 1., 1., 1. );
-		glDepthMask(GL_FALSE);
-
-		glPointSize(4);
-		glLineWidth(4);
-
-		glBegin(GL_LINES);
-		glVertex3fv(glm::value_ptr(r.pos));
-		glVertex3fv(glm::value_ptr(r.pos + r.normal));
-		glEnd();
-
-		std::ostringstream dbg;
-		dbg << "fps: " << floor(engine->averageFps) << " (" << engine->camera->pos.x << ", " << engine->camera->pos.y << ", " << engine->camera->pos.z << ")";
-		dbg << " " << engine->camera->ang.x << ", " << engine->camera->ang.z;
-
-		if (!engine->console->consoleShowing)
-		{
-			engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), 2, 720 - 18, dbg.str(), glm::vec3(0.f));
-			engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), 3, 720 - 19, dbg.str());
-		}
-
-		glDepthMask(GL_TRUE);
 
 		glfwSwapBuffers(engine->window);
 		glfwPollEvents();
@@ -360,12 +327,11 @@ int main(int argc, char** argv)
 	engine->input->window = window;
 	engine->loadMap("worlds/test_world.glb");
 
-	engine->map->lights.push_back(Light(glm::vec3(-0.5, 8.0, 0.1), glm::vec3(1, 0.3, 0.3), 800.0f));
-	engine->map->lights.push_back(Light(glm::vec3(1, 6.5, 23), glm::vec3(0.97, 1, 0.9), 300.0f));
-	engine->map->lights.push_back(Light(glm::vec3(-15, 6.5, 11.3), glm::vec3(0.95, 1, 0.86), 150.0f));
-	//engine->map->lights.push_back(Light(glm::vec3(-15.0796, 15.084, 20.8173), 
-	//	glm::vec3(1,1,1), 600.0f, LIGHT_SPOT, 
-	// 	glm::vec3(0.00649173, -0.371367, 0.928464)));
+	engine->map->addLight(new Light(glm::vec3(-0.5, 8.0, 0.1), glm::vec3(1, 0.3, 0.3), 800.0f));
+	engine->map->addLight(new Light(glm::vec3(1, 6.5, 23), glm::vec3(0.97, 1, 0.9), 300.0f));
+	engine->map->addLight(new Light(glm::vec3(-15, 6.5, 11.3), glm::vec3(0.95, 1, 0.86), 150.0f));
+
+
 	engine->map->generateLightmap();
 
 	engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", glm::vec3(-4, 20, 4)));

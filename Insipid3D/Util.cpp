@@ -1,5 +1,7 @@
 #include "Util.h"
+#include <iostream>
 #include <random>
+#include <sstream>
 
 glm::vec3 Util::vec3Conv(btVector3 in)
 {
@@ -24,4 +26,11 @@ float Util::randFloat()
 glm::vec3 Util::randVec()
 {
 	return glm::normalize(glm::vec3(randFloat() - .5f, randFloat() - .5f, randFloat() - .5f));
+}
+
+std::string Util::printVec3(glm::vec3 in)
+{
+	std::ostringstream o;
+	o << in.x << ", " << in.y << ", " << in.z;
+	return o.str();
 }

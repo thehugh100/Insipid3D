@@ -37,7 +37,7 @@ Console::Console(Engine* enginePtr)
 			return std::string("Could not find map: " + mapPath);
 		}
 
-		Map *nMap = new Map(mapPath, engine->textureManager);
+		Map *nMap = new Map(mapPath, engine);
 
 		if (nMap->map->scene != nullptr)
 			engine->map = nMap;

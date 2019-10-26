@@ -5,10 +5,13 @@
 #include <filesystem>
 #include <fstream>
 #include "Lightmap.h"
+#include "engine.h"
+#include "EntityLight.h"
 
-Map::Map(std::string fname, TextureManager* textureManager)
-	:fname(fname), textureManager(textureManager)
+Map::Map(std::string fname, Engine* engine)
+	:fname(fname), engine(engine)
 {
+	textureManager = engine->textureManager;
 	map = new Mesh(fname.c_str(), textureManager);
 	sunVec = -glm::normalize(glm::vec3(0.5, 1, 0.5));
 	collisionState = new CollisionState(this);
@@ -53,4 +56,10 @@ void Map::render()
 Mesh* Map::getMesh()
 {
 	return map;
+}
+
+void Map::addLight(Light* l)
+{
+	lights.push_back(l);
+	engine->entityManger->addEntity(new EntityLight(l));
 }

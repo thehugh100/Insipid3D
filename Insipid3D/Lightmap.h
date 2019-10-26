@@ -50,5 +50,5 @@ struct LightmapGenerator
 	inline void setAt(int x, int y, int lightMapRes, int* data, glm::vec3 col);
 	glm::vec3 getAt(int x, int y, int lightMapRes, int* data);
 	void buildLightmapData(Mesh* mesh, std::vector<LightmapFace>* lightmapFaces);
-	void lightmapCalc(Map* map, int lightMapRes, std::vector<Light> lights, TextureManager *textureManager);
+	void lightmapCalc(Map* map, int lightMapRes, std::vector<Light *> lights, TextureManager *textureManager);
 };

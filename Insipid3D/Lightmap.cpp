@@ -109,7 +109,7 @@ void LightmapGenerator::buildLightmapData(Mesh* mesh, std::vector<LightmapFace>*
 	}
 }
 
-void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Light> lights, TextureManager* textureManager)
+void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Light *> lights, TextureManager* textureManager)
 {
 	Mesh* mesh = map->getMesh();
 	int meshCount = mesh->scene->mNumMeshes;
@@ -282,7 +282,7 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 			}
 			for (auto& l : lights)
 			{
-				glm::vec3 dirToLight = glm::normalize(l.pos - cl->wPos);
+				glm::vec3 dirToLight = glm::normalize(l->pos - cl->wPos);
 
 				//dirToLight += Util::randVec() * .01f;
 
@@ -290,8 +290,8 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 				if (dot < 0)
 					continue;
 
-				float distanceToLightSquared = Util::distanceSquared(l.pos, cl->wPos);
-				float diffuse = (glm::max(dot, 0.f) * l.intensity);
+				float distanceToLightSquared = Util::distanceSquared(l->pos, cl->wPos);
+				float diffuse = (glm::max(dot, 0.f) * l->intensity);
 
 				auto rr = fastRaytrace(Util::vec3Conv(cl->wPos + dirToLight * .02f), 
 					Util::vec3Conv(cl->wPos + dirToLight * 1000.0f), 
@@ -299,10 +299,10 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 				
 				if(!rr.hasHit() || Util::distanceSquared(Util::vec3Conv(rr.m_hitPointWorld), cl->wPos) >= distanceToLightSquared)
 				{
-					if (l.type == LIGHT_SPOT)
-						diffuse *= pow(glm::max(glm::dot(l.dir, -dirToLight), 0.0f), 4.f);
+					if (l->type == LIGHT_SPOT)
+						diffuse *= pow(glm::max(glm::dot(l->dir, -dirToLight), 0.0f), 4.f);
 
-					lightVal += l.col * glm::vec3((float)(diffuse / (distanceToLightSquared) * 255.f));
+					lightVal += l->col * glm::vec3((float)(diffuse / (distanceToLightSquared) * 255.f));
 				}
 			}
 
