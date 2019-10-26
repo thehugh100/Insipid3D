@@ -144,9 +144,6 @@ void LightmapGenerator::lightmapCalc(Map* map, int lightMapRes, std::vector<Ligh
 				if (inside_trigon(uv, i.uvs[0], i.uvs[1], i.uvs[2]))
 				{
 					barycentric(uv, i.uvs[0], i.uvs[1], i.uvs[2], cl->bu, cl->bv, cl->bw);
-
-					//std::cout << cl->bu << " " << cl->bv << " " << cl->bw << std::endl;
-
 					cl->uv = uv;
 					cl->wPos = cl->bu * i.tri[0] + cl->bv * i.tri[1] + cl->bw * i.tri[2];
 					i.normal = glm::triangleNormal(i.tri[0], i.tri[1], i.tri[2]) * 0.05f;
