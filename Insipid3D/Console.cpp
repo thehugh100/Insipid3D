@@ -38,6 +38,88 @@ Console::Console(Engine* enginePtr)
 		return d;
 	};
 
+	commands["getEntityVar"] = [this](std::string params)
+	{
+		params += " ";
+		std::vector<std::string> ps;
+		std::string s = "";
+
+		for (auto& i : params)
+		{
+			if (i != ' ')
+			{
+				s += i;
+			}
+			else
+			{
+				ps.push_back(s);
+				s = "";
+			}
+		}
+		int id = atoi(ps[0].c_str());
+		EntityList e;
+		engine->entityManger->getAllEntities(&e);
+		if (id < 0 || id >= e.size())
+			return std::string("Index out of range");
+
+		if (ps.size() <= 1)
+			return std::string("Missing varname");
+
+		std::string varName = ps[1];
+		if (varName != "" && e[id]->vars.vals.find(varName) != e[id]->vars.vals.end())
+		{
+			return e[id]->vars.vals[varName].toString();
+		}
+		else
+		{
+			return std::string("Var: " + varName + " does not exist in entity " + e[id]->entityType);
+		}
+		return std::string();
+	};
+
+	commands["setEntityVar"] = [this](std::string params)
+	{
+		params += " ";
+		std::vector<std::string> ps;
+		std::string s = "";
+
+		for (auto& i : params)
+		{
+			if (i != ' ')
+			{
+				s += i;
+			}
+			else
+			{
+				ps.push_back(s);
+				s = "";
+			}
+		}
+		int id = atoi(ps[0].c_str());
+		EntityList e;
+		engine->entityManger->getAllEntities(&e);
+		if (id < 0 || id >= e.size())
+			return std::string("Index out of range");
+
+		if (ps.size() <= 2)
+			return std::string("Too few arguments in call");
+
+		std::string varName = ps[1];
+		if (varName != "" && e[id]->vars.vals.find(varName) != e[id]->vars.vals.end())
+		{
+			std::string finalArg = "";
+			for (int f = 2; f < ps.size(); ++f)
+				finalArg += ps[f];
+
+			e[id]->vars.vals[varName].fromString(finalArg);
+		}
+		else
+		{
+			return std::string("Var: " + varName + " does not exist in entity " + e[id]->entityType);
+		}
+		return std::string();
+	};
+
 	commands["saveEntityState"] = [this](std::string params)
 	{
 		EntityList l;

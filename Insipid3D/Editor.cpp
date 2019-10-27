@@ -31,7 +31,7 @@ void Editor::tick()
 
 	if (inEditor)
 	{
-		if (engine->input->keyPressed(GLFW_KEY_L))
+		if (engine->input->keyPressed(GLFW_KEY_L) && !engine->console->consoleShowing)
 		{
 			auto world = engine->getMap()->collisionState->world;
 
@@ -206,12 +206,39 @@ void Editor::render()
 			glEnd();
 		}
 
-		if (pointSelection != nullptr && engine->variables->getVarOrCreate("drawEntityDebugInfo", "0", Variable::valInt)->getInt())
+		if ((pointSelection != nullptr || selectedEntity != nullptr) && engine->variables->getVarOrCreate("drawEntityDebugInfo", "0", Variable::valInt)->getInt())
 		{
+			int canSee = 0;
 			glm::vec2 pos;
-			EntityPoint* e = (EntityPoint*)pointSelection;
-			if (engine->camera->worldToScreen(e->getPos(), pos))
+			Entity* e = nullptr;
+
+			if (pointSelection != nullptr)
 			{
+				EntityPoint* p = (EntityPoint*)pointSelection;
+				e = p;
+				canSee = engine->camera->worldToScreen(p->getPos(), pos);
+			}
+			if (selectedEntity != nullptr)
+			{
+				EntityPhysicsProp* p = (EntityPhysicsProp*)selectedEntity;
+				e = p;
+				canSee = engine->camera->worldToScreen(Util::vec3Conv(p->body->getWorldTransform().getOrigin()), pos);
+			}
+
+			if (canSee)
+			{
+				int entId = 0;
+				EntityList l;
+				engine->entityManger->getAllEntities(&l);
+				for (auto& i : l)
+				{
+					if (i == pointSelection || i == selectedEntity)
+						break;
+					entId++;
+				}
+				engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18)
+					, pos.x, pos.y, "ID :" + std::to_string(entId));
+				pos.y += 18;
 				for (auto& i : e->vars.vals)
 				{
 					engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18)

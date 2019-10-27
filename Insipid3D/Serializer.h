@@ -18,6 +18,7 @@ struct Serializer
 
 	void* getVal();
 	std::string toString();
+	void fromString(std::string in);
 
 	enum types {SERIALIZE_INT, SERIALIZE_FLOAT, SERIALIZE_STRING, SERIALIZE_VEC3, SERIALIZE_ENT_TRAITS, SERIALIZE_BYTE, SERIALIZE_MAT4};
 	int type;

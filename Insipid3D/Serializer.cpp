@@ -88,6 +88,27 @@ std::string Serializer::toString()
 	return "No serialization for type.";
 }
 
+void Serializer::fromString(std::string in)
+{
+	if (type == Serializer::SERIALIZE_INT)
+		*reinterpret_cast<int*>(typeVal) = atoi(in.c_str());
+
+	if (type == Serializer::SERIALIZE_FLOAT)
+		*reinterpret_cast<float*>(typeVal) = atof(in.c_str());
+
+	if (type == Serializer::SERIALIZE_BYTE)
+		*reinterpret_cast<uint8_t*>(typeVal) = atoi(in.c_str());
+
+	if (type == Serializer::SERIALIZE_STRING)
+		*reinterpret_cast<std::string*>(typeVal) = in;
+
+	if (type == Serializer::SERIALIZE_VEC3)
+		*reinterpret_cast<glm::vec3*>(typeVal) = Util::vec3FromString(in);
+
+	if (type == Serializer::SERIALIZE_MAT4)
+		*reinterpret_cast<glm::mat4*>(typeVal) = Util::mat4FromString(in);
+}
+
 std::string EntityVars::serialize()
 {
 	nlohmann::json j;
