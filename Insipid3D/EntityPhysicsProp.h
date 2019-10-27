@@ -17,6 +17,8 @@ struct EntityPhysicsProp : Entity
 	virtual void remove();
 	virtual void applyForce(glm::vec3 force);
 	virtual void applyImpulse(glm::vec3 impulse);
+	virtual void update();
+	virtual void setTransform(glm::mat4 transform);
 
 	glm::vec3 getPosition();
 
@@ -26,6 +28,8 @@ struct EntityPhysicsProp : Entity
 
 	Mesh* model;
 	btRigidBody* body;
+
+	glm::mat4 transform;
 
 	bool backfaceCull;
 };

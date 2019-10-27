@@ -12,6 +12,12 @@ Serializer::Serializer(int* val)
 	type = SERIALIZE_INT;
 }
 
+Serializer::Serializer(uint8_t* val)
+{
+	typeVal = val;
+	type = SERIALIZE_BYTE;
+}
+
 Serializer::Serializer(float* val)
 {
 	typeVal = val;
@@ -34,6 +40,12 @@ Serializer::Serializer(EntityTraits* val)
 {
 	typeVal = val;
 	type = SERIALIZE_ENT_TRAITS;
+}
+
+Serializer::Serializer(glm::mat4* val)
+{
+	typeVal = val;
+	type = SERIALIZE_MAT4;
 }
 
 void* Serializer::getVal()

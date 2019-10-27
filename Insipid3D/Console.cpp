@@ -6,6 +6,7 @@
 #include "Variable.h"
 #include "map.h"
 #include <fstream>
+#include <nlohmann/json.hpp>
 
 Console::Console(Engine* enginePtr)
 	:engine(enginePtr)
@@ -42,10 +43,10 @@ Console::Console(Engine* enginePtr)
 		EntityList l;
 		engine->entityManger->getAllEntities(&l);
 
-		std::string d = "";
+		nlohmann::json j;
 
 		for (auto& i : l)
-			d += i->serialize() + "\n";
+			j.push_back(nlohmann::json::parse(i->serialize()));
 
 		std::string fname = engine->getMap()->fname + ".ents";
 		std::ofstream file(fname);
@@ -53,7 +54,7 @@ Console::Console(Engine* enginePtr)
 		if (!file)
 			return std::string("Failed to open " + fname + " for writing.");
 
-		file << d;
+		file << j.dump();
 		file.close();
 
 		return std::string("saved");

@@ -19,6 +19,7 @@ EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin)
 	entityTraits.setTrait("PhysicsEntity");
 	active = 1;
 	backfaceCull = 1;
+	transform = glm::mat4(0.f);
 }
 
 EntityPhysicsProp::EntityPhysicsProp()
@@ -32,6 +33,7 @@ EntityPhysicsProp::EntityPhysicsProp()
 	model = nullptr;
 	active = 1;
 	backfaceCull = 1;
+	transform = glm::mat4(0.f);
 }
 
 void EntityPhysicsProp::tick()
@@ -43,6 +45,7 @@ void EntityPhysicsProp::init()
 	entityType = "EntityPhysicsProp";
 	vars.registerVal("origin", Serializer(&origin));
 	vars.registerVal("modelName", Serializer(&modelName));
+	vars.registerVal("transform", Serializer(&transform));
 
 	model = engine->meshManager->getMesh(modelName);
 
@@ -88,6 +91,18 @@ void EntityPhysicsProp::applyImpulse(glm::vec3 impulse)
 	body->applyCentralImpulse(Util::vec3Conv(impulse));
 }
 
+void EntityPhysicsProp::update()
+{
+	float m[16];
+	body->getWorldTransform().getOpenGLMatrix(m);
+	transform = glm::make_mat4(m);
+}
+
+void EntityPhysicsProp::setTransform(glm::mat4 transform)
+{
+	body->getWorldTransform().setFromOpenGLMatrix(glm::value_ptr(transform));
+}
+
 glm::vec3 EntityPhysicsProp::getPosition()
 {
 	btTransform t;
@@ -99,6 +114,7 @@ void EntityPhysicsProp::render()
 {
 	if (active)
 	{
+		update();
 		if (!backfaceCull)
 			glDisable(GL_CULL_FACE);
 

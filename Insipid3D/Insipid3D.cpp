@@ -327,17 +327,15 @@ int main(int argc, char** argv)
 	engine->input->window = window;
 	engine->loadMap("worlds/test_world.glb");
 
-	engine->map->addLight(new Light(glm::vec3(-0.5, 8.0, 0.1), glm::vec3(1, 0.3, 0.3), 800.0f));
-	engine->map->addLight(new Light(glm::vec3(1, 6.5, 23), glm::vec3(0.97, 1, 0.9), 300.0f));
-	engine->map->addLight(new Light(glm::vec3(-15, 6.5, 11.3), glm::vec3(0.95, 1, 0.86), 150.0f));
-
+	//engine->map->addLight(new Light(glm::vec3(-0.5, 8.0, 0.1), glm::vec3(1, 0.3, 0.3), 800.0f));
+	//engine->map->addLight(new Light(glm::vec3(1, 6.5, 23), glm::vec3(0.97, 1, 0.9), 300.0f));
+	//engine->map->addLight(new Light(glm::vec3(-15, 6.5, 11.3), glm::vec3(0.95, 1, 0.86), 150.0f));
 
 	engine->map->generateLightmap();
 
-	engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", glm::vec3(-4, 20, 4)));
-	engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", glm::vec3(-13.8373, 18.1396, 33.7431)));
-
-	engine->entityManger->addEntity(new EntityPhysicsProp("models/wordart.glb", glm::vec3(0, 40, 0)));
+	//engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", glm::vec3(-4, 20, 4)));
+	//engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", glm::vec3(-13.8373, 18.1396, 33.7431)));
+	//engine->entityManger->addEntity(new EntityPhysicsProp("models/wordart.glb", glm::vec3(0, 40, 0)));
 
 	engine->camera->pos = glm::vec3(11, 24.125, 18.);
 	engine->camera->ang = glm::vec3(-24, 0, -104);

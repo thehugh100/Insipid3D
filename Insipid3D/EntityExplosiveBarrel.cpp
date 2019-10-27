@@ -17,6 +17,7 @@ void EntityExplosiveBarrel::tick()
 {
 	if (active)
 	{
+		update();
 		oldVelocity = velocity;
 		velocity = Util::vec3Conv(body->getLinearVelocity());
 

@@ -19,6 +19,12 @@ EntityLight::EntityLight(Light *light)
 	entityType = "EntityLight";
 	point = &light->pos;
 	vars.registerVal("point", Serializer((glm::vec3*)point));
+
+	vars.registerVal("light_col", Serializer(&light->col));
+	vars.registerVal("light_dir", Serializer(&light->dir));
+	vars.registerVal("light_intensity", Serializer(&light->intensity));
+	vars.registerVal("light_type", Serializer(&light->type));
+
 	entityTraits.setTrait("EntityLight");
 	active = 1;
 }
