@@ -12,6 +12,7 @@ struct Editor
 
 	void tick();
 	void render();
+	Entity* pointSelectionLast = nullptr;
 	Entity* pointSelection = nullptr;
 	glm::vec3 pointSelectionAxis;
 	float pointSelectionDistance = 0;

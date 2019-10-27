@@ -1,5 +1,3 @@
 Engine TODO
 
-Engine vars set by console - 22/10/2019
-
-Sun & pointlight shadows - 22/10/2019
+Save & Load world files, lights & entities - 27/10/2019

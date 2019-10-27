@@ -90,6 +90,7 @@ void Editor::tick()
 				selectedEntity = nullptr;
 			}
 			// Find point entity to select
+			pointSelectionLast = pointSelection;
 			pointSelection = nullptr;
 			pointSelectionAxis = glm::vec3(0);
 			EntityList l;
@@ -101,7 +102,7 @@ void Editor::tick()
 				glm::vec2 screenPos;
 				if (engine->camera->worldToScreen(e->getPos(), screenPos))
 				{
-					if (glm::distance(engine->screen * .5f, screenPos) < 128)
+					if (glm::distance(engine->screen * .5f, screenPos) < 64.f)
 					{
 						pointSelection = e;
 						pointSelectionDistance = glm::distance(engine->camera->pos, e->getPos());
@@ -133,7 +134,7 @@ void Editor::tick()
 
 		if (engine->input->mouseDown(GLFW_MOUSE_BUTTON_LEFT))
 		{
-			if (selectedEntity != nullptr)
+			if (selectedEntity != nullptr && pointSelection == nullptr)
 			{
 				distanceToSelected += engine->input->scrollOffsetY * 2.0f;
 
@@ -151,7 +152,7 @@ void Editor::tick()
 				ent->body->setAngularVelocity(btVector3(0, 0, 0));
 			}
 
-			if (pointSelection != nullptr && pointSelectionAxis != glm::vec3(0))
+			if (pointSelection != nullptr && pointSelectionAxis != glm::vec3(0) && pointSelection == pointSelectionLast)
 			{
 				EntityPoint* p = (EntityPoint*)pointSelection;
 				
