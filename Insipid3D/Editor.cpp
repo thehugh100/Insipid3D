@@ -205,6 +205,23 @@ void Editor::render()
 			glVertex3fv(glm::value_ptr(p+n));
 			glEnd();
 		}
+
+		if (pointSelection != nullptr && engine->variables->getVarOrCreate("drawEntityDebugInfo", "0", Variable::valInt)->getInt())
+		{
+			glm::vec2 pos;
+			EntityPoint* e = (EntityPoint*)pointSelection;
+			if (engine->camera->worldToScreen(e->getPos(), pos))
+			{
+				for (auto& i : e->vars.vals)
+				{
+					engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18)
+						, pos.x, pos.y, i.first + ": " + i.second.toString());
+					pos.y += 18;
+				}
+				//engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), pos.x-1, pos.y-1, "Light", glm::vec3(0.f));
+				//engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), pos.x, pos.y, "Light");
+			}
+		}
 	}
 
 	std::ostringstream dbg;

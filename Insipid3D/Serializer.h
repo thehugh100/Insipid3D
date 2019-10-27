@@ -17,6 +17,7 @@ struct Serializer
 	Serializer(glm::mat4* val);
 
 	void* getVal();
+	std::string toString();
 
 	enum types {SERIALIZE_INT, SERIALIZE_FLOAT, SERIALIZE_STRING, SERIALIZE_VEC3, SERIALIZE_ENT_TRAITS, SERIALIZE_BYTE, SERIALIZE_MAT4};
 	int type;
@@ -25,6 +26,7 @@ struct Serializer
 
 struct EntityVars
 {
+	std::string serialize();
 	void registerVal(std::string name, Serializer val);
 	std::map<std::string, Serializer> vals;
 };
