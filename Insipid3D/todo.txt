@@ -1,3 +1,7 @@
 Engine TODO
 
-Save & Load world files, lights & entities - 27/10/2019
+Player Physics - 27/10/2019
+Sun Shadows - 27/10/2019
+Point Light Shadows - 27/10/2019
+Networking - 27/10/2019
+Editor GUI for easier entity editing - 27/10/2019
