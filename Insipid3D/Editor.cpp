@@ -2,6 +2,7 @@
 #include "engine.h"
 #include "Entity.h"
 #include "EntityPhysicsProp.h"
+#include "EntityPoint.h"
 #include "Util.h"
 
 #include <glm/glm.hpp>
@@ -11,11 +12,10 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/normal.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+#include <glm/gtx/component_wise.hpp>
 
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
-
-#include "Raytrace.h"
 
 Editor::Editor(Engine *enginePtr)
 {
@@ -31,6 +31,22 @@ void Editor::tick()
 
 	if (inEditor)
 	{
+		if (engine->input->keyPressed(GLFW_KEY_L))
+		{
+			auto world = engine->getMap()->collisionState->world;
+
+			btVector3 start = Util::vec3Conv(engine->camera->pos);
+			btVector3 end = Util::vec3Conv(engine->camera->pos + engine->camera->lookVec * 200.0f);
+
+			btDynamicsWorld::ClosestRayResultCallback r(start, end);
+			world->rayTest(start, end, r);
+
+			if (r.hasHit())
+			{
+				engine->getMap()->addLight(new Light(Util::vec3Conv(r.m_hitPointWorld + r.m_hitNormalWorld), glm::vec3(1.), 200.f));
+			}
+		}
+
 		if (engine->input->mousePressed(GLFW_MOUSE_BUTTON_LEFT))
 		{
 			//Find physics object to select
@@ -74,7 +90,45 @@ void Editor::tick()
 				selectedEntity = nullptr;
 			}
 			// Find point entity to select
+			pointSelection = nullptr;
+			pointSelectionAxis = glm::vec3(0);
+			EntityList l;
+			pointSelectionDistance = 0;
+			engine->entityManger->getEntityByTraits("Point", &l);
+			for (auto& i : l)
+			{
+				EntityPoint* e = (EntityPoint*)i;
+				glm::vec2 screenPos;
+				if (engine->camera->worldToScreen(e->getPos(), screenPos))
+				{
+					if (glm::distance(engine->screen * .5f, screenPos) < 128)
+					{
+						pointSelection = e;
+						pointSelectionDistance = glm::distance(engine->camera->pos, e->getPos());
 
+						glm::vec3 c1 = glm::cross(engine->camera->lookVec, glm::vec3(1, 0, 0));
+						float d1 = glm::dot(e->getPos() - engine->camera->pos, c1) / glm::length(c1);
+
+						glm::vec3 c2 = glm::cross(engine->camera->lookVec, glm::vec3(0, 1, 0));
+						float d2 = glm::dot(e->getPos() - engine->camera->pos, c2) / glm::length(c2);
+
+						glm::vec3 c3 = glm::cross(engine->camera->lookVec, glm::vec3(0, 0, 1));
+						float d3 = glm::dot(e->getPos() - engine->camera->pos, c3) / glm::length(c3);
+
+						glm::vec3 a = glm::abs(glm::vec3(d1, d2, d3));
+						a /= glm::compMin(a);
+						if (a.x == 1)
+							pointSelectionAxis = glm::vec3(1, 0, 0);
+						if (a.y == 1)
+							pointSelectionAxis = glm::vec3(0, 1, 0);
+						if (a.z == 1)
+							pointSelectionAxis = glm::vec3(0, 0, 1);
+
+						std::cout << "Selected Axis: " << Util::printVec3(pointSelectionAxis) << std::endl;
+						break;
+					}
+				}
+			}
 		}
 
 		if (engine->input->mouseDown(GLFW_MOUSE_BUTTON_LEFT))
@@ -95,6 +149,15 @@ void Editor::tick()
 				ent->body->setWorldTransform(nt);
 				ent->body->setLinearVelocity(btVector3(0, 0, 0));
 				ent->body->setAngularVelocity(btVector3(0, 0, 0));
+			}
+
+			if (pointSelection != nullptr && pointSelectionAxis != glm::vec3(0))
+			{
+				EntityPoint* p = (EntityPoint*)pointSelection;
+				
+				glm::vec3 newPos = (p->getPos() * (1.0f - pointSelectionAxis)) + 
+					(engine->camera->pos + engine->camera->lookVec * glm::distance(p->getPos(), engine->camera->pos)) * pointSelectionAxis;
+				p->setPos(newPos);
 			}
 		}
 	}

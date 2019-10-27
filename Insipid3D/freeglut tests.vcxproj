@@ -177,6 +177,7 @@
     <ClCompile Include="EntityLight.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EntityPhysicsProp.cpp" />
+    <ClCompile Include="EntityPoint.cpp" />
     <ClCompile Include="EntityTraits.cpp" />
     <ClCompile Include="FlyCam.cpp" />
     <ClCompile Include="FontManager.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="EntityLight.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EntityPhysicsProp.h" />
+    <ClInclude Include="EntityPoint.h" />
     <ClInclude Include="EntityTraits.h" />
     <ClInclude Include="FlyCam.h" />
     <ClInclude Include="FontManager.h" />

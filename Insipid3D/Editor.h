@@ -13,6 +13,9 @@ struct Editor
 	void tick();
 	void render();
 	Entity* pointSelection = nullptr;
+	glm::vec3 pointSelectionAxis;
+	float pointSelectionDistance = 0;
+
 	Entity* selectedEntity = nullptr;
 	float distanceToSelected = 0;
 	glm::vec3 grabOffset;

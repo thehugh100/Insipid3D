@@ -16,6 +16,7 @@
 EntityLight::EntityLight(Light *light)
 	:light(light)
 {
+	point = &light->pos;
 	entityTraits.setTrait("EntityLight");
 	active = 1;
 }
@@ -46,28 +47,9 @@ void EntityLight::render()
 		glUniform3fv(glGetUniformLocation(flatShader, "col"), 1, glm::value_ptr(light->col));
 		editorMesh->render();
 
-		glm::vec2 screenPos;
-		if (engine->camera->worldToScreen(light->pos, screenPos))
+		if (engine->editor->pointSelection == this)
 		{
-			if (glm::distance(engine->screen / 2.f, screenPos) < 64.0f)
-			{
-				glm::mat4 arrowIdentity = glm::mat4(1.f);
-				glUniform3fv(glGetUniformLocation(flatShader, "col"), 1, glm::value_ptr(glm::vec3(0, 1, 0)));
-				glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"),
-					1, GL_FALSE, glm::value_ptr(glm::translate(arrowIdentity, light->pos)));
-				engine->meshManager->getMesh("models/editor/arrow.glb")->render();
-
-				glUniform3fv(glGetUniformLocation(flatShader, "col"), 1, glm::value_ptr(glm::vec3(1, 0, 0)));
-				glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"),
-					1, GL_FALSE, glm::value_ptr(glm::rotate(glm::translate(arrowIdentity, light->pos), glm::radians(90.f), glm::vec3(1, 0, 0))));
-				engine->meshManager->getMesh("models/editor/arrow.glb")->render();
-
-				glUniform3fv(glGetUniformLocation(flatShader, "col"), 1, glm::value_ptr(glm::vec3(0, 0, 1)));
-				glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"),
-					1, GL_FALSE, glm::value_ptr(glm::rotate(glm::translate(arrowIdentity, light->pos), glm::radians(90.f), glm::vec3(0, 0, 1))));
-				engine->meshManager->getMesh("models/editor/arrow.glb")->render();
-
-			}
+			renderHandles();
 		}
 
 		//glDepthMask(GL_FALSE);
