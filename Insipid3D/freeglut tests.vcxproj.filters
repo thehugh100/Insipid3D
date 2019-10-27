@@ -108,6 +108,9 @@
     <ClCompile Include="EntityPoint.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
+    <ClCompile Include="Serializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLShader.h">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="EntityPoint.h">
       <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Serializer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

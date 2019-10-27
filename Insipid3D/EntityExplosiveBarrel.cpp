@@ -4,6 +4,7 @@
 
 EntityExplosiveBarrel::EntityExplosiveBarrel(glm::vec3 origin_)
 {
+	entityType = "EntityExplosiveBarrel";
 	entityTraits.setTrait("EntityExplosiveBarrel");
 	modelName = "models/barrel.glb";
 	origin = origin_;

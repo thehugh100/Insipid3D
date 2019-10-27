@@ -1,0 +1,6 @@
+{"active":1,"point":"-0.5, 8, 0.1","traits":["PureEntity","Point","EntityLight"],"type":"EntityLight"}
+{"active":1,"point":"1, 6.5, 23","traits":["PureEntity","Point","EntityLight"],"type":"EntityLight"}
+{"active":1,"point":"-15, 6.5, 11.3","traits":["PureEntity","Point","EntityLight"],"type":"EntityLight"}
+{"active":1,"modelName":"models/crate.glb","origin":"-4, 20, 4","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"type":"EntityPhysicsProp"}
+{"active":1,"modelName":"models/crate.glb","origin":"-13.8373, 18.1396, 33.7431","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"type":"EntityPhysicsProp"}
+{"active":1,"modelName":"models/wordart.glb","origin":"0, 40, 0","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"type":"EntityPhysicsProp"}

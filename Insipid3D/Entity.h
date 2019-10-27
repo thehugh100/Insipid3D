@@ -2,8 +2,9 @@
 #include <iostream>
 #include <string>
 #include <string.h>
-
 #include "EntityTraits.h"
+#include "Serializer.h"
+#include <nlohmann/json.hpp>
 
 struct Engine;
 
@@ -15,7 +16,10 @@ struct Entity
 	virtual void render() = 0;
 	virtual void init() = 0;
 	virtual void remove() = 0;
+	virtual std::string serialize();
 	bool active;
 	EntityTraits entityTraits;
+	std::string entityType;
+	EntityVars vars;
 	Engine* engine;
 };

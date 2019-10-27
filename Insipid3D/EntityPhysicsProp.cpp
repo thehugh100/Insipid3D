@@ -1,21 +1,15 @@
 #include "EntityPhysicsProp.h"
 #include "engine.h"
 #include "EntityManager.h"
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
-
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <algorithm>
-
 #include "Raytrace.h"
-
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
-
 #include "Util.h"
 
 EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin)
@@ -46,6 +40,10 @@ void EntityPhysicsProp::tick()
 
 void EntityPhysicsProp::init()
 {
+	entityType = "EntityPhysicsProp";
+	vars.registerVal("origin", Serializer(&origin));
+	vars.registerVal("modelName", Serializer(&modelName));
+
 	model = engine->meshManager->getMesh(modelName);
 
 	btConvexHullShape convexHullShape((btScalar*)model->meshEntries[0]->meshRef->mVertices, model->meshEntries[0]->meshRef->mNumVertices, 3 * sizeof(float));

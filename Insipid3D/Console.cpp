@@ -5,6 +5,7 @@
 #include <fstream>
 #include "Variable.h"
 #include "map.h"
+#include <fstream>
 
 Console::Console(Engine* enginePtr)
 	:engine(enginePtr)
@@ -21,6 +22,41 @@ Console::Console(Engine* enginePtr)
 	{
 		this->engine->shaderManager->flushShaders();
 		return "done.";
+	};
+
+	commands["serializeEntities"] = [this](std::string params)
+	{
+		EntityList l;
+		engine->entityManger->getAllEntities(&l);
+
+		std::string d = "";
+
+		for (auto& i : l)
+			d+= i->serialize() + "\n";
+
+		return d;
+	};
+
+	commands["saveEntityState"] = [this](std::string params)
+	{
+		EntityList l;
+		engine->entityManger->getAllEntities(&l);
+
+		std::string d = "";
+
+		for (auto& i : l)
+			d += i->serialize() + "\n";
+
+		std::string fname = engine->getMap()->fname + ".ents";
+		std::ofstream file(fname);
+
+		if (!file)
+			return std::string("Failed to open " + fname + " for writing.");
+
+		file << d;
+		file.close();
+
+		return std::string("saved");
 	};
 
 	commands["generateLightmap"] = [this](std::string params)
