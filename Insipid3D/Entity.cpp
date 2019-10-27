@@ -7,7 +7,7 @@ Entity::Entity()
 	entityType = "PureEntity";
 	entityTraits.setTrait("PureEntity");
 	active = 1;
-	vars.registerVal("active", Serializer((int *)active));
+	vars.registerVal("active", Serializer(&active));
 	vars.registerVal("traits", Serializer(&entityTraits));
 	vars.registerVal("type", Serializer(&entityType));
 }
@@ -18,7 +18,7 @@ Entity::Entity(Engine* engine)
 	entityType = "PureEntity";
 	entityTraits.setTrait("PureEntity");
 	active = 1;
-	vars.registerVal("active", Serializer((int*)active));
+	vars.registerVal("active", Serializer(&active));
 	vars.registerVal("type", Serializer(&entityType));
 }
 
@@ -28,7 +28,7 @@ std::string Entity::serialize()
 	for (auto& i : vars.vals)
 	{
 		if (i.second.type == Serializer::SERIALIZE_INT)
-			j[i.first] = reinterpret_cast<int>(i.second.typeVal);
+			j[i.first] = *reinterpret_cast<int*>(i.second.typeVal);
 
 		if (i.second.type == Serializer::SERIALIZE_FLOAT)
 			j[i.first] = *reinterpret_cast<float*>(i.second.typeVal);

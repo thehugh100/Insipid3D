@@ -26,7 +26,7 @@ Editor::Editor(Engine *enginePtr)
 
 void Editor::tick()
 {
-	if (engine->input->keyPressed(GLFW_KEY_TAB))
+	if (engine->input->keyPressed(GLFW_KEY_TAB) && !engine->console->consoleShowing)
 		inEditor = !inEditor;
 
 	if (inEditor)
@@ -150,6 +150,12 @@ void Editor::tick()
 				ent->body->setWorldTransform(nt);
 				ent->body->setLinearVelocity(btVector3(0, 0, 0));
 				ent->body->setAngularVelocity(btVector3(0, 0, 0));
+
+				if (engine->input->keyPressed(GLFW_KEY_DELETE))
+				{
+					ent->destroy();
+					selectedEntity = nullptr;
+				}
 			}
 
 			if (pointSelection != nullptr && pointSelectionAxis != glm::vec3(0) && pointSelection == pointSelectionLast)
