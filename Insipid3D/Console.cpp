@@ -136,7 +136,7 @@ Console::Console(Engine* enginePtr)
 		if (!file)
 			return std::string("Failed to open " + fname + " for writing.");
 
-		file << j.dump();
+		file << j.dump(4);
 		file.close();
 
 		return std::string("saved");

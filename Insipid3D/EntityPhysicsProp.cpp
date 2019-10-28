@@ -15,15 +15,20 @@
 EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin)
 	:origin(origin), modelName(modelName)
 {
+	entityType = "EntityPhysicsProp";
 	entityTraits.setTrait("EntityPhysicsProp");
 	entityTraits.setTrait("PhysicsEntity");
 	active = 1;
 	backfaceCull = 1;
 	transform = glm::mat4(0.f);
+	vars.registerVal("origin", Serializer(&origin));
+	vars.registerVal("modelName", Serializer(&modelName));
+	vars.registerVal("transform", Serializer(&transform));
 }
 
 EntityPhysicsProp::EntityPhysicsProp()
 {
+	entityType = "EntityPhysicsProp";
 	entityTraits.setTrait("EntityPhysicsProp");
 	entityTraits.setTrait("PhysicsEntity");
 
@@ -34,6 +39,9 @@ EntityPhysicsProp::EntityPhysicsProp()
 	active = 1;
 	backfaceCull = 1;
 	transform = glm::mat4(0.f);
+	vars.registerVal("origin", Serializer(&origin));
+	vars.registerVal("modelName", Serializer(&modelName));
+	vars.registerVal("transform", Serializer(&transform));
 }
 
 void EntityPhysicsProp::tick()
@@ -42,11 +50,6 @@ void EntityPhysicsProp::tick()
 
 void EntityPhysicsProp::init()
 {
-	entityType = "EntityPhysicsProp";
-	vars.registerVal("origin", Serializer(&origin));
-	vars.registerVal("modelName", Serializer(&modelName));
-	vars.registerVal("transform", Serializer(&transform));
-
 	model = engine->meshManager->getMesh(modelName);
 
 	btConvexHullShape convexHullShape((btScalar*)model->meshEntries[0]->meshRef->mVertices, model->meshEntries[0]->meshRef->mNumVertices, 3 * sizeof(float));

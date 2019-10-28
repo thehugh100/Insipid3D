@@ -32,3 +32,21 @@ void EntityGrenade::tick()
 	}
 }
 
+void EntityGrenade::init()
+{
+	model = engine->meshManager->getMesh(modelName);
+
+
+	btTransform t;
+	t.setIdentity();
+	t.setOrigin(btVector3(origin.x, origin.y, origin.z));
+	btVector3 inertia;
+	btSphereShape* ss = new btSphereShape(1.f);
+	ss->calculateLocalInertia(4, inertia);
+	btMotionState* motion = new btDefaultMotionState(t);
+	btRigidBody::btRigidBodyConstructionInfo info(4, motion, ss, inertia);
+	body = new btRigidBody(info);
+	engine->getMap()->collisionState->world->addRigidBody(body);
+
+}
+

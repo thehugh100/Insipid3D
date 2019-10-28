@@ -164,7 +164,8 @@ void Editor::tick()
 				ent->body->setAngularVelocity(btVector3(0, 0, 0));
 				grabVel += (grabPos - grabPosOld);
 				grabVel *= 0.6;
-				ent->body->applyCentralImpulse(Util::vec3Conv(grabVel * 200.f));
+				ent->body->applyCentralImpulse(Util::vec3Conv(grabVel * 
+					engine->variables->getVarOrCreate("editorGrabVelocityMultiplier", "250.f", Variable::valFloat)->getFloat()));
 
 				if (engine->input->keyPressed(GLFW_KEY_DELETE))
 				{

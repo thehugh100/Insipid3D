@@ -1,1 +1,58 @@
-[{"active":1,"light_col":"1, 0.3, 0.3","light_dir":"0, -1, 0","light_intensity":800.0,"light_type":0,"point":"-0.5, 8, 0.1","traits":["PureEntity","Point","EntityLight"],"type":"EntityLight"},{"active":1,"light_col":"0.97, 1, 0.9","light_dir":"0, -1, 0","light_intensity":300.0,"light_type":0,"point":"1, 6.5, 23","traits":["PureEntity","Point","EntityLight"],"type":"EntityLight"},{"active":1,"light_col":"0.95, 1, 0.86","light_dir":"0, -1, 0","light_intensity":150.0,"light_type":0,"point":"-14.9484, 5.54691, 12.5896","traits":["PureEntity","Point","EntityLight"],"type":"EntityLight"},{"active":0,"modelName":"models/barrel.glb","origin":"-7.8827, 3.72364, 8.22393","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"0.377605, 0, 0.925967, 0, 0, 1, 0, 0, -0.925967, 0, 0.377605, 0, -8.66772, 2.63112, 7.66707, 1, ","type":"EntityPhysicsProp"},{"active":0,"modelName":"models/barrel.glb","origin":"-7.76953, 3.88493, -6.25739","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"-0.432259, 0, 0.90175, 0, 0, 1, 0, 0, -0.90175, 0, -0.432259, 0, -8.42207, 3.41603, -8.85889, 1, ","type":"EntityPhysicsProp"},{"active":0,"modelName":"models/barrel.glb","origin":"7.63676, 3.86321, 6.66034","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"-0.982766, 0, -0.184856, 0, 0, 1, 0, 0, 0.184856, 0, -0.982766, 0, 8.38757, 3.4363, -8.7334, 1, ","type":"EntityPhysicsProp"},{"active":0,"modelName":"models/barrel.glb","origin":"7.67231, 3.86457, 6.77216","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"0.995336, 0, 0.0964681, 0, 0, 1, 0, 0, -0.0964681, 0, 0.995336, 0, 7.67247, 2.48773, 8.82654, 1, ","type":"EntityPhysicsProp"},{"active":1,"light_col":"1, 1, 0.8","light_dir":"0, -1, 0","light_intensity":200.0,"light_type":0,"point":"-15.1087, 16.9238, 32.6454","traits":["PureEntity","Point","EntityLight"],"type":"EntityLight"},{"active":0,"modelName":"models/crate.glb","origin":"11.5101, 6.96163, 20.5419","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"0.902465, 0, 0.430764, 0, 0, 1, 0, 0, -0.430764, 0, 0.902465, 0, 11.5203, 2.039, 20.6367, 1, ","type":"EntityPhysicsProp"},{"active":0,"modelName":"models/barrel.glb","origin":"11.3937, 7.8388, 20.7059","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"0.671308, 0, 0.741179, 0, 0, 1, 0, 0, -0.741179, 0, 0.671308, 0, 7.13773, 3.00466, 23.4486, 1, ","type":"EntityPhysicsProp"},{"active":0,"modelName":"models/barrel.glb","origin":"11.3921, 10.9207, 20.711","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"0.933496, 0, 0.358587, 0, 0, 1, 0, 0, -0.358587, 0, 0.933496, 0, 11.4923, 10.196, 20.8038, 1, ","type":"EntityPhysicsProp"},{"active":0,"modelName":"models/barrel.glb","origin":"11.3892, 16.1185, 20.7196","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"0.723568, 0, 0.690253, 0, 0, 1, 0, 0, -0.690253, 0, 0.723568, 0, 11.9582, 1.90566, 22.5882, 1, ","type":"EntityPhysicsProp"},{"active":0,"modelName":"models/barrel.glb","origin":"11.3873, 19.5567, 20.7253","traits":["PureEntity","EntityPhysicsProp","PhysicsEntity"],"transform":"0.415149, 0, 0.909753, 0, 0, 1, 0, 0, -0.909753, 0, 0.415149, 0, 9.03434, 4.01431, 17.3257, 1, ","type":"EntityPhysicsProp"}]
+[
+    {
+        "active": 1,
+        "light_col": "1, 0.3, 0.3",
+        "light_dir": "0, -1, 0",
+        "light_intensity": 800.0,
+        "light_type": 0,
+        "point": "-0.5, 8, 0.1",
+        "traits": [
+            "PureEntity",
+            "Point",
+            "EntityLight"
+        ],
+        "type": "EntityLight"
+    },
+    {
+        "active": 1,
+        "light_col": "0.97, 1, 0.9",
+        "light_dir": "0, -1, 0",
+        "light_intensity": 300.0,
+        "light_type": 0,
+        "point": "1, 6.5, 23",
+        "traits": [
+            "PureEntity",
+            "Point",
+            "EntityLight"
+        ],
+        "type": "EntityLight"
+    },
+    {
+        "active": 1,
+        "light_col": "0.95, 1, 0.86",
+        "light_dir": "0, -1, 0",
+        "light_intensity": 150.0,
+        "light_type": 0,
+        "point": "-14.9484, 5.54691, 12.5896",
+        "traits": [
+            "PureEntity",
+            "Point",
+            "EntityLight"
+        ],
+        "type": "EntityLight"
+    },
+    {
+        "active": 1,
+        "light_col": "1, 1, 0.8",
+        "light_dir": "0, -1, 0",
+        "light_intensity": 200.0,
+        "light_type": 0,
+        "point": "-15.1087, 16.9238, 32.6454",
+        "traits": [
+            "PureEntity",
+            "Point",
+            "EntityLight"
+        ],
+        "type": "EntityLight"
+    }
+]
