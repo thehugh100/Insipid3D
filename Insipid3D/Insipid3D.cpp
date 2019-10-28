@@ -42,6 +42,7 @@
 #include "EntityDebugCrate.h"
 #include "EntityPhysicsProp.h"
 #include "EntityExplosiveBarrel.h"
+#include "EntityGrenade.h"
 #include "Player.h"
 
 #include "Console.h"
@@ -63,12 +64,16 @@ void render()
 			EntityPhysicsProp *e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec));
 			//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
 		}
-
 		if (engine->input->keyPressed(GLFW_KEY_B) && !engine->console->consoleShowing)
 		{
 			engine->entityManger->addEntity(new EntityExplosiveBarrel(engine->camera->pos + engine->camera->lookVec * 2.f));
 		}
-
+		if (engine->input->keyPressed(GLFW_KEY_G) && !engine->console->consoleShowing)
+		{
+			EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new
+				EntityGrenade(engine->camera->pos));
+			e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 60.0f));
+		}
 		engine->tick();
 
 		engine->getMap()->collisionState->world->stepSimulation(engine->deltaTime);
