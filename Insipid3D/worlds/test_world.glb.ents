@@ -42,17 +42,15 @@
         "type": "EntityLight"
     },
     {
-        "active": 1,
-        "light_col": "1, 1, 0.8",
-        "light_dir": "0, -1, 0",
-        "light_intensity": 200.0,
-        "light_type": 0,
-        "point": "-15.1087, 16.9238, 32.6454",
+        "active": 0,
+        "modelName": "models/crate.glb",
+        "origin": "11.5101, 6.96163, 20.5419",
         "traits": [
             "PureEntity",
-            "Point",
-            "EntityLight"
+            "EntityPhysicsProp",
+            "PhysicsEntity"
         ],
-        "type": "EntityLight"
+        "transform": "0.902465, 0, 0.430764, 0, 0, 1, 0, 0, -0.430764, 0, 0.902465, 0, 11.5203, 2.039, 20.6367, 1, ",
+        "type": "EntityPhysicsProp"
     }
 ]
