@@ -84,7 +84,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;C:\Program Files %28x86%29\json-develop\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;C:\Program Files %28x86%29\json-develop;$(IncludePath)</IncludePath>
     <LibraryPath>C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

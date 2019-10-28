@@ -102,6 +102,10 @@ void Editor::tick()
 				glm::vec2 screenPos;
 				if (engine->camera->worldToScreen(e->getPos(), screenPos))
 				{
+					if (r.hasHit() && glm::distance(engine->camera->pos, Util::vec3Conv(r.m_hitPointWorld)) <
+						glm::distance(engine->camera->pos, e->getPos()))
+						continue;
+
 					if (glm::distance(engine->screen * .5f, screenPos) < 64.f)
 					{
 						pointSelection = e;
