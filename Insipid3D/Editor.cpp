@@ -22,6 +22,9 @@ Editor::Editor(Engine *enginePtr)
 	distanceToSelected = 10;
 	engine = enginePtr;
 	inEditor = 1;
+	grabPos = glm::vec3(0.f);
+	grabPosOld = glm::vec3(0.f);
+	grabVel = glm::vec3(0.f);
 }
 
 void Editor::tick()
@@ -57,12 +60,11 @@ void Editor::tick()
 
 			btDynamicsWorld::ClosestRayResultCallback r(start, end);
 			world->rayTest(start, end, r);
-
+			selectedEntityLast = selectedEntity;
+			bool foundGoodObject = 0;
 			if (r.hasHit())
 			{
 				btVector3 xyz = r.m_collisionObject->getWorldTransform().getOrigin();
-
-				bool foundGoodObject = 0;
 
 				EntityList e;
 				engine->entityManger->getEntityByTraits("EntityPhysicsProp", &e);
@@ -96,6 +98,7 @@ void Editor::tick()
 			EntityList l;
 			pointSelectionDistance = 0;
 			engine->entityManger->getEntityByTraits("Point", &l);
+			
 			for (auto& i : l)
 			{
 				EntityPoint* e = (EntityPoint*)i;
@@ -134,6 +137,8 @@ void Editor::tick()
 					}
 				}
 			}
+			if (selectedEntity != nullptr && foundGoodObject)
+				pointSelection = nullptr;
 		}
 
 		if (engine->input->mouseDown(GLFW_MOUSE_BUTTON_LEFT))
@@ -149,11 +154,17 @@ void Editor::tick()
 				btTransform nt;
 				nt.setIdentity();
 				nt.setRotation(btQuaternion(glm::radians(engine->camera->ang.z + grabWorldYaw), 0, 0));
-
-				nt.setOrigin(Util::vec3Conv(engine->camera->pos + (engine->camera->lookVec * distanceToSelected) - grabOffset));
+				grabPosOld = grabPos;
+				grabPos = engine->camera->pos + (engine->camera->lookVec * distanceToSelected) - grabOffset;
+				
+				nt.setOrigin(Util::vec3Conv(grabPos));
+				
 				ent->body->setWorldTransform(nt);
 				ent->body->setLinearVelocity(btVector3(0, 0, 0));
 				ent->body->setAngularVelocity(btVector3(0, 0, 0));
+				grabVel += (grabPos - grabPosOld);
+				grabVel *= 0.6;
+				ent->body->applyCentralImpulse(Util::vec3Conv(grabVel * 200.f));
 
 				if (engine->input->keyPressed(GLFW_KEY_DELETE))
 				{

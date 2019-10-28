@@ -11,6 +11,10 @@ EntityExplosiveBarrel::EntityExplosiveBarrel(glm::vec3 origin_)
 
 	oldVelocity = glm::vec3(0.f);
 	velocity = glm::vec3(0.f);
+	triggered = 0;
+	explosionTime = 0;
+	vars.registerVal("explosionTime", Serializer(&explosionTime));
+	vars.registerVal("triggered", Serializer(&triggered));
 }
 
 void EntityExplosiveBarrel::tick()
@@ -23,7 +27,14 @@ void EntityExplosiveBarrel::tick()
 
 		float jolt = glm::abs(glm::length(oldVelocity) - glm::length(velocity));
 
-		if (jolt >= 30.0f) // force required to explode
+		int beingGrabbed = engine->editor->selectedEntity == this && engine->input->mouseDown(GLFW_MOUSE_BUTTON_LEFT);
+
+		if (jolt >= 30.0f && !beingGrabbed && !triggered) // force required to explode, don't explode if we're grabbing it
+		{
+			triggered = 1;
+			explosionTime = engine->getElapsedTimeMS() + Util::randFloat() * 1000.0f;
+		}
+		if (triggered && engine->getElapsedTimeMS() > explosionTime)
 		{
 			EntityList e;
 			engine->entityManger->getEntityByTraits("EntityPhysicsProp", &e);
@@ -38,7 +49,7 @@ void EntityExplosiveBarrel::tick()
 
 					float explosionStrength = 0;
 
-					if(distance != 0)
+					if (distance != 0)
 						explosionStrength = 4500.0f / (distance * distance);
 
 					btVector3 start = ie->body->getWorldTransform().getOrigin();

@@ -15,4 +15,6 @@ struct EntityExplosiveBarrel : EntityPhysicsProp
 
 	glm::vec3 oldVelocity;
 	glm::vec3 velocity;
+	int triggered;
+	float explosionTime;
 }; 
