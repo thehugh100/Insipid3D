@@ -25,4 +25,5 @@ struct TextureManager
 	std::vector<Texture> textures;
 	GLuint loadTexture(std::string fname, bool isLightmap = 0);
 	GLuint loadTexture(unsigned char* memData, const unsigned int size, const char* modelName, int texIndex);
+	static unsigned int loadCubemap(std::vector<std::string> faces);
 };

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <glm/glm.hpp>
+#include "VAO.h"
 
 struct Engine;
 
@@ -25,4 +26,6 @@ struct Map
 	CollisionState* collisionState;
 	Engine* engine;
 	glm::vec3 sunVec;
+	GLuint skyboxTexture;
+	vertexArrayObject skyboxVAO;
 };

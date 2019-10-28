@@ -51,117 +51,6 @@
 
 Engine* engine;
 
-float skyboxVertices[] = {
-	// positions          
-	-1.0f,  1.0f, -1.0f,
-	-1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-	 1.0f,  1.0f, -1.0f,
-	-1.0f,  1.0f, -1.0f,
-
-	-1.0f, -1.0f,  1.0f,
-	-1.0f, -1.0f, -1.0f,
-	-1.0f,  1.0f, -1.0f,
-	-1.0f,  1.0f, -1.0f,
-	-1.0f,  1.0f,  1.0f,
-	-1.0f, -1.0f,  1.0f,
-
-	 1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-
-	-1.0f, -1.0f,  1.0f,
-	-1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f, -1.0f,  1.0f,
-	-1.0f, -1.0f,  1.0f,
-
-	-1.0f,  1.0f, -1.0f,
-	 1.0f,  1.0f, -1.0f,
-	 1.0f,  1.0f,  1.0f,
-	 1.0f,  1.0f,  1.0f,
-	-1.0f,  1.0f,  1.0f,
-	-1.0f,  1.0f, -1.0f,
-
-	-1.0f, -1.0f, -1.0f,
-	-1.0f, -1.0f,  1.0f,
-	 1.0f, -1.0f, -1.0f,
-	 1.0f, -1.0f, -1.0f,
-	-1.0f, -1.0f,  1.0f,
-	 1.0f, -1.0f,  1.0f
-};
-
-struct vertexArrayObject
-{
-	GLuint vao;
-	GLuint vbo;
-
-	vertexArrayObject()
-	{
-	}
-
-	vertexArrayObject(float *v, int size)
-	{
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
-
-		glGenBuffers(1, &vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, size, v, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-		glEnableVertexAttribArray(0);
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
-	}
-};
-
-vertexArrayObject skybox;
-unsigned int cubemapTexture;
-
-unsigned int loadCubemap(std::vector<std::string> faces)
-{
-	unsigned int textureID;
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
-
-	int width, height, nrChannels;
-	for (unsigned int i = 0; i < faces.size(); i++)
-	{
-		unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
-		if (data)
-		{
-			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-				0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
-			);
-			stbi_image_free(data);
-		}
-		else
-		{
-			std::cout << "Cubemap texture failed to load at path: " << faces[i] << std::endl;
-			stbi_image_free(data);
-		}
-	}
-
-	glGenerateTextureMipmap(textureID);
-
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAX_ANISOTROPY, 16.0f);
-
-	return textureID;
-}
-
-
 void render()
 {
 	while (!glfwWindowShouldClose(engine->window))
@@ -172,14 +61,11 @@ void render()
 		if (engine->input->keyPressed(GLFW_KEY_Q) && !engine->console->consoleShowing)
 		{
 			EntityPhysicsProp *e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec));
-			e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
+			//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
 		}
 
 		if (engine->input->keyPressed(GLFW_KEY_B) && !engine->console->consoleShowing)
 		{
-			//EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec));
-			//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
-
 			engine->entityManger->addEntity(new EntityExplosiveBarrel(engine->camera->pos + engine->camera->lookVec * 2.f));
 		}
 
@@ -187,52 +73,10 @@ void render()
 
 		engine->getMap()->collisionState->world->stepSimulation(engine->deltaTime);
 
-		glm::vec3 sunPos = glm::vec3(0, 10, 0);
-		glm::vec3 cameraPos = engine->camera->pos;
-
-		glm::mat4 model = glm::mat4(1);
-		glm::mat4 view = engine->camera->getViewMatrix();
-		glm::mat4 proj = engine->camera->getProjectionMatrix();
-
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glColor3f(1, 1, 1);
 	
-		glDepthMask(GL_FALSE);
-		GLuint skyboxShader = engine->shaderManager->getShader("shaders/skybox");
-		glUseProgram(skyboxShader);
-		glActiveTexture(GL_TEXTURE0);
-		glUniformMatrix4fv(glGetUniformLocation(skyboxShader, "view"), 1, GL_FALSE, glm::value_ptr(glm::mat4(glm::mat3(view))));
-		glUniformMatrix4fv(glGetUniformLocation(skyboxShader, "projection"), 1, GL_FALSE, glm::value_ptr(proj));
-		glBindVertexArray(skybox.vao);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-		glBindVertexArray(0);
-		glDepthMask(GL_TRUE);
-		/*
-		glUseProgram(cubemapShader);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-		glUniformMatrix4fv(glGetUniformLocation(cubemapShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(glGetUniformLocation(cubemapShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(glGetUniformLocation(cubemapShader, "projection"), 1, GL_FALSE, glm::value_ptr(proj));
-		glUniform3fv(glGetUniformLocation(cubemapShader, "cameraPos"), 1, glm::value_ptr(cameraPos));
-
-		broadphase->render();
-		//cube->render();
-		//glutSolidSphere(0.5, 40, 40);
-		*/
-
-		GLuint mapShader = engine->shaderManager->getShader("shaders/map");
-		glUseProgram(mapShader);
-		glActiveTexture(GL_TEXTURE0);
-		glUniformMatrix4fv(glGetUniformLocation(mapShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(glGetUniformLocation(mapShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(glGetUniformLocation(mapShader, "proj"), 1, GL_FALSE, glm::value_ptr(proj));
-		glUniform1iARB(glGetUniformLocation(mapShader, "tex"), 0);
-		glUniform1iARB(glGetUniformLocation(mapShader, "lightmap"), 1);
-
 		engine->getMap()->render();
-
 		engine->render();
 
 		glfwSwapBuffers(engine->window);
@@ -248,19 +92,13 @@ static void glfwError(int id, const char* description)
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	//if (key == GLFW_KEY_E && action == GLFW_PRESS)
-		//std::cout << 'E' << std::endl;
-
-	//engine->input->handleKeyPress(key, action);
-
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		exit(0);
 }
 
 void character_callback(GLFWwindow* window, unsigned int codepoint)
 {
-	engine->input->keyboardBuffer += codepoint;
-	engine->console->lastAutocompleteIndex = -1;
+	engine->input->handleCharacter(codepoint);
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
@@ -283,12 +121,12 @@ int main(int argc, char** argv)
 	GLFWwindow* window = glfwCreateWindow(1280, 720, "GL", NULL, NULL);
 	//GLFWwindow* window = glfwCreateWindow(1920, 1080, "GL", glfwGetPrimaryMonitor(), NULL);
 
-
 	if (!window)
 	{
 		glfwTerminate();
 		return -1;
 	}
+
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(0);
 	glfwSetKeyCallback(window, key_callback);
@@ -333,26 +171,10 @@ int main(int argc, char** argv)
 
 	engine->map->generateLightmap();
 
-	//engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", glm::vec3(-4, 20, 4)));
-	//engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", glm::vec3(-13.8373, 18.1396, 33.7431)));
-	//engine->entityManger->addEntity(new EntityPhysicsProp("models/wordart.glb", glm::vec3(0, 40, 0)));
-
 	engine->camera->pos = glm::vec3(11, 24.125, 18.);
 	engine->camera->ang = glm::vec3(-24, 0, -104);
 
 	//engine->cameraController = new Player(engine);
-
-	std::vector<std::string> faces
-	{
-		"textures/hw_sahara/sahara_rt.tga",
-		"textures/hw_sahara/sahara_lf.tga",
-		"textures/hw_sahara/sahara_up.tga",
-		"textures/hw_sahara/sahara_dn.tga",
-		"textures/hw_sahara/sahara_ft.tga",
-		"textures/hw_sahara/sahara_bk.tga"
-	};
-	cubemapTexture = loadCubemap(faces);
-	skybox = vertexArrayObject(skyboxVertices, sizeof(skyboxVertices));
 
 	render();
 

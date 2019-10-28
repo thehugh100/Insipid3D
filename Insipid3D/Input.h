@@ -4,9 +4,12 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
+struct Engine;
+
 struct Input
 {
-	Input();
+	Input(Engine *engine);
+	void handleCharacter(unsigned int codepoint);
 	void handleKeyPress(int key, int action);
 	void handleScroll(float newScollOffsetY, uint64_t frame);
 
@@ -33,4 +36,5 @@ struct Input
 
 	int mouseState[GLFW_MOUSE_BUTTON_LAST];
 	int mouseStateOld[GLFW_MOUSE_BUTTON_LAST];
+	Engine* engine;
 };

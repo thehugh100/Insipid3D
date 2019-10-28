@@ -17,7 +17,7 @@ Engine::Engine()
 	cameraController = new FlyCam(this);
 	meshManager = new MeshManager(this);
 	editor = new Editor(this);
-	input = new Input();
+	input = new Input(this);
 	fontManager = new FontManager();
 	console = new Console(this);
 	deltaTime = 0.01;

@@ -12,8 +12,10 @@
 #include "EntityPhysicsProp.h"
 #include "EntityExplosiveBarrel.h"
 
-#include <nlohmann/json.hpp>
 #include "Util.h"
+
+#include <nlohmann/json.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 Map::Map(std::string fname, Engine* engine)
 	:fname(fname), engine(engine)
@@ -26,6 +28,64 @@ Map::Map(std::string fname, Engine* engine)
 	collisionState->loadMesh();
 
 	loadEntityState(fname + ".ents");
+	skyboxTexture = -1;
+
+	//TODO clean this up, there should be no hardcoded references to textures etc
+
+	float skyboxVertices[] = {      
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		-1.0f,  1.0f, -1.0f,
+		 1.0f,  1.0f, -1.0f,
+		 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		 1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		 1.0f, -1.0f,  1.0f
+	};
+	skyboxVAO = vertexArrayObject(skyboxVertices, sizeof(skyboxVertices));
+	std::vector<std::string> faces
+	{
+		"textures/hw_sahara/sahara_rt.tga",
+		"textures/hw_sahara/sahara_lf.tga",
+		"textures/hw_sahara/sahara_up.tga",
+		"textures/hw_sahara/sahara_dn.tga",
+		"textures/hw_sahara/sahara_ft.tga",
+		"textures/hw_sahara/sahara_bk.tga"
+	};
+	skyboxTexture = TextureManager::loadCubemap(faces);
 }
 
 void Map::loadEntityState(std::string fname)
@@ -98,20 +158,30 @@ void Map::generateLightmap()
 
 void Map::render()
 {
-	/*
-	glUseProgram(flatShader);
+	if (skyboxTexture != -1)
+	{
+		glDepthMask(GL_FALSE);
+		GLuint skyboxShader = engine->shaderManager->getShader("shaders/skybox");
+		glUseProgram(skyboxShader);
+		glActiveTexture(GL_TEXTURE0);
+		glm::mat4 clippedView = glm::mat4(glm::mat3(engine->camera->getViewMatrix()));
+		glUniformMatrix4fv(glGetUniformLocation(skyboxShader, "view"), 1, GL_FALSE, glm::value_ptr(clippedView));
+		glUniformMatrix4fv(glGetUniformLocation(skyboxShader, "projection"), 1, GL_FALSE, glm::value_ptr(engine->camera->getProjectionMatrix()));
+		glBindVertexArray(skyboxVAO.vao);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxTexture);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glBindVertexArray(0);
+		glDepthMask(GL_TRUE);
+	}
+
+	GLuint mapShader = engine->shaderManager->getShader("shaders/map");
+	glUseProgram(mapShader);
 	glActiveTexture(GL_TEXTURE0);
-	glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-	glUniformMatrix4fv(glGetUniformLocation(flatShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
-	glUniformMatrix4fv(glGetUniformLocation(flatShader, "proj"), 1, GL_FALSE, glm::value_ptr(proj));
-	glUniform3f(glGetUniformLocation(flatShader, "col"), 0., 0., 0.);
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	concrete_floor->render();
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	glClear(GL_DEPTH_BUFFER_BIT);
-	*/
+	glUniformMatrix4fv(glGetUniformLocation(mapShader, "model"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1.f)));
+	glUniformMatrix4fv(glGetUniformLocation(mapShader, "view"), 1, GL_FALSE, glm::value_ptr(engine->camera->getViewMatrix()));
+	glUniformMatrix4fv(glGetUniformLocation(mapShader, "proj"), 1, GL_FALSE, glm::value_ptr(engine->camera->getProjectionMatrix()));
+	glUniform1iARB(glGetUniformLocation(mapShader, "tex"), 0);
+	glUniform1iARB(glGetUniformLocation(mapShader, "lightmap"), 1);
 
 	map->render();
 }

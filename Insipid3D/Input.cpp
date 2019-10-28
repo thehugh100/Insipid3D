@@ -1,7 +1,9 @@
 #include "Input.h"
 #include <iostream>
+#include "engine.h"
 
-Input::Input()
+Input::Input(Engine* engine)
+	:engine(engine)
 {
 	window = nullptr;
 	backspacePressedAt = 0;
@@ -10,6 +12,12 @@ Input::Input()
 
 	for (int i = 0; i < GLFW_KEY_LAST; ++i)
 		keyState[i] = GLFW_RELEASE;
+}
+
+void Input::handleCharacter(unsigned int codepoint)
+{
+	keyboardBuffer += codepoint;
+	engine->console->lastAutocompleteIndex = -1;
 }
 
 void Input::handleKeyPress(int key, int action)
