@@ -26,17 +26,23 @@ std::string readFile(const char* filePath) {
 	return content;
 }
 
-GLuint LoadShader(const char* vertex_path, const char* fragment_path)
+GLuint LoadShader(const char* vertex_path, const char* fragment_path, const char* geometry_path)
 {
 	std::cout << "Loading shader: " << vertex_path << ", " << fragment_path << std::endl;
 	GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
 	GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
+	GLuint geomShader = glCreateShader(GL_GEOMETRY_SHADER);
 
 	// Read shaders
 	std::string vertShaderStr = readFile(vertex_path);
 	std::string fragShaderStr = readFile(fragment_path);
+	std::string geomShaderStr = ""; 
+	if(std::string(geometry_path) != "")
+		geomShaderStr = readFile(geometry_path);
+
 	const char* vertShaderSrc = vertShaderStr.c_str();
 	const char* fragShaderSrc = fragShaderStr.c_str();
+	const char* geomShaderSrc = geomShaderStr.c_str();
 
 	GLint result = GL_FALSE;
 	int logLength;
@@ -65,10 +71,29 @@ GLuint LoadShader(const char* vertex_path, const char* fragment_path)
 	glGetShaderInfoLog(fragShader, logLength, NULL, &fragShaderError[0]);
 	std::cout << &fragShaderError[0] << std::endl;
 
+	if (geomShaderStr != "")
+	{
+		// Compile fragment shader
+		std::cout << "Compiling geometery shader." << std::endl;
+		glShaderSource(geomShader, 1, &geomShaderSrc, NULL);
+		glCompileShader(geomShader);
+
+		// Check fragment shader
+		glGetShaderiv(geomShader, GL_COMPILE_STATUS, &result);
+		glGetShaderiv(geomShader, GL_INFO_LOG_LENGTH, &logLength);
+		std::vector<char> geomShaderError((logLength > 1) ? logLength : 1);
+		glGetShaderInfoLog(geomShader, logLength, NULL, &geomShaderError[0]);
+		std::cout << &geomShaderError[0] << std::endl;
+	}
+
 	std::cout << "Linking program" << std::endl;
 	GLuint program = glCreateProgram();
 	glAttachShader(program, vertShader);
 	glAttachShader(program, fragShader);
+
+	if (geomShaderStr != "")
+		glAttachShader(program, geomShader);
+
 	glLinkProgram(program);
 
 	glGetProgramiv(program, GL_LINK_STATUS, &result);
@@ -79,6 +104,6 @@ GLuint LoadShader(const char* vertex_path, const char* fragment_path)
 
 	glDeleteShader(vertShader);
 	glDeleteShader(fragShader);
-
+	glDeleteShader(geomShader);
 	return program;
 }

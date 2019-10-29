@@ -15,6 +15,9 @@ struct EntityExplosion : EntityPoint
 	virtual void remove();
 	float explosionTime;
 	float magnitude;
+	float clearTime;
 	int set;
 	glm::vec3 origin;
+	glm::vec3 rotation;
+	GLuint noiseTex;
 };

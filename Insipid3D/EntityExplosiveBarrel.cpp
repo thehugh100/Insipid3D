@@ -1,6 +1,7 @@
 #include "EntityExplosiveBarrel.h"
 #include "Util.h"
 #include "engine.h"
+#include "EntityExplosion.h"
 
 EntityExplosiveBarrel::EntityExplosiveBarrel(glm::vec3 origin_)
 {
@@ -36,38 +37,7 @@ void EntityExplosiveBarrel::tick()
 		}
 		if (triggered && engine->getElapsedTimeMS() > explosionTime)
 		{
-			EntityList e;
-			engine->entityManger->getEntityByTraits("EntityPhysicsProp", &e);
-
-			for (auto& i : e)
-			{
-				EntityPhysicsProp* ie = (EntityPhysicsProp*)i;
-				if (ie->active && ie != this)
-				{
-					float distance = glm::distance(Util::vec3Conv(body->getWorldTransform().getOrigin()), Util::vec3Conv(ie->body->getWorldTransform().getOrigin()));
-					glm::vec3 direction = -glm::normalize(Util::vec3Conv(body->getWorldTransform().getOrigin()) - Util::vec3Conv(ie->body->getWorldTransform().getOrigin()));
-
-					float explosionStrength = 0;
-
-					if (distance != 0)
-						explosionStrength = 4500.0f / (distance * distance);
-
-					btVector3 start = ie->body->getWorldTransform().getOrigin();
-					btVector3 end = body->getWorldTransform().getOrigin();
-
-					btDynamicsWorld::ClosestRayResultCallback r(start, end);
-					engine->getMap()->collisionState->world->rayTest(start, end, r);
-
-					if (r.hasHit())
-					{
-						if (r.m_collisionObject->getWorldTransform().getOrigin() != btVector3(0, 0, 0))
-						{
-							ie->applyImpulse(direction * explosionStrength);
-						}
-					}
-				}
-			}
-
+			engine->entityManger->addEntity(new EntityExplosion(getPosition(), 4500.f));
 			destroy();
 		}
 	}
