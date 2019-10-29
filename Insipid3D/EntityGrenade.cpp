@@ -6,7 +6,7 @@ EntityGrenade::EntityGrenade(glm::vec3 origin_)
 {
 	entityType = "EntityGrenade";
 	entityTraits.setTrait("EntityGrenade");
-	modelName = "models/editor/sphere.glb";
+	modelName = "models/grenade.glb";
 	origin = origin_;
 	set = 0;
 }
@@ -20,6 +20,8 @@ void EntityGrenade::tick()
 			set = 1;
 			explosionTime = engine->getElapsedTimeMS() + 2000.0f;
 			body->setRestitution(1.0f);
+			body->setCcdMotionThreshold(0.2f);
+			body->setCcdSweptSphereRadius(0.4f);
 		}
 		else
 		{
@@ -30,23 +32,5 @@ void EntityGrenade::tick()
 			}
 		}
 	}
-}
-
-void EntityGrenade::init()
-{
-	model = engine->meshManager->getMesh(modelName);
-
-
-	btTransform t;
-	t.setIdentity();
-	t.setOrigin(btVector3(origin.x, origin.y, origin.z));
-	btVector3 inertia;
-	btSphereShape* ss = new btSphereShape(1.f);
-	ss->calculateLocalInertia(4, inertia);
-	btMotionState* motion = new btDefaultMotionState(t);
-	btRigidBody::btRigidBodyConstructionInfo info(4, motion, ss, inertia);
-	body = new btRigidBody(info);
-	engine->getMap()->collisionState->world->addRigidBody(body);
-
 }
 

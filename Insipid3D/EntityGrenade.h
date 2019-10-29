@@ -9,7 +9,6 @@ struct EntityGrenade : EntityPhysicsProp
 {
 	EntityGrenade(glm::vec3 origin);
 	virtual void tick();
-	virtual void init();
 	float explosionTime;
 	int set;
 };

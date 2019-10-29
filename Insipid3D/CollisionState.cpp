@@ -11,7 +11,7 @@ CollisionState::CollisionState(Map* map)
 	solver = new btSequentialImpulseConstraintSolver();
 
 	world = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfig);
-	world->setGravity(btVector3(0, -50, 0));
+	world->setGravity(btVector3(0, -60, 0));
 }
 
 void CollisionState::loadMesh()

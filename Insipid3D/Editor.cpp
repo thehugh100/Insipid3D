@@ -162,10 +162,11 @@ void Editor::tick()
 				ent->body->setWorldTransform(nt);
 				ent->body->setLinearVelocity(btVector3(0, 0, 0));
 				ent->body->setAngularVelocity(btVector3(0, 0, 0));
-				grabVel += (grabPos - grabPosOld);
-				grabVel *= 0.6;
+
+				grabVel = (grabPos - grabPosOld);
+
 				ent->body->applyCentralImpulse(Util::vec3Conv(grabVel * 
-					engine->variables->getVarOrCreate("editorGrabVelocityMultiplier", "250.f", Variable::valFloat)->getFloat()));
+					engine->variables->getVarOrCreate("editorGrabVelocityMultiplier", "500", Variable::valFloat)->getFloat()));
 
 				if (engine->input->keyPressed(GLFW_KEY_DELETE))
 				{
@@ -183,6 +184,7 @@ void Editor::tick()
 				p->setPos(newPos);
 			}
 		}
+		//grabVel = glm::mix(grabVel, glm::vec3(0.f), 1.f - glm::pow(.9f, engine->deltaTime));
 	}
 }
 
