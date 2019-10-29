@@ -3,6 +3,7 @@
 #include "Util.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "EntityLight.h"
 
 EntityExplosion::EntityExplosion(glm::vec3 origin_, float magnitude)
 	:magnitude(magnitude)
@@ -12,42 +13,14 @@ EntityExplosion::EntityExplosion(glm::vec3 origin_, float magnitude)
 	origin = origin_;
 	point = &origin;
 	explosionTime = 200 + Util::randFloat() * 100.;
+	cLight = nullptr;
 }
 
 void EntityExplosion::tick()
 {
 	if (active)
 	{
-		EntityList e;
-		engine->entityManger->getEntityByTraits("EntityPhysicsProp", &e);
-		for (auto& i : e)
-		{
-			EntityPhysicsProp* ie = (EntityPhysicsProp*)i;
-			if (ie->active)
-			{
-				float distance = glm::distance(origin, Util::vec3Conv(ie->body->getWorldTransform().getOrigin()));
-				glm::vec3 direction = -glm::normalize(origin - Util::vec3Conv(ie->body->getWorldTransform().getOrigin()));
-
-				float explosionStrength = 0;
-
-				if (distance != 0)
-					explosionStrength = magnitude / (distance * distance);
-
-				btVector3 start = Util::vec3Conv(origin);
-				btVector3 end = ie->body->getWorldTransform().getOrigin();
-
-				btDynamicsWorld::ClosestRayResultCallback r(start, end);
-				engine->getMap()->collisionState->world->rayTest(start, end, r);
-
-				if (r.hasHit())
-				{
-					if (r.m_collisionObject->getWorldTransform().getOrigin() != btVector3(0, 0, 0))
-					{
-						ie->applyImpulse(direction * explosionStrength);
-					}
-				}
-			}
-		}
+		cLight->light->intensity = 2400.0f * ((clearTime) - engine->getElapsedTimeMS()) / explosionTime;
 
 		if (engine->getElapsedTimeMS() > clearTime)
 			remove();
@@ -84,9 +57,43 @@ void EntityExplosion::init()
 	noiseTex = engine->textureManager->loadTexture("textures/noise.png");
 	clearTime = engine->getElapsedTimeMS() + explosionTime;
 	rotation = Util::randVec();
+	cLight = engine->getMap()->addLight(new Light(getPos(), glm::vec3(1., 0.95, 0.8), 1200));
+
+	EntityList e;
+	engine->entityManger->getEntityByTraits("EntityPhysicsProp", &e);
+	for (auto& i : e)
+	{
+		EntityPhysicsProp* ie = (EntityPhysicsProp*)i;
+		if (ie->active)
+		{
+			float distance = glm::distance(origin, Util::vec3Conv(ie->body->getWorldTransform().getOrigin()));
+			glm::vec3 direction = -glm::normalize(origin - Util::vec3Conv(ie->body->getWorldTransform().getOrigin()));
+
+			float explosionStrength = 0;
+
+			if (distance != 0)
+				explosionStrength = magnitude / (distance * distance);
+
+			btVector3 start = Util::vec3Conv(origin);
+			btVector3 end = ie->body->getWorldTransform().getOrigin();
+
+			btDynamicsWorld::ClosestRayResultCallback r(start, end);
+			engine->getMap()->collisionState->world->rayTest(start, end, r);
+
+			if (r.hasHit())
+			{
+				if (r.m_collisionObject->getWorldTransform().getOrigin() != btVector3(0, 0, 0))
+				{
+					ie->applyImpulse(direction * explosionStrength);
+				}
+			}
+		}
+	}
 }
 
 void EntityExplosion::remove()
 {
 	active = 0;
+	if (cLight != nullptr)
+		cLight->active = 0;
 }

@@ -191,8 +191,9 @@ Mesh* Map::getMesh()
 	return map;
 }
 
-void Map::addLight(Light* l)
+EntityLight* Map::addLight(Light* l)
 {
 	lights.push_back(l);
-	engine->entityManger->addEntity(new EntityLight(l));
+	l->entParent = (EntityLight*)engine->entityManger->addEntity(new EntityLight(l));
+	return l->entParent;
 }

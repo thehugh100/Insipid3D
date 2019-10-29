@@ -16,7 +16,7 @@ struct Map
 	void generateLightmap();
 	void render();
 	Mesh* getMesh();
-	void addLight(Light* l);
+	EntityLight* addLight(Light* l);
 	void loadEntityState(std::string fname);
 
 	Mesh* map;

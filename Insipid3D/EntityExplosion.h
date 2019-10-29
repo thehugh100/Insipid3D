@@ -20,4 +20,5 @@ struct EntityExplosion : EntityPoint
 	glm::vec3 origin;
 	glm::vec3 rotation;
 	GLuint noiseTex;
+	EntityLight* cLight;
 };

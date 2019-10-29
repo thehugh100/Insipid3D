@@ -11,6 +11,7 @@
 #include "Raytrace.h"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
 #include "Util.h"
+#include "EntityLight.h"
 
 EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin)
 	:origin(origin), modelName(modelName)
@@ -138,13 +139,14 @@ void EntityPhysicsProp::render()
 		glUniform3fv(glGetUniformLocation(shader, "cameraPos"), 1, glm::value_ptr(engine->camera->pos));
 		glUniform4fv(glGetUniformLocation(shader, "sunVec"), 1, glm::value_ptr(glm::vec4(engine->getMap()->sunVec, brightnessMultiplier)));
 
-		int numLights = engine->getMap()->lights.size();
-
-		glUniform1i(glGetUniformLocation(shader, "numLights"), numLights);
-
-		for (int i = 0; i < numLights; i++)
+		int lI = 0;
+		for (int i = 0; i < engine->getMap()->lights.size(); i++)
 		{
-			std::string lightID = "lights[" + std::to_string(i) + "]";
+			if (!engine->getMap()->lights[i]->entParent->active)
+			{
+				continue;
+			}
+			std::string lightID = "lights[" + std::to_string(lI) + "]";
 
 			float vis = 1;
 
@@ -167,7 +169,11 @@ void EntityPhysicsProp::render()
 			glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".col").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->col));
 			glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".dir").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->dir));
 			glUniform1f(glGetUniformLocation(shader, std::string(lightID + ".intensity").c_str()), engine->getMap()->lights[i]->intensity * vis);
+
+			lI++;
 		}
+
+		glUniform1i(glGetUniformLocation(shader, "numLights"), lI);
 
 		model->render();
 
