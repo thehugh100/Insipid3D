@@ -32,7 +32,7 @@ void EntityExplosion::render()
 	if (active)
 	{
 		GLuint shader = engine->shaderManager->getShader("shaders/explosion");
-		//glDisable(GL_CULL_FACE);
+		glDisable(GL_CULL_FACE);
 		glUseProgram(shader);
 		glActiveTexture(GL_TEXTURE0);
 		glm::mat4 model = glm::rotate(glm::translate(glm::mat4(1.f), *point), 180.f, rotation);
@@ -48,7 +48,7 @@ void EntityExplosion::render()
 		glBindVertexArray(m->meshEntries[0]->vao);
 		glDrawElements(GL_TRIANGLES, m->meshEntries[0]->elementCount, GL_UNSIGNED_INT, (GLvoid*)0);
 		glBindVertexArray(0);
-		//glEnable(GL_CULL_FACE);
+		glEnable(GL_CULL_FACE);
 	}
 }
 
@@ -57,7 +57,7 @@ void EntityExplosion::init()
 	noiseTex = engine->textureManager->loadTexture("textures/noise.png");
 	clearTime = engine->getElapsedTimeMS() + explosionTime;
 	rotation = Util::randVec();
-	cLight = engine->getMap()->addLight(new Light(getPos(), glm::vec3(1., 0.95, 0.8), 1200));
+	cLight = engine->getMap()->addLight(new Light(getPos(), glm::vec3(1., 0.95, 0.8), 1200, 0, glm::vec3(0, -1, 0), 1));
 
 	EntityList e;
 	engine->entityManger->getEntityByTraits("EntityPhysicsProp", &e);
@@ -84,7 +84,7 @@ void EntityExplosion::init()
 			{
 				if (r.m_collisionObject->getWorldTransform().getOrigin() != btVector3(0, 0, 0))
 				{
-					ie->applyImpulse(direction * explosionStrength);
+					ie->applyImpulse(direction * explosionStrength * 50.f);
 				}
 			}
 		}

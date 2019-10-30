@@ -7,7 +7,7 @@
 
 struct EntityPhysicsProp : Entity
 {
-	EntityPhysicsProp(std::string modelName, glm::vec3 origin);
+	EntityPhysicsProp(std::string modelName, glm::vec3 origin, float mass);
 	EntityPhysicsProp();
 
 	virtual void tick();
@@ -23,7 +23,7 @@ struct EntityPhysicsProp : Entity
 	glm::vec3 getPosition();
 
 	glm::vec3 origin;
-
+	float mass;
 	std::string modelName;
 
 	Mesh* model;

@@ -13,8 +13,8 @@
 #include "Util.h"
 #include "EntityLight.h"
 
-EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin)
-	:origin(origin), modelName(modelName)
+EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin, float mass)
+	:origin(origin), modelName(modelName), mass(mass)
 {
 	entityType = "EntityPhysicsProp";
 	entityTraits.setTrait("EntityPhysicsProp");
@@ -25,6 +25,7 @@ EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin)
 	vars.registerVal("origin", Serializer(&origin));
 	vars.registerVal("modelName", Serializer(&modelName));
 	vars.registerVal("transform", Serializer(&transform));
+	vars.registerVal("mass", Serializer(&mass));
 }
 
 EntityPhysicsProp::EntityPhysicsProp()
@@ -32,7 +33,7 @@ EntityPhysicsProp::EntityPhysicsProp()
 	entityType = "EntityPhysicsProp";
 	entityTraits.setTrait("EntityPhysicsProp");
 	entityTraits.setTrait("PhysicsEntity");
-
+	mass = 1;
 	body = nullptr;
 	origin = glm::vec3(0.);
 	modelName = "";
@@ -43,6 +44,7 @@ EntityPhysicsProp::EntityPhysicsProp()
 	vars.registerVal("origin", Serializer(&origin));
 	vars.registerVal("modelName", Serializer(&modelName));
 	vars.registerVal("transform", Serializer(&transform));
+	vars.registerVal("mass", Serializer(&mass));
 }
 
 void EntityPhysicsProp::tick()
@@ -63,9 +65,9 @@ void EntityPhysicsProp::init()
 	t.setIdentity();
 	t.setOrigin(btVector3(origin.x, origin.y, origin.z));
 	btVector3 inertia;
-	pConvexHullShape->calculateLocalInertia(4, inertia);
+	pConvexHullShape->calculateLocalInertia(mass, inertia);
 	btMotionState* motion = new btDefaultMotionState(t);
-	btRigidBody::btRigidBodyConstructionInfo info(4, motion, pConvexHullShape, inertia);
+	btRigidBody::btRigidBodyConstructionInfo info(mass, motion, pConvexHullShape, inertia);
 	body = new btRigidBody(info);
 	engine->getMap()->collisionState->world->addRigidBody(body);
 
@@ -139,41 +141,7 @@ void EntityPhysicsProp::render()
 		glUniform3fv(glGetUniformLocation(shader, "cameraPos"), 1, glm::value_ptr(engine->camera->pos));
 		glUniform4fv(glGetUniformLocation(shader, "sunVec"), 1, glm::value_ptr(glm::vec4(engine->getMap()->sunVec, brightnessMultiplier)));
 
-		int lI = 0;
-		for (int i = 0; i < engine->getMap()->lights.size(); i++)
-		{
-			if (!engine->getMap()->lights[i]->entParent->active)
-			{
-				continue;
-			}
-			std::string lightID = "lights[" + std::to_string(lI) + "]";
-
-			float vis = 1;
-
-			btVector3 start = body->getWorldTransform().getOrigin();
-			btVector3 end = Util::vec3Conv(engine->getMap()->lights[i]->pos);
-
-			btCollisionWorld::AllHitsRayResultCallback r(start, end);
-			engine->getMap()->collisionState->world->rayTest(start, end, r);
-
-			if (r.hasHit())
-			{
-				for (int q = 0; q < r.m_collisionObjects.size(); q++)
-				{
-					//std::cout << r.m_collisionObjects[q]->getCollisionShape()->getName() << std::endl;
-					vis = 0;
-				}
-			}
-
-			glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".pos").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->pos));
-			glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".col").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->col));
-			glUniform3fv(glGetUniformLocation(shader, std::string(lightID + ".dir").c_str()), 1, glm::value_ptr(engine->getMap()->lights[i]->dir));
-			glUniform1f(glGetUniformLocation(shader, std::string(lightID + ".intensity").c_str()), engine->getMap()->lights[i]->intensity * vis);
-
-			lI++;
-		}
-
-		glUniform1i(glGetUniformLocation(shader, "numLights"), lI);
+		engine->getMap()->getLightsShaderUniforms(shader, getPosition());
 
 		model->render();
 

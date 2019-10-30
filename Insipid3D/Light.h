@@ -9,9 +9,9 @@ struct EntityLight;
 
 struct Light
 {
-	Light(glm::vec3 pos, glm::vec3 col, float intensity, uint8_t type = LIGHT_POINT, glm::vec3 dir = glm::vec3(0, -1, 0));
+	Light(glm::vec3 pos, glm::vec3 col, float intensity, uint8_t type = LIGHT_POINT, glm::vec3 dir = glm::vec3(0, -1, 0), int worldLight = 0);
 
-
+	int worldLight;
 	glm::vec3 pos;
 	glm::vec3 col;
 	glm::vec3 dir;

@@ -94,10 +94,10 @@ void main()
 	fragPos = vec3(model * vec4(aPos, 1.0));
 	for(int i = 1; i < 20; i++)
 	{
-		di += snoise(vec3(scale * .46) + aPos * i) / i;
+		di += snoise(vec3(scale * .26) + aPos * i) / i;
 	}
 
-	vec3 p = aPos * (1. + di * .5f) * (1.- .2*pow(1.-scale,4.)) - (pow(scale, 32.));
+	vec3 p = aPos * (1. + di * .5f) * (.9+ .2*pow(1.-scale,1.5)) - (pow(scale, 32.));
     gl_Position = (proj * view * model * vec4(p , .2));
 	
 	texCoord = aTexCoord;

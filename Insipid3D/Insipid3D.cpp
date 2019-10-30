@@ -61,7 +61,7 @@ void render()
 
 		if (engine->input->keyPressed(GLFW_KEY_Q) && !engine->console->consoleShowing)
 		{
-			EntityPhysicsProp *e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec));
+			EntityPhysicsProp *e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec, 80));
 			//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
 		}
 		if (engine->input->keyPressed(GLFW_KEY_B) && !engine->console->consoleShowing)

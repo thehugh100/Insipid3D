@@ -15,6 +15,7 @@ struct Map
 	Map(std::string fname, Engine* engine);
 	void generateLightmap();
 	void render();
+	void getLightsShaderUniforms(GLuint shader, glm::vec3 pos);
 	Mesh* getMesh();
 	EntityLight* addLight(Light* l);
 	void loadEntityState(std::string fname);

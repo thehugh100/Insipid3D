@@ -8,6 +8,7 @@ EntityGrenade::EntityGrenade(glm::vec3 origin_)
 	entityType = "EntityGrenade";
 	entityTraits.setTrait("EntityGrenade");
 	modelName = "models/grenade.glb";
+	mass = 4;
 	origin = origin_;
 	set = 0;
 }

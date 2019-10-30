@@ -9,7 +9,6 @@ struct PointLight
 	float intensity;
 };
 uniform PointLight lights[32];
-
 uniform int numLights;
 
 in vec3 normal;
