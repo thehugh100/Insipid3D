@@ -5,6 +5,7 @@
 #include <map>
 #include <iostream>
 #include <sstream>
+#include <mutex>
 
 struct Engine;
 
@@ -18,6 +19,7 @@ struct Console
 	void parseCommand(std::string command);
 	bool consoleShowing;
 	int commandHistoryIndex;
+	std::mutex consoleBufferMutex;
 	std::vector<std::string> consoleBuffer;
 	std::vector<std::string> commandHistory;
 	std::string preAutocompleteInputBuf;

@@ -76,16 +76,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\bullet3-master\src;C:\Program Files\Assimp\include;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\lib\glfw-3.3.bin.WIN64;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\lib\glfw-3.3.bin.WIN64\lib-vc2019;C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\boost_1_70_0;C:\bullet3-master\src;C:\Program Files\Assimp\include;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\boost_1_70_0\stage\lib;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\lib\glfw-3.3.bin.WIN64;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\lib\glfw-3.3.bin.WIN64\lib-vc2019;C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;C:\Users\Hugh\source\repos\freeglut tests\freeglut tests\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\boost_1_70_0;C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\boost_1_70_0\stage\lib;C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -191,6 +191,7 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshManager.cpp" />
+    <ClCompile Include="NetworkClient.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RayTrace.cpp" />
     <ClCompile Include="Serializer.cpp" />
@@ -227,6 +228,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshManager.h" />
+    <ClInclude Include="NetworkClient.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Raytrace.h" />
     <ClInclude Include="Serializer.h" />

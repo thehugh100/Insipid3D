@@ -1,0 +1,20 @@
+Server Responses:
+{
+	"Server-Name": "AlexServ69",
+	"Up-Time": 2512515,
+	"Clients-Connected": 0,
+	"Message": "OK",
+	"Message-Code": 200
+}
+
+{
+	"Message": "Server Full",
+	"Message-Code": 503
+}
+
+Client Requests:
+
+{
+	"type": "connect",
+	"username": "Hugh"
+}

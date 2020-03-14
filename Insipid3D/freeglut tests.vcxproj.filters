@@ -117,6 +117,9 @@
     <ClCompile Include="EntityExplosion.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
+    <ClCompile Include="NetworkClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLShader.h">
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="EntityExplosion.h">
       <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkClient.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

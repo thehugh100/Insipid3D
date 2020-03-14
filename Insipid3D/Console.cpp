@@ -25,6 +25,12 @@ Console::Console(Engine* enginePtr)
 		return "done.";
 	};
 
+	commands["connect"] = [this](std::string params)
+	{
+		engine->networkClient->connect(params);
+		return "";
+	};
+
 	commands["serializeEntities"] = [this](std::string params)
 	{
 		EntityList l;
@@ -386,6 +392,8 @@ void Console::render()
 
 void Console::consolePrint(std::string message)
 {
+	const std::lock_guard<std::mutex> lock(consoleBufferMutex);
+
 	std::cout << message << std::endl;
 
 	std::string temp = "";

@@ -7,6 +7,7 @@
 
 Engine::Engine()
 {
+	networkClient = new NetworkClient(this);
 	variables = new Variables();
 	shaderManager = new ShaderManager();
 	entityManger = new EntityManager(this);
@@ -20,6 +21,7 @@ Engine::Engine()
 	input = new Input(this);
 	fontManager = new FontManager();
 	console = new Console(this);
+
 	deltaTime = 0.01;
 	fps = 1;
 	averageFps = 1;

@@ -18,6 +18,7 @@
 #include <map>
 #include "ShaderManager.h"
 #include "Variable.h"
+#include "NetworkClient.h"
 
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
@@ -62,4 +63,5 @@ struct Engine
 	GLFWwindow* window;
 	ShaderManager* shaderManager;
 	Variables* variables;
+	NetworkClient* networkClient;
 };
