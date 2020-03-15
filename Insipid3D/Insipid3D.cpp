@@ -177,6 +177,16 @@ int main(int argc, char** argv)
 	engine->input->window = window;
 	engine->loadMap("worlds/test_world.glb");
 
+	if (argc > 1)
+	{
+		std::ostringstream consoleCmd;
+		for (int i = 1; i < argc; ++i)
+		{
+			consoleCmd << argv[i] << (i == (argc - 1) ? "" : " ");
+		}
+		console->parseCommand(consoleCmd.str());
+	}
+
 	//engine->map->addLight(new Light(glm::vec3(-0.5, 8.0, 0.1), glm::vec3(1, 0.3, 0.3), 800.0f));
 	//engine->map->addLight(new Light(glm::vec3(1, 6.5, 23), glm::vec3(0.97, 1, 0.9), 300.0f));
 	//engine->map->addLight(new Light(glm::vec3(-15, 6.5, 11.3), glm::vec3(0.95, 1, 0.86), 150.0f));

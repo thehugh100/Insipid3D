@@ -12,6 +12,8 @@
 #include <thread>
 #include <sstream>
 
+#include <nlohmann/json.hpp>
+
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
 namespace websocket = beast::websocket; // from <boost/beast/websocket.hpp>
@@ -30,7 +32,7 @@ NetworkClient::NetworkClient(Engine* engine)
 void
 fail(beast::error_code ec, char const* what)
 {
-	std::cerr << what << ": " << ec.message() << "\n";
+	std::cerr << what << ": " << ec.message() << " : " << ec.value() << "\n";
 }
 
 // Sends a WebSocket message and prints the response
@@ -86,8 +88,10 @@ public:
 	void on_connect(beast::error_code ec, tcp::resolver::results_type::endpoint_type)
 	{
 		if (ec)
+		{
+			engine->console->consolePrint("Connection failed: " + ec.message());
 			return fail(ec, "connect");
-
+		}
 		// Turn off the timeout on the tcp_stream, because
 		// the websocket stream has its own timeout system.
 		beast::get_lowest_layer(ws_).expires_never();
@@ -145,13 +149,25 @@ public:
 	{
 		boost::ignore_unused(bytes_transferred);
 
+		if (ec == websocket::error::closed ||
+			ec == boost::system::errc::connection_reset ||
+			ec == boost::system::errc::operation_canceled)
+		{
+			engine->console->consolePrint("Connection lost with server.");
+			return;
+		}
+
 		if (ec)
+		{
+			engine->console->consolePrint("Connection Error: " + ec.message());
 			return fail(ec, "read");
+		}
 
 		//std::cout << beast::make_printable(buffer_.data()) << std::endl;
 
 		std::ostringstream s;
 		s << beast::make_printable(buffer_.data()) << std::endl;
+		buffer_.consume(buffer_.size());
 		engine->console->consolePrint(s.str());
 
 		// Close the WebSocket connection
@@ -176,9 +192,14 @@ public:
 
 void NetworkClient::connect(std::string address)
 {
-	std::cout << "Attempting Connection: " << address << std::endl;
+	engine->console->consolePrint("Attempting Connection: '" + address + "'");
 
-	std::make_shared<session>(ioc)->run(/*address.c_str()*/ "92.6.220.102", "10000", "john", engine);
+	nlohmann::json connection;
+	connection["type"] = "connect";
+	connection["username"] = "thehugh100";
+
+	std::make_shared<session>(ioc)->run(address.c_str(), "10000", connection.dump().c_str(), engine);
+
 	ioc_thread = std::thread([&]{ ioc.run(); });
 	ioc_thread.detach();
 }
