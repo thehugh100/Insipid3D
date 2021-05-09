@@ -84,8 +84,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Program Files %28x86%29\boost_1_70_0;C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\boost_1_70_0\stage\lib;C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\boost_1_70_0;C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;C:\Users\hugh\source\repos\Insipid3D\Insipid3D\include\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\boost_1_70_0\stage\lib;C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;C:\Users\hugh\source\repos\Insipid3D\Insipid3D\lib\Release\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
