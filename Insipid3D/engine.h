@@ -19,6 +19,7 @@
 #include "ShaderManager.h"
 #include "Variable.h"
 #include "NetworkClient.h"
+#include "NetworkServer.h"
 
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
@@ -64,4 +65,5 @@ struct Engine
 	ShaderManager* shaderManager;
 	Variables* variables;
 	NetworkClient* networkClient;
+	NetworkServer* networkServer;
 };

@@ -25,6 +25,19 @@ Console::Console(Engine* enginePtr)
 		return "done.";
 	};
 
+	commands["startServer"] = [this](std::string params)
+	{
+		engine->networkServer->startServer();
+		return "";
+	};
+
+	commands["stopServer"] = [this](std::string params)
+	{
+		engine->networkServer->stopServer();
+		return "";
+	};
+
+
 	commands["connect"] = [this](std::string params)
 	{
 		//engine->networkClient->connect(params);

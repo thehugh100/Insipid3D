@@ -4,10 +4,13 @@
 #include <thread>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "EntityClientCam.h"
 
 Engine::Engine()
 {
 	networkClient = new NetworkClient(this);
+	networkServer = new NetworkServer(this);
+
 	variables = new Variables();
 	shaderManager = new ShaderManager();
 	entityManger = new EntityManager(this);
@@ -81,6 +84,8 @@ void Engine::tick()
 
 	if (editor != nullptr)
 		editor->tick();
+
+	networkServer->tick(deltaTime);
 
 	++frameNum;
 }

@@ -84,8 +84,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Program Files %28x86%29\boost_1_70_0;C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;C:\Users\hugh\source\repos\Insipid3D\Insipid3D\include\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\boost_1_70_0\stage\lib;C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;C:\Users\hugh\source\repos\Insipid3D\Insipid3D\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\boost\boost_1_75_0;C:\bullet3-master\src;C:\Program Files\Assimp\include;include\;C:\Users\hugh\source\repos\Insipid3D\Insipid3D\include\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\boost\boost_1_75_0\stage\lib;C:\bullet3-master\bin\lib\Release;C:\Program Files\Assimp\lib\x64;lib\x64;C:\Users\hugh\source\repos\Insipid3D\Insipid3D\lib\Release\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -155,6 +155,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>C:\bullet3-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -172,6 +173,7 @@
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityClientCam.cpp" />
     <ClCompile Include="EntityDebugCrate.cpp" />
     <ClCompile Include="EntityExplosion.cpp" />
     <ClCompile Include="EntityExplosiveBarrel.cpp" />
@@ -192,9 +194,12 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshManager.cpp" />
     <ClCompile Include="NetworkClient.cpp" />
+    <ClCompile Include="NetworkServer.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RayTrace.cpp" />
     <ClCompile Include="Serializer.cpp" />
+    <ClCompile Include="Server.cpp" />
+    <ClCompile Include="Session.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Util.cpp" />
@@ -208,6 +213,7 @@
     <ClInclude Include="Editor.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityClientCam.h" />
     <ClInclude Include="EntityDebugCrate.h" />
     <ClInclude Include="EntityExplosion.h" />
     <ClInclude Include="EntityExplosiveBarrel.h" />
@@ -229,9 +235,12 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="NetworkClient.h" />
+    <ClInclude Include="NetworkServer.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Raytrace.h" />
     <ClInclude Include="Serializer.h" />
+    <ClInclude Include="Server.h" />
+    <ClInclude Include="Session.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Util.h" />

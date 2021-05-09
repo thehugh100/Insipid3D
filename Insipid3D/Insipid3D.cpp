@@ -43,6 +43,7 @@
 #include "EntityPhysicsProp.h"
 #include "EntityExplosiveBarrel.h"
 #include "EntityGrenade.h"
+#include "EntityExplosion.h"
 #include "Player.h"
 
 #include "Console.h"
@@ -58,6 +59,21 @@ void render()
 	{
 		engine->startFrame();
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		if (engine->input->mousePressed(GLFW_MOUSE_BUTTON_RIGHT))
+		{
+			auto world = engine->getMap()->collisionState->world;
+			btVector3 start = Util::vec3Conv(engine->camera->pos);
+			btVector3 end = Util::vec3Conv(engine->camera->pos + engine->camera->lookVec * 1000.0f);
+
+			btDynamicsWorld::ClosestRayResultCallback r(start, end);
+			world->rayTest(start, end, r);
+
+			if (r.hasHit())
+			{
+				engine->entityManger->addEntity(new EntityExplosion(Util::vec3Conv(r.m_hitPointWorld) - engine->camera->lookVec, 1000.f));
+			}
+		}
 
 		if (engine->input->keyPressed(GLFW_KEY_Q) && !engine->console->consoleShowing)
 		{
