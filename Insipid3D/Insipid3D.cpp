@@ -198,6 +198,8 @@ int main(int argc, char** argv)
 
 	//engine->cameraController = new Player(engine);
 
+	engine->networkClient->connect("");
+
 	render();
 
 	glfwTerminate();

@@ -82,6 +82,9 @@ void Engine::tick()
 	if (editor != nullptr)
 		editor->tick();
 
+	if (networkClient != nullptr)
+		networkClient->tick(deltaTime);
+
 	++frameNum;
 }
 

@@ -66,3 +66,8 @@ void EntityManager::getAllEntities(EntityList* entityList)
 		}
 	}
 }
+
+void EntityManager::clear()
+{
+	entities.clear();
+}
