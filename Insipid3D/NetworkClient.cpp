@@ -280,6 +280,8 @@ void NetworkClient::connect(std::string address)
 	lastServer = "0.0.0.0";
 	port = "32500";
 
+	lastServer = address;
+
 	clientThread = std::thread([this]() {
 		try {
 			*engine->console << lastServer << ":" << port << std::endl;
