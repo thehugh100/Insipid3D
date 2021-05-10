@@ -40,9 +40,16 @@ Console::Console(Engine* enginePtr)
 
 	commands["connect"] = [this](std::string params)
 	{
-		//engine->networkClient->connect(params);
+		engine->networkClient->connect(params);
 		return "";
 	};
+
+	commands["ping"] = [this](std::string params)
+	{
+		engine->networkClient->requestPing(params);
+		return "";
+	};
+
 
 	commands["serializeEntities"] = [this](std::string params)
 	{

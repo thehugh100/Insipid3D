@@ -16,6 +16,7 @@ public:
 	Entity* addEntity(Entity* e);
 	bool getEntityByTraits(std::string trait, EntityList* entityList);
 	void getAllEntities(EntityList* entityList);
+	void clear();
 private:
 	Engine* engine;
 	std::vector<Entity *> entities;
