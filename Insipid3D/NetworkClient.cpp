@@ -283,10 +283,12 @@ void NetworkClient::connect(std::string address)
 
 	std::thread clientThread;
 
-	lastServer = "0.0.0.0";
+	lastServer = address;
 	port = "32500";
-
-	lastServer = "92.16.97.133";
+	if (address == "")
+	{
+		lastServer = "92.16.97.133";
+	}
 
 	clientThread = std::thread([this]() {
 		try {

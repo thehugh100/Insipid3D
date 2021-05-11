@@ -1,0 +1,1 @@
+Start-Process -FilePath ".\x64\Release\Insipid3D.exe" -WorkingDirectory ".\Insipid3D"
