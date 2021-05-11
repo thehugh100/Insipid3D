@@ -24,7 +24,9 @@ void EntityManager::render()
 
 Entity* EntityManager::addEntity(Entity* e)
 {
+	currentIndex++;
 	e->engine = engine;
+	e->id = currentIndex;
 	e->init();
 	entities.push_back(e);
 	return e;
@@ -32,7 +34,9 @@ Entity* EntityManager::addEntity(Entity* e)
 
 Entity* EntityManager::addEntityNoInit(Entity* e)
 {
+	currentIndex++;
 	e->engine = engine;
+	e->id = currentIndex;
 	entities.push_back(e);
 	return e;
 }
@@ -40,6 +44,16 @@ Entity* EntityManager::addEntityNoInit(Entity* e)
 EntityManager::EntityManager(Engine* enginePtr)
 {
 	engine = enginePtr;
+	currentIndex = 0;
+}
+
+Entity* EntityManager::getEntityByID(size_t id)
+{
+	for (auto& i : entities)
+		if (i->id == id)
+			return i;
+
+	return nullptr;
 }
 
 bool EntityManager::getEntityByTraits(std::string trait, EntityList* entityList)
@@ -75,6 +89,12 @@ void EntityManager::getAllEntities(EntityList* entityList)
 
 		}
 	}
+}
+
+void EntityManager::removeEntity(Entity* e)
+{
+	auto it = std::find(entities.begin(), entities.end(), e);
+	entities.erase(it);
 }
 
 void EntityManager::clear()

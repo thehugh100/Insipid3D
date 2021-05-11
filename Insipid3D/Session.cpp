@@ -192,8 +192,11 @@ void session::disconnect()
 {
     auto it = std::find(serverPtr->sessions.begin(), serverPtr->sessions.end(), shared_from_this());
     serverPtr->sessions.erase(it);
-    entityClientCam->remove();
-    
+
+    const std::lock_guard<std::mutex> lock(serverPtr->engine->engineLock);
+    if(entityClientCam != nullptr)
+        entityClientCam->remove();   
+    serverPtr->engine->entityManger->removeEntity(entityClientCam);
 }
 
 void session::printMessage(std::string message)

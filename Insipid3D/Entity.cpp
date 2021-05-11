@@ -7,6 +7,7 @@ Entity::Entity()
 	entityType = "PureEntity";
 	entityTraits.setTrait("PureEntity");
 	active = 1;
+	vars.registerVal("id", Serializer(&id));
 	vars.registerVal("active", Serializer(&active));
 	vars.registerVal("traits", Serializer(&entityTraits));
 	vars.registerVal("type", Serializer(&entityType));
@@ -21,6 +22,7 @@ Entity::Entity(Engine* engine)
 	active = 1;
 	vars.registerVal("active", Serializer(&active));
 	vars.registerVal("type", Serializer(&entityType));
+	vars.registerVal("id", Serializer(&id));
 	initialised = 0;
 }
 

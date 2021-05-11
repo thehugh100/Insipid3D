@@ -18,6 +18,7 @@ struct Entity
 	virtual void remove() = 0;
 	virtual std::string serialize();
 	int active;
+	int id;
 	EntityTraits entityTraits;
 	std::string entityType;
 	EntityVars vars;
