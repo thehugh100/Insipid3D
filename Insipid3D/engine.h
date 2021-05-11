@@ -20,6 +20,7 @@
 #include "Variable.h"
 #include "NetworkClient.h"
 #include "NetworkServer.h"
+#include <mutex>
 
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
@@ -50,6 +51,7 @@ struct Engine
 	float averageFps;
 	glm::vec2 screen;
 
+	std::mutex engineLock;
 	//std::map<std::string, GLuint> shaders;
 	Map* map;
 	TextureManager* textureManager;

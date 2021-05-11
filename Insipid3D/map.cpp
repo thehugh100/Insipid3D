@@ -88,6 +88,12 @@ Map::Map(std::string fname, Engine* engine)
 	skyboxTexture = TextureManager::loadCubemap(faces);
 }
 
+Map::~Map()
+{
+	delete collisionState;
+	delete map;
+}
+
 void Map::loadEntityState(std::string fname)
 {
 	std::ifstream file(fname);

@@ -168,6 +168,7 @@ void Mesh::MeshEntry::render(int renderMode, int lightmap)
 	}
 
 	glBindVertexArray(vao);
+
 	glDrawElements(renderMode, elementCount, GL_UNSIGNED_INT, (GLvoid*)0);
 	glBindVertexArray(0);
 }

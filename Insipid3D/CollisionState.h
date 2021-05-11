@@ -6,7 +6,7 @@ struct Map;
 struct CollisionState
 {
 	CollisionState(Map* map);
-
+	~CollisionState();
 	void loadMesh();
 
 	btDynamicsWorld* world;

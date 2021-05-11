@@ -14,6 +14,15 @@ CollisionState::CollisionState(Map* map)
 	world->setGravity(btVector3(0, -60, 0));
 }
 
+CollisionState::~CollisionState()
+{
+	delete world;
+	delete solver;
+	delete broadphase;
+	delete dispatcher;
+	delete collisionConfig;
+}
+
 void CollisionState::loadMesh()
 {
 	if (map->getMesh() == nullptr)

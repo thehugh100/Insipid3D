@@ -45,8 +45,9 @@ inline bool readJSON(nlohmann::json j, std::string fieldName, TYPE& field, bool 
 
 struct Engine;
 
-	typedef std::function<void(std::string)> ClientCommand;
-	typedef std::vector<std::string> Args;
+typedef std::function<void(std::string)> ClientCommand;
+typedef std::vector<std::string> Args;
+
 class NetworkClient
 {
 public:
@@ -96,7 +97,7 @@ public:
 
 	void sendJson(nlohmann::json j);
 
-	void processWelcome(std::string data);
+	void processWelcome(nlohmann::json data);
 
 	ClientCommand requestPing;
 	ClientCommand sendClientUpdate;

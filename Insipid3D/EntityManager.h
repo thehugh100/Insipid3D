@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include <vector>
 #include <string>
+#include <mutex>
 
 struct Engine;
 

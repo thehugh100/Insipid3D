@@ -37,7 +37,6 @@ Console::Console(Engine* enginePtr)
 		return "";
 	};
 
-
 	commands["connect"] = [this](std::string params)
 	{
 		engine->networkClient->connect(params);

@@ -13,6 +13,8 @@ struct Engine;
 struct Map
 {
 	Map(std::string fname, Engine* engine);
+	~Map();
+
 	void generateLightmap();
 	void render();
 	void getLightsShaderUniforms(GLuint shader, glm::vec3 pos);

@@ -180,10 +180,7 @@ NetworkClient::NetworkClient(Engine* engine_)
 	};
 
 	onCommands["welcome"] = [&](nlohmann::json msg) {
-		json_get_string(msg, SCHEMA_DATA, data)
-		{
-			processWelcome(data);
-		}
+		processWelcome(msg);
 	};
 
 	onCommands["ping"] = [&](nlohmann::json msg) {
@@ -275,12 +272,17 @@ NetworkClient::NetworkClient(Engine* engine_)
 
 void NetworkClient::connect(std::string address)
 {
+	engine->entityManger->clear();
+	clientEntities.clear();
+	//delete engine->map;
+	//engine->map = nullptr;
+
 	std::thread clientThread;
 
 	lastServer = "0.0.0.0";
 	port = "32500";
 
-	lastServer = address;
+	lastServer = "92.16.97.133";
 
 	clientThread = std::thread([this]() {
 		try {
@@ -295,12 +297,11 @@ void NetworkClient::connect(std::string address)
 		}
 		catch (std::exception& e)
 		{
-			std::cerr << "Exception: " << e.what() << "\n";
+			std::cerr << "NetClient Exception: " << e.what() << "\n";
 		}
 		});
+
 	clientThread.detach();
-
-
 }
 
 bool NetworkClient::start(tcp::resolver::results_type endpoints)
@@ -466,9 +467,58 @@ void NetworkClient::processMessage(std::string messageData)
 	}
 }
 
-void NetworkClient::processWelcome(std::string data)
+void NetworkClient::processWelcome(nlohmann::json data)
 {
-	*engine->console << "NetworkClient::processWelcome() - data = " << data << std::endl;
+	const std::lock_guard<std::mutex> lock(engine->engineLock);
+	//*engine->console << "NetworkClient::processWelcome() - data = " << data << std::endl;
+
+	//std::cout << data.dump(4) << std::endl;
+
+	if (data["data"]["map"] != "")
+	{
+		//engine->loadMap(data["data"]["map"]);
+	}
+
+	try
+	{
+		nlohmann::json j = data["data"]["entities"];
+
+		for (auto& i : j)
+		{
+			std::string type = i["type"];
+			if (i["active"] == 0)
+				continue;
+
+			/*if (type == "EntityLight")
+				engine->getMap()->addLight(new Light(Util::vec3FromString(i["point"]),
+					Util::vec3FromString(i["light_col"]),
+					i["light_intensity"],
+					i["light_type"],
+					Util::vec3FromString(i["light_dir"])
+				));*/
+			if (type == "EntityPhysicsProp")
+			{
+				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(
+					new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
+				);
+				e->setTransform(Util::mat4FromString(i["transform"]));
+			}
+			if (type == "EntityExplosiveBarrel")
+			{
+				EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
+					new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
+				);
+				e->setTransform(Util::mat4FromString(i["transform"]));
+
+				std::cout << "Created Barrel" << std::endl;
+			}
+		}
+	}
+	catch (nlohmann::json::exception& e)
+	{
+		*engine->console << "message: " << e.what() << '\n'
+			<< "exception id: " << e.id << std::endl;
+	}
 }
 
 void NetworkClient::tick(float deltaTime)

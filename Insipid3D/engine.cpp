@@ -41,6 +41,10 @@ bool Engine::loadMap(std::string fname)
 
 Map* Engine::getMap()
 {
+	if (map == nullptr)
+	{
+		//std::cout << "Warning: Map is nullptr" << std::endl;
+	}
 	return map;
 }
 

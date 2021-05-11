@@ -31,7 +31,7 @@ void EntityClientCam::tick()
 
 void EntityClientCam::render()
 {
-	if (active && engine->editor->inEditor)
+	if (active)
 	{
 		GLuint flatShader = engine->shaderManager->getShader("shaders/flat");
 		glUseProgram(flatShader);

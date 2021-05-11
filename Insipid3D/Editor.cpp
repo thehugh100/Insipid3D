@@ -29,6 +29,9 @@ Editor::Editor(Engine *enginePtr)
 
 void Editor::tick()
 {
+	if (engine->getMap() == nullptr)
+		return;
+
 	if (engine->input->keyPressed(GLFW_KEY_TAB) && !engine->console->consoleShowing)
 		inEditor = !inEditor;
 
@@ -190,14 +193,15 @@ void Editor::tick()
 
 void Editor::render()
 {
+	if (engine->getMap() == nullptr)
+		return;
+
 	auto world = engine->getMap()->collisionState->world;
 	btVector3 start = Util::vec3Conv(engine->camera->pos);
 	btVector3 end = Util::vec3Conv(engine->camera->pos + engine->camera->lookVec * 1000.0f);
 
 	btDynamicsWorld::ClosestRayResultCallback r(start, end);
 	world->rayTest(start, end, r);
-
-
 
 	GLuint flatShader = engine->shaderManager->getShader("shaders/flat");
 	glUseProgram(flatShader);

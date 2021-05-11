@@ -57,54 +57,59 @@ void render()
 {
 	while (!glfwWindowShouldClose(engine->window))
 	{
+		const std::lock_guard<std::mutex> lock(engine->engineLock);
 		engine->startFrame();
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		if (engine->input->mousePressed(GLFW_MOUSE_BUTTON_RIGHT))
+		if (engine->getMap() != nullptr)
 		{
-			auto world = engine->getMap()->collisionState->world;
-			btVector3 start = Util::vec3Conv(engine->camera->pos);
-			btVector3 end = Util::vec3Conv(engine->camera->pos + engine->camera->lookVec * 1000.0f);
-
-			btDynamicsWorld::ClosestRayResultCallback r(start, end);
-			world->rayTest(start, end, r);
-
-			if (r.hasHit())
+			if (engine->input->mousePressed(GLFW_MOUSE_BUTTON_RIGHT))
 			{
-				engine->entityManger->addEntity(new EntityExplosion(Util::vec3Conv(r.m_hitPointWorld) - engine->camera->lookVec, 1000.f));
-			}
-		}
+				auto world = engine->getMap()->collisionState->world;
+				btVector3 start = Util::vec3Conv(engine->camera->pos);
+				btVector3 end = Util::vec3Conv(engine->camera->pos + engine->camera->lookVec * 1000.0f);
 
-		if (engine->input->keyPressed(GLFW_KEY_Q) && !engine->console->consoleShowing)
-		{
-			EntityPhysicsProp *e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec, 80));
-			//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
-		}
-		if (engine->input->keyPressed(GLFW_KEY_B) && !engine->console->consoleShowing)
-		{
-			engine->entityManger->addEntity(new EntityExplosiveBarrel(engine->camera->pos + engine->camera->lookVec * 2.f));
-		}
-		if (engine->input->keyPressed(GLFW_KEY_C) && !engine->console->consoleShowing)
-		{
-			EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/box.glb", engine->camera->pos + engine->camera->lookVec, 35));
-			e->body->setCcdMotionThreshold(0.2f);
-			e->body->setCcdSweptSphereRadius(0.4f);
-			//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
-		}
-		if (engine->input->keyPressed(GLFW_KEY_G) && !engine->console->consoleShowing)
-		{
-			EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new
-				EntityGrenade(engine->camera->pos));
-			e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 60.0f));
+				btDynamicsWorld::ClosestRayResultCallback r(start, end);
+				world->rayTest(start, end, r);
+
+				if (r.hasHit())
+				{
+					engine->entityManger->addEntity(new EntityExplosion(Util::vec3Conv(r.m_hitPointWorld) - engine->camera->lookVec, 1000.f));
+				}
+			}
+			if (engine->input->keyPressed(GLFW_KEY_Q) && !engine->console->consoleShowing)
+			{
+				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec, 80));
+				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
+			}
+			if (engine->input->keyPressed(GLFW_KEY_B) && !engine->console->consoleShowing)
+			{
+				engine->entityManger->addEntity(new EntityExplosiveBarrel(engine->camera->pos + engine->camera->lookVec * 2.f));
+			}
+			if (engine->input->keyPressed(GLFW_KEY_C) && !engine->console->consoleShowing)
+			{
+				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/box.glb", engine->camera->pos + engine->camera->lookVec, 35));
+				e->body->setCcdMotionThreshold(0.2f);
+				e->body->setCcdSweptSphereRadius(0.4f);
+				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
+			}
+			if (engine->input->keyPressed(GLFW_KEY_G) && !engine->console->consoleShowing)
+			{
+				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new
+					EntityGrenade(engine->camera->pos));
+				e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 60.0f));
+			}
 		}
 		engine->tick();
 
-		engine->getMap()->collisionState->world->stepSimulation(engine->deltaTime);
+		if(engine->getMap() != nullptr)
+			engine->getMap()->collisionState->world->stepSimulation(engine->deltaTime);
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glColor3f(1, 1, 1);
-	
-		engine->getMap()->render();
+
+		if (engine->getMap() != nullptr)
+			engine->getMap()->render();
 		engine->render();
 
 		glfwSwapBuffers(engine->window);
@@ -214,7 +219,7 @@ int main(int argc, char** argv)
 
 	//engine->cameraController = new Player(engine);
 
-	engine->networkClient->connect("");
+	//engine->networkClient->connect("");
 
 	render();
 
