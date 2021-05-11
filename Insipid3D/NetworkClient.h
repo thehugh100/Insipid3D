@@ -128,11 +128,11 @@ private:
 	std::mutex receiveMutex, readMutex;
 	std::mutex writeMutex;
 
-	const size_t max_length = 2000000;
-	char data_[2000000];
+	const size_t max_length = 4096;
+	char data_[4096];
 
-	const size_t packet_body_length = 2000000;
-	char packet_body[2000000];
+	const size_t packet_body_length = 4096;
+	char packet_body[4096];
 
 	uint32_t expectedLength = 4;
 	uint32_t messageCounter = 0;

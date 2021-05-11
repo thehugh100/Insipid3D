@@ -208,10 +208,10 @@ NetworkClient::NetworkClient(Engine* engine_)
 
 		json_get_object(msg, SCHEMA_DATA, j)
 		{
-			engine->entityManger->clear();
+			//engine->entityManger->clear();
 			try
 			{
-				std::cout << "Recieved entity " << j.size() << std::endl;
+				
 				for (auto& i : j)
 				{
 					std::string type = i["type"];
@@ -227,12 +227,30 @@ NetworkClient::NetworkClient(Engine* engine_)
 					//}
 					if (type == "EntityExplosiveBarrel")
 					{
+						int id = i["id"];
+
+
 						engine->netEvents->pushInstruction(
 							[=]() {
-								EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
-									new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
-								);
-								e->setTransform(Util::mat4FromString(i["transform"]));
+
+
+								Entity* foundEntity = engine->entityManger->getEntityByID(id);
+								if (foundEntity == nullptr)
+								{
+									std::cout << "Creating new entity " << id << std::endl;
+									EntityExplosiveBarrel* newEntity = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
+										new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
+									);
+									newEntity->setTransform(Util::mat4FromString(i["transform"]));
+									newEntity->id = id;
+								}
+								else
+								{
+									std::cout << "Found entity " << id << std::endl;
+
+									((EntityExplosiveBarrel*)foundEntity)->setTransform(Util::mat4FromString(i["transform"]));
+								}
+
 
 								//std::cout << "Created Barrel" << std::endl;
 							}
@@ -307,7 +325,7 @@ void NetworkClient::connect(std::string address)
 	port = "32500";
 	if (address == "")
 	{
-		lastServer = "";
+		lastServer = "81.147.31.211";
 	}
 
 	clientThread = std::thread([this]() {
@@ -417,7 +435,7 @@ void NetworkClient::handle_connect(const boost::system::error_code& error, tcp::
 	else
 	{
 		*engine->console << "Connected as " << username << " on " << endpoint_iter->endpoint() << std::endl;
-
+		//socket_.set_option(boost::asio::ip::tcp::no_delay(true));
 		// Start the input actor.
 		start_read();
 	}
@@ -500,76 +518,76 @@ void NetworkClient::processWelcome(nlohmann::json data)
 
 	//std::cout << data.dump(4) << std::endl;
 
-	if (data["data"]["map"] != "")
-	{
-		//engine->loadMap(data["data"]["map"]);
-	}
+	//if (data["data"]["map"] != "")
+	//{
+	//	//engine->loadMap(data["data"]["map"]);
+	//}
 
-	try
-	{
-		std::cout << "trace 1" << std::endl;
+	//try
+	//{
+	//	std::cout << "trace 1" << std::endl;
 
-		nlohmann::json j = data["data"]["entities"];
+	//	nlohmann::json j = data["data"]["entities"];
 
-		std::cout << "trace 2" << std::endl;
+	//	std::cout << "trace 2" << std::endl;
 
-		for (auto& i : j)
-		{
-			std::cout << "trace 3" << std::endl;
+	//	for (auto& i : j)
+	//	{
+	//		std::cout << "trace 3" << std::endl;
 
-			std::string type = i["type"];
+	//		std::string type = i["type"];
 
-			std::cout << "trace 4" << std::endl;
+	//		std::cout << "trace 4" << std::endl;
 
-			if (i["active"] == 0)
-				continue;
+	//		if (i["active"] == 0)
+	//			continue;
 
-			std::cout << "trace 5" << std::endl;
-
-
-
-			/*if (type == "EntityLight")
-				engine->getMap()->addLight(new Light(Util::vec3FromString(i["point"]),
-					Util::vec3FromString(i["light_col"]),
-					i["light_intensity"],
-					i["light_type"],
-					Util::vec3FromString(i["light_dir"])
-				));*/
-				//if (type == "EntityPhysicsProp")
-				//{
-				//	std::function<void()> ins = [&](){
-				//		EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntityNoInit(
-				//			new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
-				//		);
-				//		e->setTransform(Util::mat4FromString(i["transform"]));
-				//	};
-				//}
-			if (type == "EntityExplosiveBarrel")
-			{
-				std::cout << "trace 6" << std::endl;
-
-				engine->netEvents->pushInstruction(
-					[=]() {
-						EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
-							new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
-						);
-						e->setTransform(Util::mat4FromString(i["transform"]));
-
-						std::cout << "Created Barrel" << std::endl;
-					}
-				);
-
-				std::cout << "trace 7" << std::endl;
+	//		std::cout << "trace 5" << std::endl;
 
 
-			}
-		}
-	}
-	catch (nlohmann::json::exception& e)
-	{
-		*engine->console << "message: " << e.what() << '\n'
-			<< "exception id: " << e.id << std::endl;
-	}
+
+	//		/*if (type == "EntityLight")
+	//			engine->getMap()->addLight(new Light(Util::vec3FromString(i["point"]),
+	//				Util::vec3FromString(i["light_col"]),
+	//				i["light_intensity"],
+	//				i["light_type"],
+	//				Util::vec3FromString(i["light_dir"])
+	//			));*/
+	//			//if (type == "EntityPhysicsProp")
+	//			//{
+	//			//	std::function<void()> ins = [&](){
+	//			//		EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntityNoInit(
+	//			//			new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
+	//			//		);
+	//			//		e->setTransform(Util::mat4FromString(i["transform"]));
+	//			//	};
+	//			//}
+	//		if (type == "EntityExplosiveBarrel")
+	//		{
+	//			std::cout << "trace 6" << std::endl;
+
+	//			engine->netEvents->pushInstruction(
+	//				[=]() {
+	//					EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
+	//						new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
+	//					);
+	//					e->setTransform(Util::mat4FromString(i["transform"]));
+
+	//					std::cout << "Created Barrel" << std::endl;
+	//				}
+	//			);
+
+	//			std::cout << "trace 7" << std::endl;
+
+
+	//		}
+	//	}
+	//}
+	//catch (nlohmann::json::exception& e)
+	//{
+	//	*engine->console << "message: " << e.what() << '\n'
+	//		<< "exception id: " << e.id << std::endl;
+	//}
 }
 
 void NetworkClient::tick(float deltaTime)
