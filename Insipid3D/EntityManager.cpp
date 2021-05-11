@@ -79,5 +79,12 @@ void EntityManager::getAllEntities(EntityList* entityList)
 
 void EntityManager::clear()
 {
+	size_t count = entities.size();
+	for (int i = 0; i < count; ++i)
+	{
+		entities[i]->remove();
+		delete entities[i];
+	}
+
 	entities.clear();
 }

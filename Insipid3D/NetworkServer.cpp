@@ -50,7 +50,7 @@ void NetworkServer::tick(float deltaTime)
 {
     updateTimer += deltaTime;
 
-    if (updateTimer > 1.f / 60.f) //60 ticks a second
+    if (updateTimer > 1.f / 2.f) //16 ticks a second
     {
         serverTicks++;
         updateTimer = 0;
@@ -60,13 +60,15 @@ void NetworkServer::tick(float deltaTime)
             {
                 //i->send({ {"type", "tick"}, {"data", serverTicks} });
                 
-                /*EntityList l;
+                EntityList l;
                 engine->entityManger->getAllEntities(&l);
 
                 nlohmann::json j;
 
                 for (auto& i : l)
-                    j.push_back(nlohmann::json::parse(i->serialize()));*/
+                    j.push_back(nlohmann::json::parse(i->serialize()));
+
+                i->send({ {"type", "entityUpdate"}, {"data", j} });
 
                 i->sendPeers();
             }

@@ -10,6 +10,8 @@ struct EntityPhysicsProp : Entity
 	EntityPhysicsProp(std::string modelName, glm::vec3 origin, float mass);
 	EntityPhysicsProp();
 
+	~EntityPhysicsProp();
+
 	virtual void tick();
 	virtual void render();
 	virtual void init();

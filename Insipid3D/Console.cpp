@@ -43,6 +43,12 @@ Console::Console(Engine* enginePtr)
 		return "";
 	};
 
+	commands["clearEntites"] = [this](std::string params)
+	{
+		engine->entityManger->clear();
+		return "";
+	};
+
 	commands["ping"] = [this](std::string params)
 	{
 		engine->networkClient->requestPing(params);

@@ -47,6 +47,12 @@ EntityPhysicsProp::EntityPhysicsProp()
 	vars.registerVal("mass", Serializer(&mass));
 }
 
+EntityPhysicsProp::~EntityPhysicsProp()
+{
+	std::cout << "removed EntityPhysicsProp" << std::endl;
+	remove();
+}
+
 void EntityPhysicsProp::tick()
 {
 }
