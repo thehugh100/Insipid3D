@@ -13,6 +13,9 @@ void NetEvents::pushInstruction(instruction_t instruction)
 
 void NetEvents::tick()
 {
+	if (!instructions.empty())
+	std::cout << "NetEvents::tick() - instructions.size() = " << instructions.size() << std::endl;
+
 	for (auto& i : instructions)
 		i();
 

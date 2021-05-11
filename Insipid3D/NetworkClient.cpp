@@ -203,30 +203,40 @@ NetworkClient::NetworkClient(Engine* engine_)
 
 	onCommands["entityUpdate"] = [&](nlohmann::json msg) {
 		nlohmann::json j;
+		const std::lock_guard<std::mutex> lock(engine->engineLock);
+		//std::cout << msg.dump(2) << std::endl;
+
 		json_get_object(msg, SCHEMA_DATA, j)
 		{
-			/*engine->entityManger->clear();
+			engine->entityManger->clear();
 			try
 			{
+				std::cout << "Recieved entity " << j.size() << std::endl;
 				for (auto& i : j)
 				{
 					std::string type = i["type"];
 					if (i["active"] == 0)
 						continue;
 
-					if (type == "EntityPhysicsProp")
-					{
-						EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(
-							new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
-						);
-						e->setTransform(Util::mat4FromString(i["transform"]));
-					}
+					//if (type == "EntityPhysicsProp")
+					//{
+					//	EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(
+					//		new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
+					//	);
+					//	e->setTransform(Util::mat4FromString(i["transform"]));
+					//}
 					if (type == "EntityExplosiveBarrel")
 					{
-						EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
-							new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
+						engine->netEvents->pushInstruction(
+							[=]() {
+								EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
+									new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
+								);
+								e->setTransform(Util::mat4FromString(i["transform"]));
+
+								//std::cout << "Created Barrel" << std::endl;
+							}
 						);
-						e->setTransform(Util::mat4FromString(i["transform"]));
 					}
 				}
 			}
@@ -234,7 +244,7 @@ NetworkClient::NetworkClient(Engine* engine_)
 			{
 				*engine->console << "message: " << e.what() << '\n'
 					<< "exception id: " << e.id << std::endl;
-			}*/
+			}
 		}
 	};
 
@@ -255,7 +265,11 @@ NetworkClient::NetworkClient(Engine* engine_)
 						{
 							json_get_string(clientJson, "pos", pos)
 							{
-								client->pos = Util::vec3FromString(pos);
+								engine->netEvents->pushInstruction(
+									[=]() {
+										client->pos = Util::vec3FromString(pos);
+									}
+								);
 							}
 						}
 					}
@@ -266,8 +280,13 @@ NetworkClient::NetworkClient(Engine* engine_)
 						{
 							newClient->pos = Util::vec3FromString(pos);
 						}
-						engine->entityManger->addEntity(newClient);
 						clientEntities[username] = newClient;
+
+						engine->netEvents->pushInstruction(
+							[newClient, this]() {
+								this->engine->entityManger->addEntity(newClient);
+							}
+						);
 					}
 				}
 			}
@@ -288,7 +307,7 @@ void NetworkClient::connect(std::string address)
 	port = "32500";
 	if (address == "")
 	{
-		lastServer = "92.16.97.133";
+		lastServer = "";
 	}
 
 	clientThread = std::thread([this]() {
@@ -488,13 +507,26 @@ void NetworkClient::processWelcome(nlohmann::json data)
 
 	try
 	{
+		std::cout << "trace 1" << std::endl;
+
 		nlohmann::json j = data["data"]["entities"];
+
+		std::cout << "trace 2" << std::endl;
 
 		for (auto& i : j)
 		{
+			std::cout << "trace 3" << std::endl;
+
 			std::string type = i["type"];
+
+			std::cout << "trace 4" << std::endl;
+
 			if (i["active"] == 0)
 				continue;
+
+			std::cout << "trace 5" << std::endl;
+
+
 
 			/*if (type == "EntityLight")
 				engine->getMap()->addLight(new Light(Util::vec3FromString(i["point"]),
@@ -503,17 +535,19 @@ void NetworkClient::processWelcome(nlohmann::json data)
 					i["light_type"],
 					Util::vec3FromString(i["light_dir"])
 				));*/
-			//if (type == "EntityPhysicsProp")
-			//{
-			//	std::function<void()> ins = [&](){
-			//		EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntityNoInit(
-			//			new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
-			//		);
-			//		e->setTransform(Util::mat4FromString(i["transform"]));
-			//	};
-			//}
+				//if (type == "EntityPhysicsProp")
+				//{
+				//	std::function<void()> ins = [&](){
+				//		EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntityNoInit(
+				//			new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
+				//		);
+				//		e->setTransform(Util::mat4FromString(i["transform"]));
+				//	};
+				//}
 			if (type == "EntityExplosiveBarrel")
 			{
+				std::cout << "trace 6" << std::endl;
+
 				engine->netEvents->pushInstruction(
 					[=]() {
 						EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
@@ -524,7 +558,10 @@ void NetworkClient::processWelcome(nlohmann::json data)
 						std::cout << "Created Barrel" << std::endl;
 					}
 				);
-				
+
+				std::cout << "trace 7" << std::endl;
+
+
 			}
 		}
 	}
