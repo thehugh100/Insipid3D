@@ -16,10 +16,14 @@ public:
 	void render();
 	Entity* addEntity(Entity* e);
 	Entity* addEntityNoInit(Entity* e);
+
+	Entity* getEntityByID(size_t id);
 	bool getEntityByTraits(std::string trait, EntityList* entityList);
 	void getAllEntities(EntityList* entityList);
+	void removeEntity(Entity* e);
 	void clear();
 private:
+	size_t currentIndex;
 	Engine* engine;
 	std::vector<Entity *> entities;
 };
