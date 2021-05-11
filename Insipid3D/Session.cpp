@@ -17,6 +17,7 @@ session::session(tcp::socket socket, server* serverPtr)
 
 void session::start()
 {
+    socket_.set_option(boost::asio::ip::tcp::no_delay(true));
 	//socket_.set_option(tcp::no_delay(true));
     *serverPtr->engine->console << "Client connected: " << socket_.remote_endpoint().address() << std::endl;
 
@@ -186,6 +187,7 @@ void session::send(nlohmann::json message)
 {
     std::string messageComposed = message.dump();
     do_write(boost::asio::buffer(messageComposed.c_str(), messageComposed.size()));
+    
 }
 
 void session::disconnect()
