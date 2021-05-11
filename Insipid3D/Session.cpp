@@ -23,11 +23,32 @@ void session::start()
     entityClientCam = new EntityClientCam(glm::vec3(0, 0, 0));
     serverPtr->engine->entityManger->addEntity(entityClientCam);
 
-    nlohmann::json data;
-    data["type"] = "welcome";
-    data["data"] = "test";
+    nlohmann::json msg;
+    
+    // Type 
+    msg["type"] = "welcome";
 
-    std::string data_json = data.dump();
+    // Server message for client consoles
+    msg["serverMessage"] = "Welcome to Insipid3D test server.";
+
+    // Form json for the engine data
+    nlohmann::json data;
+
+    // Map
+    data["map"] = serverPtr->engine->map->getMesh()->filename;
+
+    // Entities
+    EntityList entityList;
+    serverPtr->engine->entityManger->getAllEntities(&entityList);
+    nlohmann::json entities;
+    for (auto& entity : entityList)
+        entities.push_back(nlohmann::json::parse(entity->serialize()));
+    data["entities"] = entities;
+
+    // Add data to the message
+    msg["data"] = data;
+
+    std::string data_json = msg.dump();
 
     do_write(boost::asio::buffer(data_json, data_json.size()));
 

@@ -261,6 +261,10 @@ NetworkClient::NetworkClient(Engine* engine_)
 					else
 					{
 						EntityClientCam* newClient = new EntityClientCam(glm::vec3(0));
+						json_get_string(clientJson, "pos", pos)
+						{
+							newClient->pos = Util::vec3FromString(pos);
+						}
 						engine->entityManger->addEntity(newClient);
 						clientEntities[username] = newClient;
 					}
