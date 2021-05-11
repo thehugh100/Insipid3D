@@ -50,7 +50,7 @@ void NetworkServer::tick(float deltaTime)
 {
     updateTimer += deltaTime;
 
-    if (updateTimer > 1.f / 32.f) //64 ticks a second
+    if (updateTimer > 1.f / 16.f) //64 ticks a second
     {
         serverTicks++;
         updateTimer = 0;
@@ -72,8 +72,8 @@ void NetworkServer::tick(float deltaTime)
                 }
 
                 i->send({ {"type", "entityUpdate"}, {"data", j} });
-
-                i->sendPeers();
+                std::cout << "sent " << serverTicks << std::endl;
+                //i->sendPeers();
             }
         }
     }
