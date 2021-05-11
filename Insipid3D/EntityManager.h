@@ -15,6 +15,7 @@ public:
 	void tick();
 	void render();
 	Entity* addEntity(Entity* e);
+	Entity* addEntityNoInit(Entity* e);
 	bool getEntityByTraits(std::string trait, EntityList* entityList);
 	void getAllEntities(EntityList* entityList);
 	void clear();

@@ -141,6 +141,9 @@
     <ClCompile Include="EntityClientCam.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
+    <ClCompile Include="NetEvents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLShader.h">
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="EntityClientCam.h">
       <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="NetEvents.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

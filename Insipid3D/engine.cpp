@@ -25,6 +25,8 @@ Engine::Engine()
 	fontManager = new FontManager();
 	console = new Console(this);
 
+	netEvents = new NetEvents(this);
+
 	deltaTime = 0.01;
 	fps = 1;
 	averageFps = 1;
@@ -89,9 +91,14 @@ void Engine::tick()
 	if (editor != nullptr)
 		editor->tick();
 
-	networkServer->tick(deltaTime);
+	if(networkServer != nullptr)
+		networkServer->tick(deltaTime);
+
 	if (networkClient != nullptr)
 		networkClient->tick(deltaTime);
+
+	if (netEvents != nullptr)
+		netEvents->tick();
 
 	++frameNum;
 }

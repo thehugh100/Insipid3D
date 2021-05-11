@@ -21,5 +21,6 @@ struct Entity
 	EntityTraits entityTraits;
 	std::string entityType;
 	EntityVars vars;
+	bool initialised;
 	Engine* engine;
 };

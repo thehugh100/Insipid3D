@@ -72,6 +72,7 @@ void EntityPhysicsProp::init()
 	engine->getMap()->collisionState->world->addRigidBody(body);
 
 	delete hull;
+	initialised = 1;
 }
 
 void EntityPhysicsProp::destroy()

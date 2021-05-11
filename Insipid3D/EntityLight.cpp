@@ -68,6 +68,7 @@ void EntityLight::render()
 void EntityLight::init()
 {
 	editorMesh = engine->meshManager->getMesh("models/editor/sphere.glb");
+	initialised = 1;
 }
 
 void EntityLight::remove()

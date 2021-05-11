@@ -55,6 +55,7 @@ void EntityClientCam::render()
 void EntityClientCam::init()
 {
 	editorMesh = engine->meshManager->getMesh("models/editor/sphere.glb");
+	initialised = 1;
 }
 
 void EntityClientCam::remove()

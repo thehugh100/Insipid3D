@@ -6,6 +6,9 @@ void EntityManager::tick()
 	size_t size = entities.size();
 	for (int i = 0; i < size; ++i)
 	{
+		if(!entities[i]->initialised) //entites created through the network thread may not be initialised
+			entities[i]->init();
+
 		entities[i]->tick();
 	}
 }
@@ -23,6 +26,13 @@ Entity* EntityManager::addEntity(Entity* e)
 {
 	e->engine = engine;
 	e->init();
+	entities.push_back(e);
+	return e;
+}
+
+Entity* EntityManager::addEntityNoInit(Entity* e)
+{
+	e->engine = engine;
 	entities.push_back(e);
 	return e;
 }

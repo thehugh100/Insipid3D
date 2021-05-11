@@ -89,6 +89,7 @@ void EntityExplosion::init()
 			}
 		}
 	}
+	initialised = 1;
 }
 
 void EntityExplosion::remove()

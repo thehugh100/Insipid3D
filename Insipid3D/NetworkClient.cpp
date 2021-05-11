@@ -1,5 +1,6 @@
 #include "NetworkClient.h"
 #include "engine.h"
+#include "NetEvents.h"
 
 //#include <boost/beast/core.hpp>
 //#include <boost/beast/websocket.hpp>
@@ -502,21 +503,28 @@ void NetworkClient::processWelcome(nlohmann::json data)
 					i["light_type"],
 					Util::vec3FromString(i["light_dir"])
 				));*/
-			if (type == "EntityPhysicsProp")
-			{
-				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(
-					new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
-				);
-				e->setTransform(Util::mat4FromString(i["transform"]));
-			}
+			//if (type == "EntityPhysicsProp")
+			//{
+			//	std::function<void()> ins = [&](){
+			//		EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntityNoInit(
+			//			new EntityPhysicsProp(i["modelName"], Util::vec3FromString(i["origin"]), i["mass"])
+			//		);
+			//		e->setTransform(Util::mat4FromString(i["transform"]));
+			//	};
+			//}
 			if (type == "EntityExplosiveBarrel")
 			{
-				EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
-					new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
-				);
-				e->setTransform(Util::mat4FromString(i["transform"]));
+				engine->netEvents->pushInstruction(
+					[=]() {
+						EntityExplosiveBarrel* e = (EntityExplosiveBarrel*)engine->entityManger->addEntity(
+							new EntityExplosiveBarrel(Util::vec3FromString(i["origin"]))
+						);
+						e->setTransform(Util::mat4FromString(i["transform"]));
 
-				std::cout << "Created Barrel" << std::endl;
+						std::cout << "Created Barrel" << std::endl;
+					}
+				);
+				
 			}
 		}
 	}

@@ -20,6 +20,8 @@
 #include "Variable.h"
 #include "NetworkClient.h"
 #include "NetworkServer.h"
+#include "NetEvents.h"
+
 #include <mutex>
 
 #include "GL/glew.h"
@@ -68,4 +70,5 @@ struct Engine
 	Variables* variables;
 	NetworkClient* networkClient;
 	NetworkServer* networkServer;
+	NetEvents* netEvents;
 };
