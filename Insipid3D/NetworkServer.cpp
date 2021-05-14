@@ -2,6 +2,8 @@
 #include "engine.h"
 #include "Server_TCP.h"
 #include "Session_TCP.h"
+#include "Server_UDP.h"
+
 #include "Util.h"
 #include "camera.h";
 
@@ -13,7 +15,7 @@ NetworkServer::NetworkServer(Engine* engine)
 {
     active = 0;
     port = 32500;
-    server_ = nullptr;
+    server_tcp_ = nullptr;
 }
 
 void NetworkServer::startServer()
@@ -23,12 +25,17 @@ void NetworkServer::startServer()
     std::thread netThread([&] {
         try
         {
-            server_ = new server_tcp(io_context, port, engine);
+            /*server_tcp_ = new server_tcp(io_context, port, engine);
+            active = 1;
+            io_context.run();
+            active = 0;
+            *engine->console << "Server Stopped." << std::endl;*/
+
+            server_udp_ = new Server_UDP(io_context, port, engine);
             active = 1;
             io_context.run();
             active = 0;
             *engine->console << "Server Stopped." << std::endl;
-
         }
         catch (std::exception& e)
         {
@@ -56,25 +63,25 @@ void NetworkServer::tick(float deltaTime)
         updateTimer = 0;
         if (active)
         {
-            for (auto& i : server_->sessions)
-            {
-                //i->send({ {"type", "tick"}, {"data", serverTicks} });
-                
-                EntityList l;
-                engine->entityManger->getAllEntities(&l);
+            //for (auto& i : server_tcp_->sessions)
+            //{
+            //    //i->send({ {"type", "tick"}, {"data", serverTicks} });
+            //    
+            //    EntityList l;
+            //    engine->entityManger->getAllEntities(&l);
 
-                nlohmann::json j;
+            //    nlohmann::json j;
 
-                for (auto& i : l)
-                {
-                    if(i->active)
-                        j.push_back(nlohmann::json::parse(i->serialize()));
-                }
+            //    for (auto& i : l)
+            //    {
+            //        if(i->active)
+            //            j.push_back(nlohmann::json::parse(i->serialize()));
+            //    }
 
-                i->send({ {"type", "entityUpdate"}, {"data", j} });
-                std::cout << "sent " << serverTicks << std::endl;
-                //i->sendPeers();
-            }
+            //    i->send({ {"type", "entityUpdate"}, {"data", j} });
+            //    std::cout << "sent " << serverTicks << std::endl;
+            //    //i->sendPeers();
+            //}
         }
     }
 }

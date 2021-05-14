@@ -4,6 +4,7 @@
 
 struct Engine;
 class server_tcp;
+class Server_UDP;
 
 class NetworkServer
 {
@@ -12,7 +13,8 @@ public:
 	void startServer();
 	void stopServer();
 	void tick(float deltaTime);
-	server_tcp *server_;
+	server_tcp* server_tcp_;
+	Server_UDP* server_udp_;
 	boost::asio::io_context io_context;
 	int port;
 	uint64_t serverTicks;

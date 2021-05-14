@@ -202,6 +202,7 @@
     <ClCompile Include="RayTrace.cpp" />
     <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="Server_TCP.cpp" />
+    <ClCompile Include="Server_UDP.cpp" />
     <ClCompile Include="Session_TCP.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="Raytrace.h" />
     <ClInclude Include="Serializer.h" />
     <ClInclude Include="Server_TCP.h" />
+    <ClInclude Include="Server_UDP.h" />
     <ClInclude Include="Session_TCP.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="TextureManager.h" />
