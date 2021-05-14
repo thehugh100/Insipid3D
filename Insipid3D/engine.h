@@ -5,7 +5,6 @@
 #include "Camera.h"
 #include "CameraController.h"
 #include "EntityManager.h"
-#include "MeshManager.h"
 #include "Editor.h"
 #include "Input.h"
 #include "FontManager.h"
@@ -18,8 +17,6 @@
 #include <map>
 #include "ShaderManager.h"
 #include "Variable.h"
-#include "NetworkClient.h"
-#include "NetworkServer.h"
 #include "NetEvents.h"
 
 #include <mutex>
@@ -27,7 +24,9 @@
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
 
-class Client_UDP;
+class NetworkServer;
+class NetworkClient;
+struct MeshManager;
 
 struct Engine
 {
@@ -71,8 +70,6 @@ struct Engine
 	ShaderManager* shaderManager;
 	Variables* variables;
 	NetworkClient* networkClient;
-
-	Client_UDP* udpClient;
 
 	NetworkServer* networkServer;
 	NetEvents* netEvents;

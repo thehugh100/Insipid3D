@@ -9,6 +9,8 @@
 #include <nlohmann/json.hpp>
 #include "Client_UDP.h"
 
+#include "NetworkClient.h"
+
 Console::Console(Engine* enginePtr)
 	:engine(enginePtr)
 {
@@ -40,9 +42,7 @@ Console::Console(Engine* enginePtr)
 
 	commands["connect"] = [this](std::string params)
 	{
-		//engine->networkClient->connect(params);
-
-		engine->udpClient->connect(params);
+		engine->networkClient->connect(params);
 		return "";
 	};
 

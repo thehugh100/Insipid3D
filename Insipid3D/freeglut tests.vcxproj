@@ -170,6 +170,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ClientUtils.cpp" />
+    <ClCompile Include="Client_TCP.cpp" />
     <ClCompile Include="Client_UDP.cpp" />
     <ClCompile Include="CollisionState.cpp" />
     <ClCompile Include="Console.cpp" />
@@ -214,6 +216,8 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="ClientUtils.h" />
+    <ClInclude Include="Client_TCP.h" />
     <ClInclude Include="Client_UDP.h" />
     <ClInclude Include="CollisionState.h" />
     <ClInclude Include="Console.h" />
