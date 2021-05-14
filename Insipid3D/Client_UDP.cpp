@@ -12,12 +12,36 @@
 
 using boost::asio::ip::udp;
 
+namespace
+{
+
+	ClientCommand defaultCommand = [](std::string) {};
+}
+
 Client_UDP::Client_UDP(Engine* engine_)
 	:
 	engine(engine_),
 	recvbuffer(),
-	socket_(io_service)
+	socket_(io_service),
+	sendClientUpdate(defaultCommand)
 {
+
+	sendClientUpdate = [&](std::string) {
+		nlohmann::json j;
+		j["type"] = "clientUpdate";
+
+		nlohmann::json data;
+		data["pos"] = Util::printVec3(engine->camera->pos);
+		data["ang"] = Util::printVec3(engine->camera->lookVec);
+
+		j["data"] = data;
+
+		if (socket_.is_open())
+		{
+			socket_.send_to(boost::asio::buffer(j.dump()), remoteEndpoint);
+		}
+	};
+
 	onCommands["welcome"] = [&](nlohmann::json msg) {
 		std::cout << msg.dump(2) << std::endl;
 	};
@@ -53,8 +77,8 @@ Client_UDP::Client_UDP(Engine* engine_)
 				for (auto& i : j)
 				{
 					std::string type = i["type"];
-					if (i["active"] == 0)
-						continue;
+					//if (i["active"] == 0)
+					//	continue;
 
 					//if (type == "EntityPhysicsProp")
 					//{
@@ -97,8 +121,29 @@ Client_UDP::Client_UDP(Engine* engine_)
 										json_get_string(i, "transform", transform)
 										{
 											e->setTransform(Util::mat4FromString(transform));
-											e->body->activate();
 										}
+
+										json_get_string(i, "velocity", velocity)
+										{
+											glm::vec3 vec = Util::vec3FromString(velocity);
+											btVector3 btVec = Util::vec3Conv(vec);
+											e->body->setLinearVelocity(btVec);
+										}
+
+										json_get_string(i, "angularVelocity", angularVelocity)
+										{
+											e->body->setAngularVelocity(Util::vec3Conv(Util::vec3FromString(angularVelocity)));
+										}
+
+										int activeState = false;
+										json_get_object(i, "active", activeState)
+										{
+											if (!activeState)
+												e->remove();
+											e->active = activeState;
+										}
+
+										e->body->activate();
 									}
 								}
 
@@ -130,13 +175,14 @@ Client_UDP::Client_UDP(Engine* engine_)
 					{
 						auto& client = clientEntities[username];
 
-						if (client)
+						if (client != nullptr)
 						{
 							json_get_string(clientJson, "pos", pos)
 							{
 								engine->netEvents->pushInstruction(
 									[=]() {
-										client->pos = Util::vec3FromString(pos);
+										if (client != nullptr)
+											client->pos = Util::vec3FromString(pos);
 									}
 								);
 							}
@@ -147,13 +193,15 @@ Client_UDP::Client_UDP(Engine* engine_)
 						EntityClientCam* newClient = new EntityClientCam(glm::vec3(0));
 						json_get_string(clientJson, "pos", pos)
 						{
-							newClient->pos = Util::vec3FromString(pos);
+							if (newClient != nullptr)
+								newClient->pos = Util::vec3FromString(pos);
 						}
 						clientEntities[username] = newClient;
 
 						engine->netEvents->pushInstruction(
 							[newClient, this]() {
-								this->engine->entityManger->addEntity(newClient);
+								if (newClient != nullptr)
+									this->engine->entityManger->addEntity(newClient);
 							}
 						);
 					}
@@ -207,8 +255,8 @@ void Client_UDP::connect(std::string address)
 
 				std::cout << "Started io_service" << std::endl;
 
-				socket_.send_to(boost::asio::buffer("This is a test message."), remoteEndpoint);
-				socket_.send_to(boost::asio::buffer("This is a second test message."), remoteEndpoint);
+				socket_.send_to(boost::asio::buffer(nlohmann::json({ { "type", "test" }, { "data", "hello" } }).dump()), remoteEndpoint);
+				//socket_.send_to(boost::asio::buffer("This is a second test message."), remoteEndpoint);
 
 				std::cout << "Sent initial message" << std::endl;
 
@@ -256,6 +304,16 @@ void Client_UDP::handle_receive(const boost::system::error_code& error, std::siz
 
 void Client_UDP::tick(float deltaTime)
 {
+	updateTimer += deltaTime;
+
+	if (updateTimer > 1.f / 64.0f) //60 ticks a second
+	{
+		updateTimer = 0;
+		if (active)
+		{
+			sendClientUpdate("");
+		}
+	}
 }
 
 void Client_UDP::processMessage(std::string messageData)
