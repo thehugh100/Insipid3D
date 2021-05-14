@@ -13,6 +13,9 @@
 #include "Util.h"
 #include "EntityLight.h"
 
+#include <glm/gtc/quaternion.hpp>
+#include <glm/common.hpp>
+
 EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin, float mass)
 	:origin(origin), modelName(modelName), mass(mass)
 {
@@ -154,5 +157,29 @@ void EntityPhysicsProp::render()
 
 		if (!backfaceCull)
 			glEnable(GL_CULL_FACE);
+
+
+		//GLuint flatShader = engine->shaderManager->getShader("shaders/flat");
+		//glUseProgram(flatShader);
+		//glActiveTexture(GL_TEXTURE0);
+		//glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1.)));
+		//glUniformMatrix4fv(glGetUniformLocation(flatShader, "view"), 1, GL_FALSE, glm::value_ptr(engine->camera->getViewMatrix()));
+		//glUniformMatrix4fv(glGetUniformLocation(flatShader, "proj"), 1, GL_FALSE, glm::value_ptr(engine->camera->getProjectionMatrix()));
+		//glUniform3f(glGetUniformLocation(flatShader, "col"), 1., 1., 1.);
+		//glDepthMask(GL_FALSE);
+
+		//glPointSize(4);
+		//glLineWidth(4);
+
+		//auto rot = body->getWorldTransform().getRotation();
+		//glm::quat gQuat = glm::quat(rot.getW(), rot.getX(), rot.getY(), rot.getZ());
+
+		//glBegin(GL_LINES);
+		//glVertex3fv(glm::value_ptr( getPosition() ));
+		//glVertex3fv(glm::value_ptr( getPosition() + gQuat * glm::vec3(0, 1, 0) ));
+		//glEnd();
+		//
+
+		//glDepthMask(GL_TRUE);
 	}
 }

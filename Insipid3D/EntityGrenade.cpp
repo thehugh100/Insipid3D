@@ -3,6 +3,9 @@
 #include "engine.h"
 #include "Util.h"
 
+#include <glm/gtc/quaternion.hpp>
+#include <glm/common.hpp>
+
 EntityGrenade::EntityGrenade(glm::vec3 origin_)
 {
 	entityType = "EntityGrenade";
@@ -25,9 +28,14 @@ void EntityGrenade::tick()
 			body->setCcdMotionThreshold(0.2f);
 			body->setCcdSweptSphereRadius(0.4f);
 			body->setAngularVelocity(Util::vec3Conv(Util::randVec() * 5.f));
+
 		}
 		else
 		{
+			/*auto rot = body->getWorldTransform().getRotation();
+			glm::quat gQuat = glm::quat(rot.getW(), rot.getX(), rot.getY(), rot.getZ());
+			body->applyForce(Util::vec3Conv(gQuat * glm::vec3(0, mass * 60 * 2, 0)), btVector3(0, 1, 0));*/
+
 			if (engine->getElapsedTimeMS() > explosionTime)
 			{
 				explode();

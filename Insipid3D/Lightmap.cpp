@@ -97,6 +97,11 @@ void LightmapGenerator::buildLightmapData(Mesh* mesh, std::vector<LightmapFace>*
 			for (int fi = 0; fi < 3; fi++)
 			{
 				l.tri[fi] = glm::vec3(m->mVertices[m->mFaces[j].mIndices[fi]].x, m->mVertices[m->mFaces[j].mIndices[fi]].y, m->mVertices[m->mFaces[j].mIndices[fi]].z);
+				if (m->mTextureCoords[0] == nullptr)
+				{
+					std::cout << "LightmapGenerator::buildLightmapData - Warning, found face without UV's" << std::endl;
+					continue;
+				}
 				l.uvs[fi] = glm::vec2(m->mTextureCoords[0][m->mFaces[j].mIndices[fi]].x, m->mTextureCoords[0][m->mFaces[j].mIndices[fi]].y);
 
 				l.minX = glm::min(l.uvs[fi].x, l.minX);

@@ -3,6 +3,9 @@
 #include "engine.h"
 #include "EntityExplosion.h"
 
+#include <glm/gtc/quaternion.hpp>
+#include <glm/common.hpp>
+
 EntityExplosiveBarrel::EntityExplosiveBarrel(glm::vec3 origin_)
 {
 	entityType = "EntityExplosiveBarrel";
@@ -40,6 +43,12 @@ void EntityExplosiveBarrel::tick()
 			engine->entityManger->addEntity(new EntityExplosion(getPosition(), 4500.f));
 			destroy();
 		}
+		
+		//apply force snippet
+		/*auto rot = body->getWorldTransform().getRotation();
+		glm::quat gQuat = glm::quat(rot.getW(), rot.getX(), rot.getY(), rot.getZ());
+
+		body->applyForce(Util::vec3Conv(gQuat * glm::vec3(0, mass * 65, 0)), btVector3(0.001,1,0));*/
 	}
 }
 
