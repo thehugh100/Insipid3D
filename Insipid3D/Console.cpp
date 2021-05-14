@@ -39,7 +39,9 @@ Console::Console(Engine* enginePtr)
 
 	commands["connect"] = [this](std::string params)
 	{
-		engine->networkClient->connect(params);
+		//engine->networkClient->connect(params);
+
+		engine->udpClient->connect(params);
 		return "";
 	};
 
@@ -51,7 +53,12 @@ Console::Console(Engine* enginePtr)
 
 	commands["ping"] = [this](std::string params)
 	{
-		engine->networkClient->requestPing(params);
+		//engine->networkClient->requestPing(params);
+		return "";
+	};
+
+	commands["sendMessage"] = [this](std::string params)
+	{
 		return "";
 	};
 

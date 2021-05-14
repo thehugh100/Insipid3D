@@ -144,6 +144,9 @@
     <ClCompile Include="Session_TCP.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
+    <ClCompile Include="Client_UDP.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLShader.h">
@@ -270,6 +273,9 @@
       <Filter>Header Files\Network</Filter>
     </ClInclude>
     <ClInclude Include="Session_TCP.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Client_UDP.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
