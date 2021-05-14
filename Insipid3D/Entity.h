@@ -16,7 +16,7 @@ struct Entity
 	virtual void render() = 0;
 	virtual void init() = 0;
 	virtual void remove() = 0;
-	virtual std::string serialize();
+	virtual nlohmann::json serialize();
 	int active;
 	int id;
 	EntityTraits entityTraits;

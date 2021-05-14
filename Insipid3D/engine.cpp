@@ -7,8 +7,9 @@
 #include "EntityClientCam.h"
 #include "Client_UDP.h"
 
-
 #include "NetworkClient.h"
+#include "NetworkServer.h"
+#include "MeshManager.h"
 
 Engine::Engine()
 {

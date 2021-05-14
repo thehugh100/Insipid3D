@@ -6,6 +6,7 @@
 #include <boost/asio.hpp>
 
 #include <map>
+#include <nlohmann/json.hpp>
 
 struct Engine;
 class Session_UDP;
@@ -21,9 +22,11 @@ public:
     void handle_receive(const boost::system::error_code& error,
         std::size_t bytes);
 
-    void handle_send(boost::shared_ptr<std::string> /*message*/,
-        const boost::system::error_code& /*error*/,
+    void handle_send(const boost::system::error_code& /*error*/,
         std::size_t /*bytes_transferred*/);
+
+    void sendAll(std::string data);
+    void sendAllJson(nlohmann::json jsonData);
 
     boost::asio::ip::udp::socket socket_;
     boost::asio::ip::udp::endpoint remote_endpoint_;

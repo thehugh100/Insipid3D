@@ -43,7 +43,7 @@ void session_tcp::start()
     serverPtr->engine->entityManger->getAllEntities(&entityList);
     nlohmann::json entities;
     for (auto& entity : entityList)
-        entities.push_back(nlohmann::json::parse(entity->serialize()));
+        entities.push_back(entity->serialize());
     data["entities"] = entities;
 
     // Add data to the message

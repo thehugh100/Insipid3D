@@ -26,8 +26,8 @@ Entity::Entity(Engine* engine)
 	initialised = 0;
 }
 
-std::string Entity::serialize()
+nlohmann::json Entity::serialize()
 {
-	return vars.serialize();
+	return nlohmann::json::parse(vars.serialize());
 }
 

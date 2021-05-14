@@ -59,46 +59,27 @@ void NetworkServer::tick(float deltaTime)
 {
     updateTimer += deltaTime;
 
-    if (updateTimer > 1.f / 16.f) //16 ticks a second
+    if (updateTimer > 1.f / 64.f) //64 ticks a second
     {
         serverTicks++;
         updateTimer = 0;
         if (active)
         {
-            std::ostringstream msg;
-            msg << "tick: " << serverTicks;
 
-            boost::shared_ptr<std::string> message(
-                new std::string(msg.str().data()));
+            //i->send({ {"type", "tick"}, {"data", serverTicks} });
+                
+            EntityList l;
+            engine->entityManger->getAllEntities(&l);
+            //std::cout << l.size() << std::endl;
+            nlohmann::json j;
 
-
-            for (auto& i : server_udp_->sessions)
+            for (auto& i : l)
             {
-                server_udp_->socket_.async_send_to(boost::asio::buffer(*message), i.second->endpoint,
-                    boost::bind(&Server_UDP::handle_send, server_udp_, message,
-                        boost::asio::placeholders::error,
-                        boost::asio::placeholders::bytes_transferred));
+                if(i->active && i->entityType == "EntityExplosiveBarrel")
+                    j.push_back(i->serialize());
             }
 
-            //for (auto& i : server_tcp_->sessions)
-            //{
-            //    //i->send({ {"type", "tick"}, {"data", serverTicks} });
-            //    
-            //    EntityList l;
-            //    engine->entityManger->getAllEntities(&l);
-
-            //    nlohmann::json j;
-
-            //    for (auto& i : l)
-            //    {
-            //        if(i->active)
-            //            j.push_back(nlohmann::json::parse(i->serialize()));
-            //    }
-
-            //    i->send({ {"type", "entityUpdate"}, {"data", j} });
-            //    std::cout << "sent " << serverTicks << std::endl;
-            //    //i->sendPeers();
-            //}
+            server_udp_->sendAllJson({ {"type", "entityUpdate"}, {"data", j}, {"tick", serverTicks} });
         }
     }
 }

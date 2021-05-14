@@ -302,5 +302,8 @@
     <ClInclude Include="ClientUtils.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
+    <ClInclude Include="Base64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
