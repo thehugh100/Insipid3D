@@ -5,12 +5,16 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/asio.hpp>
 
+#include <map>
+
 struct Engine;
+class Session_UDP;
 
 class Server_UDP
 {
 public:
     Server_UDP(boost::asio::io_service& io_service, int port, Engine* engine);
+    std::map<std::string, Session_UDP*> sessions;
 
 private:
     void start_receive();

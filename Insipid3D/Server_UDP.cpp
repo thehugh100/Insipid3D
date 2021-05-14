@@ -1,6 +1,7 @@
 #include "Server_UDP.h"
 #include "engine.h"
 #include <iostream>
+#include "Session_UDP.h"
 
 Server_UDP::Server_UDP(boost::asio::io_service& io_service, int port, Engine* engine)
     : socket_(io_service, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port)), engine(engine)
@@ -22,7 +23,17 @@ void Server_UDP::handle_receive(const boost::system::error_code& error, std::siz
 {
     if (!error || error == boost::asio::error::message_size)
     {
-        std::cout << "[" << remote_endpoint_.address().to_string() << "]: " << recv_buffer_.data() << std::endl;
+        //*engine->console << "[" << remote_endpoint_.address().to_string() << ":" << remote_endpoint_.port() << "]: " << recv_buffer_.data() << std::endl;
+
+        std::string sessionString = remote_endpoint_.address().to_string() + ":" + std::to_string(remote_endpoint_.port());
+
+        if (sessions.find(sessionString) == sessions.end()) // new session
+        {
+            sessions[sessionString] = new Session_UDP(remote_endpoint_, &socket_, this);
+        }
+
+        sessions[sessionString]->receiveData(recv_buffer_.data());
+
 
         boost::shared_ptr<std::string> message(
             new std::string("test"));
@@ -33,10 +44,6 @@ void Server_UDP::handle_receive(const boost::system::error_code& error, std::siz
                 boost::asio::placeholders::bytes_transferred));
 
         start_receive();
-    }
-    if ((boost::asio::error::eof == error) || (boost::asio::error::connection_reset == error))
-    {
-        std::cout << "Client disconected: " << remote_endpoint_.address().to_string() << std::endl;
     }
 }
 

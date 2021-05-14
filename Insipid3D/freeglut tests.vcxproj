@@ -205,6 +205,7 @@
     <ClCompile Include="Server_TCP.cpp" />
     <ClCompile Include="Server_UDP.cpp" />
     <ClCompile Include="Session_TCP.cpp" />
+    <ClCompile Include="Session_UDP.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Util.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Server_TCP.h" />
     <ClInclude Include="Server_UDP.h" />
     <ClInclude Include="Session_TCP.h" />
+    <ClInclude Include="Session_UDP.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Util.h" />

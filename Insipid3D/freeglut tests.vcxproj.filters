@@ -144,10 +144,13 @@
     <ClCompile Include="Session_TCP.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
-    <ClCompile Include="Server_UDP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Client_UDP.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Server_UDP.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Session_UDP.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
@@ -278,10 +281,13 @@
     <ClInclude Include="Session_TCP.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
-    <ClInclude Include="Server_UDP.h">
-      <Filter>Source Files\Network</Filter>
-    </ClInclude>
     <ClInclude Include="Client_UDP.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Server_UDP.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Session_UDP.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
