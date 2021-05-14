@@ -19,9 +19,15 @@ EntityClientCam::EntityClientCam(glm::vec3 pos)
 	:pos(pos)
 {
 	entityType = "EntityClientCam";
+	lookVec = glm::vec3(0, 0, 0);
+	hitPos = glm::vec3(0, 0, 0);
+
 	vars.registerVal("point", Serializer(&pos));
+	vars.registerVal("lookVec", Serializer(&lookVec));
+	vars.registerVal("hitPos", Serializer(&hitPos));
 
 	active = 1;
+
 }
 
 void EntityClientCam::tick()
@@ -49,8 +55,31 @@ void EntityClientCam::render()
 		glUniform3fv(glGetUniformLocation(flatShader, "col"), 1, glm::value_ptr(glm::vec3(0.8,0.8,1)));
 		editorMesh->render();
 
-		//glDepthMask(GL_FALSE);
-		//glDepthMask(GL_TRUE);
+		glDepthMask(GL_FALSE);
+
+		glUseProgram(flatShader);
+		glActiveTexture(GL_TEXTURE0);
+		glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1.)));
+		glUniformMatrix4fv(glGetUniformLocation(flatShader, "view"), 1, GL_FALSE, glm::value_ptr(engine->camera->getViewMatrix()));
+		glUniformMatrix4fv(glGetUniformLocation(flatShader, "proj"), 1, GL_FALSE, glm::value_ptr(engine->camera->getProjectionMatrix()));
+		glUniform3f(glGetUniformLocation(flatShader, "col"), 1., 1., 1.);
+		glDepthMask(GL_FALSE);
+
+		glPointSize(4);
+		glLineWidth(4);
+
+		glPointSize(4);
+		glLineWidth(4);
+
+		glm::vec3 p = pos;
+		glm::vec3 n = lookVec * 1.5f;
+
+		glBegin(GL_LINES);
+		glVertex3fv(glm::value_ptr(p));
+		glVertex3fv(glm::value_ptr(p + n));
+		glEnd();
+		
+		glDepthMask(GL_FALSE);
 	}
 }
 

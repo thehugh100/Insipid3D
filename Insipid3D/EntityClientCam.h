@@ -15,4 +15,6 @@ struct EntityClientCam : Entity
 
 	Mesh* editorMesh;
 	glm::vec3 pos;
+	glm::vec3 lookVec;
+	glm::vec3 hitPos;
 };

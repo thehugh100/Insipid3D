@@ -26,6 +26,9 @@ struct EntityPhysicsProp : Entity
 	std::string physicsState;
 	glm::vec3 getPosition();
 	glm::vec3 origin;
+	glm::vec3 velocity;
+	glm::vec3 angularVelocity;
+
 	float mass;
 	std::string modelName;
 
