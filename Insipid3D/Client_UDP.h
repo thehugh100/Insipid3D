@@ -45,6 +45,7 @@ public:
 
 	void tick(float deltaTime);
 
+	void processMessage(std::string messageData);
 private:
 
     Engine* engine;
@@ -54,7 +55,13 @@ private:
 	boost::asio::io_service io_service;
 	boost::asio::ip::udp::socket socket_;
 
+
+	std::map<std::string, std::function<void(nlohmann::json)>> onCommands;
+
     std::string lastServer;
     std::string username;
     std::string port = "32500";
+
+
+	std::map<std::string, EntityClientCam*> clientEntities;
 };

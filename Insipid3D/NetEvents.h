@@ -2,6 +2,7 @@
 #include <iostream>
 #include <functional>
 #include <vector>
+#include <mutex>
 
 typedef std::function<void()> instruction_t;
 
@@ -17,4 +18,5 @@ public:
 private:
 	std::vector<instruction_t> instructions;
 	Engine* engine;
+	std::mutex netEventLock;
 };
