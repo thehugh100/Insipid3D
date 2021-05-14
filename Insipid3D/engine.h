@@ -27,6 +27,8 @@
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
 
+#include "Client_UDP.h"
+
 struct Engine
 {
 	Engine();
@@ -69,6 +71,9 @@ struct Engine
 	ShaderManager* shaderManager;
 	Variables* variables;
 	NetworkClient* networkClient;
+
+	Client_UDP* udpClient;
+
 	NetworkServer* networkServer;
 	NetEvents* netEvents;
 };

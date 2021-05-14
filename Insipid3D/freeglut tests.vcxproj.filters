@@ -146,6 +146,8 @@
     </ClCompile>
     <ClCompile Include="Server_UDP.cpp">
       <Filter>Source Files</Filter>
+    <ClCompile Include="Client_UDP.cpp">
+      <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +279,8 @@
     </ClInclude>
     <ClInclude Include="Server_UDP.h">
       <Filter>Source Files\Network</Filter>
+    <ClInclude Include="Client_UDP.h">
+      <Filter>Header Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

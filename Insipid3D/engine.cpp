@@ -11,6 +11,8 @@ Engine::Engine()
 	networkClient = new NetworkClient(this);
 	networkServer = new NetworkServer(this);
 
+	udpClient = new Client_UDP(this, "", "");
+
 	variables = new Variables();
 	shaderManager = new ShaderManager();
 	entityManger = new EntityManager(this);
