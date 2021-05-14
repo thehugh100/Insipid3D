@@ -3,12 +3,14 @@
 #include "Server_TCP.h"
 #include "Session_TCP.h"
 #include "Server_UDP.h"
+#include "Session_UDP.h"
 
 #include "Util.h"
 #include "camera.h";
 
 #include <boost/filesystem.hpp>
 #include <thread>
+#include <sstream>
 
 NetworkServer::NetworkServer(Engine* engine)
 	:engine(engine)
@@ -57,12 +59,27 @@ void NetworkServer::tick(float deltaTime)
 {
     updateTimer += deltaTime;
 
-    if (updateTimer > 1.f / 16.f) //64 ticks a second
+    if (updateTimer > 1.f / 16.f) //16 ticks a second
     {
         serverTicks++;
         updateTimer = 0;
         if (active)
         {
+            std::ostringstream msg;
+            msg << "tick: " << serverTicks;
+
+            boost::shared_ptr<std::string> message(
+                new std::string(msg.str().data()));
+
+
+            for (auto& i : server_udp_->sessions)
+            {
+                server_udp_->socket_.async_send_to(boost::asio::buffer(*message), i.second->endpoint,
+                    boost::bind(&Server_UDP::handle_send, server_udp_, message,
+                        boost::asio::placeholders::error,
+                        boost::asio::placeholders::bytes_transferred));
+            }
+
             //for (auto& i : server_tcp_->sessions)
             //{
             //    //i->send({ {"type", "tick"}, {"data", serverTicks} });

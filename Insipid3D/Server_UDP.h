@@ -16,7 +16,6 @@ public:
     Server_UDP(boost::asio::io_service& io_service, int port, Engine* engine);
     std::map<std::string, Session_UDP*> sessions;
 
-private:
     void start_receive();
 
     void handle_receive(const boost::system::error_code& error,
@@ -31,4 +30,5 @@ private:
     boost::array<char, 65536> recv_buffer_;
 
     Engine* engine;
+private:
 };

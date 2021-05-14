@@ -34,7 +34,6 @@ void Server_UDP::handle_receive(const boost::system::error_code& error, std::siz
 
         sessions[sessionString]->receiveData(recv_buffer_.data());
 
-
         boost::shared_ptr<std::string> message(
             new std::string("test"));
 

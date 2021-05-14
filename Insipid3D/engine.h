@@ -27,7 +27,7 @@
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
 
-#include "Client_UDP.h"
+class Client_UDP;
 
 struct Engine
 {

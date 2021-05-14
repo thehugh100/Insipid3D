@@ -7,6 +7,7 @@
 #include "map.h"
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include "Client_UDP.h"
 
 Console::Console(Engine* enginePtr)
 	:engine(enginePtr)
