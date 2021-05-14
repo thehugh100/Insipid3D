@@ -43,7 +43,7 @@ void Server_UDP::handle_receive(const boost::system::error_code& error, std::siz
                 boost::asio::placeholders::bytes_transferred));*/
 
         
-
+        recv_buffer_ = boost::array<char, 65536>();
         start_receive();
     }
 }
@@ -65,5 +65,13 @@ void Server_UDP::sendAllJson(nlohmann::json jsonData)
     for (auto& i : sessions)
     {
         i.second->sendJson(jsonData);
+    }
+}
+
+void Server_UDP::sendPeers()
+{
+    for (auto& i : sessions)
+    {
+        i.second->sendPeers();
     }
 }

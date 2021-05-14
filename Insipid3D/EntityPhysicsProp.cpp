@@ -27,12 +27,21 @@ EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin, fl
 	active = 1;
 	backfaceCull = 1;
 	transform = glm::mat4(0.f);
+
+	velocity = glm::vec3(0, 0, 0);
+	angularVelocity = glm::vec3(0, 0, 0);
+
 	physicsState = "";
+
 	vars.registerVal("origin", Serializer(&origin));
 	vars.registerVal("modelName", Serializer(&modelName));
 	vars.registerVal("transform", Serializer(&transform));
 	vars.registerVal("mass", Serializer(&mass));
-	vars.registerVal("physicsState", Serializer(&physicsState));
+
+	vars.registerVal("velocity", Serializer(&velocity));
+	vars.registerVal("angularVelocity", Serializer(&angularVelocity));
+
+	//vars.registerVal("physicsState", Serializer(&physicsState));
 }
 
 EntityPhysicsProp::EntityPhysicsProp()
@@ -48,12 +57,21 @@ EntityPhysicsProp::EntityPhysicsProp()
 	active = 1;
 	backfaceCull = 1;
 	transform = glm::mat4(0.f);
+
+	velocity = glm::vec3(0, 0, 0);
+	angularVelocity = glm::vec3(0, 0, 0);
+
 	physicsState = "";
+
 	vars.registerVal("origin", Serializer(&origin));
 	vars.registerVal("modelName", Serializer(&modelName));
 	vars.registerVal("transform", Serializer(&transform));
 	vars.registerVal("mass", Serializer(&mass));
-	vars.registerVal("physicsState", Serializer(&physicsState));
+
+	vars.registerVal("velocity", Serializer(&velocity));
+	vars.registerVal("angularVelocity", Serializer(&angularVelocity));
+
+	//vars.registerVal("physicsState", Serializer(&physicsState));
 }
 
 EntityPhysicsProp::~EntityPhysicsProp()
@@ -127,7 +145,7 @@ void EntityPhysicsProp::setTransform(glm::mat4 transform)
 
 nlohmann::json EntityPhysicsProp::serialize()
 {
-	btDefaultSerializer* serializer = new btDefaultSerializer();
+	/*btDefaultSerializer* serializer = new btDefaultSerializer();
 
 	size_t sBufSize = body->calculateSerializeBufferSize();
 	char* sBuf = new char[sBufSize];
@@ -137,7 +155,10 @@ nlohmann::json EntityPhysicsProp::serialize()
 	physicsState = macaron::Base64::Encode(std::string((const char*)sBuf, sBufSize));
 
 	delete serializer;
-	delete sBuf;
+	delete sBuf;*/
+
+	velocity = Util::vec3Conv(body->getLinearVelocity());
+	angularVelocity = Util::vec3Conv(body->getAngularVelocity());
 
 	return nlohmann::json::parse(vars.serialize());
 }

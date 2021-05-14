@@ -27,6 +27,7 @@ public:
 
     void sendAll(std::string data);
     void sendAllJson(nlohmann::json jsonData);
+    void sendPeers();
 
     boost::asio::ip::udp::socket socket_;
     boost::asio::ip::udp::endpoint remote_endpoint_;

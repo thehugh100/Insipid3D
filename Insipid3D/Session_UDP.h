@@ -8,6 +8,8 @@
 
 class Server_UDP;
 
+struct EntityClientCam;
+
 class Session_UDP
 {
 public:
@@ -15,9 +17,10 @@ public:
     void receiveData(std::string data);
     void sendData(std::string data);
     void sendJson(nlohmann::json jsonData);
-
+    void sendPeers();
     boost::asio::ip::udp::endpoint endpoint;
     boost::asio::ip::udp::socket *socket;
     Server_UDP* server_udp;
 private:
+    EntityClientCam *entityClientCam;
 };

@@ -80,6 +80,7 @@ void NetworkServer::tick(float deltaTime)
             }
 
             server_udp_->sendAllJson({ {"type", "entityUpdate"}, {"data", j}, {"tick", serverTicks} });
+            server_udp_->sendPeers();
         }
     }
 }
