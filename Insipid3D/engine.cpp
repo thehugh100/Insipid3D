@@ -6,12 +6,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "EntityClientCam.h"
 
+#include "NetworkClient.h"
+
 Engine::Engine()
 {
 	networkClient = new NetworkClient(this);
 	networkServer = new NetworkServer(this);
-
-	udpClient = new Client_UDP(this, "", "");
 
 	variables = new Variables();
 	shaderManager = new ShaderManager();

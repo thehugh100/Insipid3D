@@ -11,6 +11,9 @@
 #include <boost/asio/read_until.hpp>
 #include <boost/asio/steady_timer.hpp>
 #include <boost/asio/write.hpp>
+
+#include <boost/array.hpp>
+
 #include <functional>
 
 using udp = boost::asio::ip::udp;       // from <boost/asio/ip/tcp.hpp>
@@ -30,20 +33,26 @@ struct Engine;
 class Client_UDP
 {
 public:
-	Client_UDP(Engine* engine,
-		const std::string& host,
-		const std::string& port
-	);
+	Client_UDP(Engine* engine);
 
 	~Client_UDP();
 
     void connect(std::string address);
 
+	void start_receive();
+
+	void handle_receive(const boost::system::error_code& error, std::size_t bytes);
+
+	void tick(float deltaTime);
 
 private:
 
     Engine* engine;
 
+	boost::array<char, 65536> recvbuffer;
+	boost::asio::ip::udp::endpoint remoteEndpoint;
+	boost::asio::io_service io_service;
+	boost::asio::ip::udp::socket socket_;
 
     std::string lastServer;
     std::string username;

@@ -18,7 +18,6 @@
 #include <map>
 #include "ShaderManager.h"
 #include "Variable.h"
-#include "NetworkClient.h"
 #include "NetworkServer.h"
 #include "NetEvents.h"
 
@@ -27,7 +26,8 @@
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
 
-#include "Client_UDP.h"
+
+class NetworkClient;
 
 struct Engine
 {
@@ -71,8 +71,6 @@ struct Engine
 	ShaderManager* shaderManager;
 	Variables* variables;
 	NetworkClient* networkClient;
-
-	Client_UDP* udpClient;
 
 	NetworkServer* networkServer;
 	NetEvents* netEvents;
