@@ -123,12 +123,6 @@
     <ClCompile Include="EntityExplosion.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
-    <ClCompile Include="Server.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Session.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
     <ClCompile Include="NetworkClient.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
@@ -143,6 +137,12 @@
     </ClCompile>
     <ClCompile Include="NetEvents.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Server_TCP.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Session_TCP.cpp">
+      <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,12 +251,6 @@
     <ClInclude Include="EntityExplosion.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
-    <ClInclude Include="Server.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Session.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkClient.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
@@ -271,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="NetEvents.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Server_TCP.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Session_TCP.h">
+      <Filter>Header Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

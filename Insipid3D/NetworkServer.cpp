@@ -1,7 +1,7 @@
 #include "NetworkServer.h"
 #include "engine.h"
-#include "Server.h"
-#include "Session.h"
+#include "Server_TCP.h"
+#include "Session_TCP.h"
 #include "Util.h"
 #include "camera.h";
 
@@ -23,7 +23,7 @@ void NetworkServer::startServer()
     std::thread netThread([&] {
         try
         {
-            server_ = new server(io_context, port, engine);
+            server_ = new server_tcp(io_context, port, engine);
             active = 1;
             io_context.run();
             active = 0;

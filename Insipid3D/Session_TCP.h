@@ -14,13 +14,13 @@
 
 using boost::asio::ip::tcp;
 
-class server;
+class server_tcp;
 
-class session
-    : public std::enable_shared_from_this<session>
+class session_tcp
+    : public std::enable_shared_from_this<session_tcp>
 {
 public:
-    session(tcp::socket socket, server* serverPtr);
+    session_tcp(tcp::socket socket, server_tcp* serverPtr);
     void start();
     void readPacket(boost::asio::const_buffer packet);
     void do_write(boost::asio::const_buffer response);
@@ -52,6 +52,6 @@ private:
     char data_[max_length];
     const int packet_body_length;
     char packet_body[4096];
-    server *serverPtr;
+    server_tcp *serverPtr;
     EntityClientCam* entityClientCam;
 };

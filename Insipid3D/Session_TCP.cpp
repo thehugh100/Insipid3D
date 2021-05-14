@@ -1,5 +1,5 @@
-#include "session.h"
-#include "server.h"
+#include "Session_TCP.h"
+#include "server_TCP.h"
 
 #include <Base64.h>
 #include <algorithm>
@@ -9,13 +9,13 @@
 #include "EntityManager.h"
 #include "Util.h"
 
-session::session(tcp::socket socket, server* serverPtr)
+session_tcp::session_tcp(tcp::socket socket, server_tcp* serverPtr)
     : socket_(std::move(socket)), serverPtr(serverPtr), packet_body_length(4096)
 {
     entityClientCam = nullptr;
 }
 
-void session::start()
+void session_tcp::start()
 {
     socket_.set_option(boost::asio::ip::tcp::no_delay(true));
 	//socket_.set_option(tcp::no_delay(true));
@@ -63,7 +63,7 @@ void session::start()
     do_read();
 }
 
-void session::readPacket(boost::asio::const_buffer packet)
+void session_tcp::readPacket(boost::asio::const_buffer packet)
 {
     uint32_t dataSize = 0;
     memcpy(&dataSize, packet.data(), 4);
@@ -121,7 +121,7 @@ void session::readPacket(boost::asio::const_buffer packet)
     }
 }
 
-void session::do_read()
+void session_tcp::do_read()
 {
 	std::lock_guard<std::mutex> lock(sessionLock);
 
@@ -144,7 +144,7 @@ void session::do_read()
         });
 }
 
-void session::sendClientPing()
+void session_tcp::sendClientPing()
 {
     uint64_t ms = std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::system_clock::now().time_since_epoch()
@@ -156,7 +156,7 @@ void session::sendClientPing()
     do_write(boost::asio::buffer(pingcmd.c_str(), pingcmd.size()));
 }
 
-void session::do_write(boost::asio::const_buffer response)
+void session_tcp::do_write(boost::asio::const_buffer response)
 {
 	const std::lock_guard<std::mutex> lock(writeLock);
 
@@ -178,19 +178,19 @@ void session::do_write(boost::asio::const_buffer response)
         });
 }
 
-void session::notice(std::string notice)
+void session_tcp::notice(std::string notice)
 {
     send({ {"type", "notice"}, {"data", macaron::Base64::Encode(notice)} });
 }
 
-void session::send(nlohmann::json message)
+void session_tcp::send(nlohmann::json message)
 {
     std::string messageComposed = message.dump();
     do_write(boost::asio::buffer(messageComposed.c_str(), messageComposed.size()));
     
 }
 
-void session::disconnect()
+void session_tcp::disconnect()
 {
     auto it = std::find(serverPtr->sessions.begin(), serverPtr->sessions.end(), shared_from_this());
     serverPtr->sessions.erase(it);
@@ -201,7 +201,7 @@ void session::disconnect()
     serverPtr->engine->entityManger->removeEntity(entityClientCam);
 }
 
-void session::printMessage(std::string message)
+void session_tcp::printMessage(std::string message)
 {
     std::string name;
     if (!username.empty())
@@ -212,14 +212,14 @@ void session::printMessage(std::string message)
     std::cout << "[" << name << "]: " << message << std::endl;
 }
 
-void session::kick()
+void session_tcp::kick()
 {
     send({ {"type", "notice"}, {"data", macaron::Base64::Encode("You have been kicked from the server.")}});
     disconnect();
     socket_.close();
 }
 
-void session::sendPeers()
+void session_tcp::sendPeers()
 {
     nlohmann::json j;
     j["type"] = "clients";
@@ -244,12 +244,12 @@ void session::sendPeers()
     send(j);
 }
 
-std::string session::getUsernameB64()
+std::string session_tcp::getUsernameB64()
 {
     return macaron::Base64::Encode(getUsername());
 }
 
-std::string session::getUsername()
+std::string session_tcp::getUsername()
 {
     if (username.empty())
     {
@@ -258,12 +258,12 @@ std::string session::getUsername()
     return username;
 }
 
-void session::setUsername(std::string username_)
+void session_tcp::setUsername(std::string username_)
 {
     username = username_;
 }
 
-std::string session::getIP()
+std::string session_tcp::getIP()
 {
     return socket_.remote_endpoint().address().to_string();
 }

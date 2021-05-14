@@ -3,7 +3,7 @@
 #include <boost/asio.hpp>
 
 struct Engine;
-class server;
+class server_tcp;
 
 class NetworkServer
 {
@@ -12,7 +12,7 @@ public:
 	void startServer();
 	void stopServer();
 	void tick(float deltaTime);
-	server *server_;
+	server_tcp *server_;
 	boost::asio::io_context io_context;
 	int port;
 	uint64_t serverTicks;
