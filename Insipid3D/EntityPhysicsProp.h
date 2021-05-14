@@ -21,16 +21,16 @@ struct EntityPhysicsProp : Entity
 	virtual void applyImpulse(glm::vec3 impulse);
 	virtual void update();
 	virtual void setTransform(glm::mat4 transform);
-
+	virtual nlohmann::json serialize();
+	
+	std::string physicsState;
 	glm::vec3 getPosition();
-
 	glm::vec3 origin;
 	float mass;
 	std::string modelName;
 
 	Mesh* model;
 	btRigidBody* body;
-
 	glm::mat4 transform;
 
 	bool backfaceCull;

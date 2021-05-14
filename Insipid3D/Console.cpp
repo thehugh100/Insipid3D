@@ -7,8 +7,17 @@
 #include "map.h"
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include "Client_UDP.h"
+
+#include "EntityPhysicsProp.h"
 
 #include "NetworkClient.h"
+#include "NetworkServer.h"
+
+#include "EntityManager.h"
+#include "Base64.h"
+
+#include <btBulletDynamicsCommon.h>
 
 Console::Console(Engine* enginePtr)
 	:engine(enginePtr)
@@ -166,7 +175,7 @@ Console::Console(Engine* enginePtr)
 		nlohmann::json j;
 
 		for (auto& i : l)
-			j.push_back(nlohmann::json::parse(i->serialize()));
+			j.push_back(i->serialize());
 
 		std::string fname = engine->getMap()->fname + ".ents";
 		std::ofstream file(fname);
@@ -231,6 +240,36 @@ Console::Console(Engine* enginePtr)
 			r += i.first + ": " + i.second->toString() + "\n";
 
 		return r;
+	};
+
+	commands["serializePhys"] = [this](std::string params)
+	{
+
+		EntityList e;
+		engine->entityManger->getAllEntities(&e);
+
+		std::ostringstream buf;
+
+		for (auto& i : e)
+		{
+			if (i->entityTraits.hasTrait("PhysicsEntity"))
+			{
+				std::cout << "Found physics object" << std::endl;
+				auto ent = (EntityPhysicsProp*)i;
+				btDefaultSerializer* serializer = new btDefaultSerializer();
+
+				size_t sBufSize = ent->body->calculateSerializeBufferSize();
+				char * sBuf = new char[sBufSize];
+
+				ent->body->serialize(sBuf, serializer);
+
+				std::string sDat = std::string((const char*)sBuf, sBufSize);
+
+				buf << macaron::Base64::Encode(sDat) << std::endl;
+			}
+		}
+
+		return buf.str();
 	};
 
 	commands["listEntities"] = [this](std::string params)

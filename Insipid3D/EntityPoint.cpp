@@ -13,6 +13,8 @@
 #include "GL/glew.h"
 #include <GLFW/glfw3.h>
 
+#include "MeshManager.h"
+
 EntityPoint::EntityPoint()
 {
 	entityTraits.setTrait("Point");

@@ -3,12 +3,14 @@
 #include "Server_TCP.h"
 #include "Session_TCP.h"
 #include "Server_UDP.h"
+#include "Session_UDP.h"
 
 #include "Util.h"
 #include "camera.h";
 
 #include <boost/filesystem.hpp>
 #include <thread>
+#include <sstream>
 
 NetworkServer::NetworkServer(Engine* engine)
 	:engine(engine)
@@ -57,31 +59,27 @@ void NetworkServer::tick(float deltaTime)
 {
     updateTimer += deltaTime;
 
-    if (updateTimer > 1.f / 16.f) //64 ticks a second
+    if (updateTimer > 1.f / 64.f) //64 ticks a second
     {
         serverTicks++;
         updateTimer = 0;
         if (active)
         {
-            //for (auto& i : server_tcp_->sessions)
-            //{
-            //    //i->send({ {"type", "tick"}, {"data", serverTicks} });
-            //    
-            //    EntityList l;
-            //    engine->entityManger->getAllEntities(&l);
 
-            //    nlohmann::json j;
+            //i->send({ {"type", "tick"}, {"data", serverTicks} });
+                
+            EntityList l;
+            engine->entityManger->getAllEntities(&l);
+            //std::cout << l.size() << std::endl;
+            nlohmann::json j;
 
-            //    for (auto& i : l)
-            //    {
-            //        if(i->active)
-            //            j.push_back(nlohmann::json::parse(i->serialize()));
-            //    }
+            for (auto& i : l)
+            {
+                if(i->active && i->entityType == "EntityExplosiveBarrel")
+                    j.push_back(i->serialize());
+            }
 
-            //    i->send({ {"type", "entityUpdate"}, {"data", j} });
-            //    std::cout << "sent " << serverTicks << std::endl;
-            //    //i->sendPeers();
-            //}
+            server_udp_->sendAllJson({ {"type", "entityUpdate"}, {"data", j}, {"tick", serverTicks} });
         }
     }
 }

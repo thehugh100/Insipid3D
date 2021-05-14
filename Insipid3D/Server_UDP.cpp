@@ -34,19 +34,36 @@ void Server_UDP::handle_receive(const boost::system::error_code& error, std::siz
 
         sessions[sessionString]->receiveData(recv_buffer_.data());
 
-
-        boost::shared_ptr<std::string> message(
+        /*boost::shared_ptr<std::string> message(
             new std::string("test"));
 
         socket_.async_send_to(boost::asio::buffer(*message), remote_endpoint_,
-            boost::bind(&Server_UDP::handle_send, this, message,
+            boost::bind(&Server_UDP::handle_send, this,
                 boost::asio::placeholders::error,
-                boost::asio::placeholders::bytes_transferred));
+                boost::asio::placeholders::bytes_transferred));*/
+
+        
 
         start_receive();
     }
 }
 
-void Server_UDP::handle_send(boost::shared_ptr<std::string>, const boost::system::error_code&, std::size_t)
+void Server_UDP::handle_send(const boost::system::error_code&, std::size_t)
 {
+}
+
+void Server_UDP::sendAll(std::string data)
+{
+    for (auto& i : sessions)
+    {
+        i.second->sendData(data);
+    }
+}
+
+void Server_UDP::sendAllJson(nlohmann::json jsonData)
+{
+    for (auto& i : sessions)
+    {
+        i.second->sendJson(jsonData);
+    }
 }

@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "EntityLight.h"
 
+#include "MeshManager.h"
+
 EntityExplosion::EntityExplosion(glm::vec3 origin_, float magnitude)
 	:magnitude(magnitude)
 {

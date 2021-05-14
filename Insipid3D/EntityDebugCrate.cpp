@@ -15,6 +15,8 @@
 
 #include "Util.h"
 
+#include "MeshManager.h"
+
 EntityDebugCrate::EntityDebugCrate(glm::vec3 origin)
 	:origin(origin)
 {

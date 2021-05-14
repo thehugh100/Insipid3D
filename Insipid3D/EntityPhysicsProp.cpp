@@ -15,6 +15,8 @@
 
 #include <glm/gtc/quaternion.hpp>
 #include <glm/common.hpp>
+#include "Base64.h"
+#include "MeshManager.h"
 
 EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin, float mass)
 	:origin(origin), modelName(modelName), mass(mass)
@@ -25,10 +27,12 @@ EntityPhysicsProp::EntityPhysicsProp(std::string modelName, glm::vec3 origin, fl
 	active = 1;
 	backfaceCull = 1;
 	transform = glm::mat4(0.f);
+	physicsState = "";
 	vars.registerVal("origin", Serializer(&origin));
 	vars.registerVal("modelName", Serializer(&modelName));
 	vars.registerVal("transform", Serializer(&transform));
 	vars.registerVal("mass", Serializer(&mass));
+	vars.registerVal("physicsState", Serializer(&physicsState));
 }
 
 EntityPhysicsProp::EntityPhysicsProp()
@@ -44,10 +48,12 @@ EntityPhysicsProp::EntityPhysicsProp()
 	active = 1;
 	backfaceCull = 1;
 	transform = glm::mat4(0.f);
+	physicsState = "";
 	vars.registerVal("origin", Serializer(&origin));
 	vars.registerVal("modelName", Serializer(&modelName));
 	vars.registerVal("transform", Serializer(&transform));
 	vars.registerVal("mass", Serializer(&mass));
+	vars.registerVal("physicsState", Serializer(&physicsState));
 }
 
 EntityPhysicsProp::~EntityPhysicsProp()
@@ -117,6 +123,23 @@ void EntityPhysicsProp::update()
 void EntityPhysicsProp::setTransform(glm::mat4 transform)
 {
 	body->getWorldTransform().setFromOpenGLMatrix(glm::value_ptr(transform));
+}
+
+nlohmann::json EntityPhysicsProp::serialize()
+{
+	btDefaultSerializer* serializer = new btDefaultSerializer();
+
+	size_t sBufSize = body->calculateSerializeBufferSize();
+	char* sBuf = new char[sBufSize];
+
+	body->serialize(sBuf, serializer);
+
+	physicsState = macaron::Base64::Encode(std::string((const char*)sBuf, sBufSize));
+
+	delete serializer;
+	delete sBuf;
+
+	return nlohmann::json::parse(vars.serialize());
 }
 
 glm::vec3 EntityPhysicsProp::getPosition()
