@@ -63,7 +63,6 @@ void EntityClientCam::render()
 		glUniformMatrix4fv(glGetUniformLocation(flatShader, "view"), 1, GL_FALSE, glm::value_ptr(engine->camera->getViewMatrix()));
 		glUniformMatrix4fv(glGetUniformLocation(flatShader, "proj"), 1, GL_FALSE, glm::value_ptr(engine->camera->getProjectionMatrix()));
 		glUniform3f(glGetUniformLocation(flatShader, "col"), 1., 1., 1.);
-		glDepthMask(GL_FALSE);
 
 		glPointSize(4);
 		glLineWidth(4);
@@ -79,7 +78,7 @@ void EntityClientCam::render()
 		glVertex3fv(glm::value_ptr(p + n));
 		glEnd();
 		
-		glDepthMask(GL_FALSE);
+		glDepthMask(GL_TRUE);
 	}
 }
 
