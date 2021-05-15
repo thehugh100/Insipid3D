@@ -8,6 +8,7 @@
 
 #include "ClientUtils.h"
 #include "EntityExplosiveBarrel.h"
+#include "EntityClientCam.h"
 #include "Util.h"
 
 using boost::asio::ip::udp;
@@ -170,6 +171,7 @@ Client_UDP::Client_UDP(Engine* engine_)
 			{
 				json_get_string(clientJson, "ip", username)
 				{
+					std::cout << username << std::endl;
 					auto& clientEntityItor = clientEntities.find(username);
 					if (clientEntityItor != clientEntities.end())
 					{
@@ -179,12 +181,19 @@ Client_UDP::Client_UDP(Engine* engine_)
 						{
 							json_get_string(clientJson, "pos", pos)
 							{
-								engine->netEvents->pushInstruction(
-									[=]() {
-										if (client != nullptr)
-											client->pos = Util::vec3FromString(pos);
-									}
-								);
+
+								json_get_string(clientJson, "ang", ang)
+								{
+									engine->netEvents->pushInstruction(
+										[=]() {
+											if (client != nullptr)
+											{
+												client->pos = Util::vec3FromString(pos);
+												client->lookVec = Util::vec3FromString(ang);
+											}
+										}
+									);
+								}
 							}
 						}
 					}
@@ -193,8 +202,14 @@ Client_UDP::Client_UDP(Engine* engine_)
 						EntityClientCam* newClient = new EntityClientCam(glm::vec3(0));
 						json_get_string(clientJson, "pos", pos)
 						{
-							if (newClient != nullptr)
-								newClient->pos = Util::vec3FromString(pos);
+							json_get_string(clientJson, "ang", ang)
+							{
+								if (newClient != nullptr)
+								{
+									newClient->pos = Util::vec3FromString(pos);
+									newClient->lookVec = Util::vec3FromString(ang);
+								}
+							}
 						}
 						clientEntities[username] = newClient;
 
@@ -306,7 +321,7 @@ void Client_UDP::tick(float deltaTime)
 {
 	updateTimer += deltaTime;
 
-	if (updateTimer > 1.f / 64.0f) //60 ticks a second
+	if (updateTimer > 1.f / engine->variables->getVarOrCreate("client_tickrate", "8.0", Variable::valFloat)->getFloat()) //60 ticks a second
 	{
 		updateTimer = 0;
 		if (active)
