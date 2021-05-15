@@ -27,6 +27,8 @@ using udp = boost::asio::ip::udp;       // from <boost/asio/ip/tcp.hpp>
 #include <queue>
 #include <list>
 
+#include "ClientUtils.h"
+
 struct Engine;
 
 
@@ -64,4 +66,10 @@ private:
 
 
 	std::map<std::string, EntityClientCam*> clientEntities;
+
+
+	float updateTimer = 0.0f;
+	bool active = true;
+
+	ClientCommand sendClientUpdate;
 };
