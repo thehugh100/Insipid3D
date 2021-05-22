@@ -36,6 +36,7 @@ public:
 
 		void load(aiMesh* mesh);
 		void render(int renderMode = GL_TRIANGLES, int lightmap = -1);
+		void renderExternTex(int texIDExtern, int renderMode = GL_TRIANGLES);
 	};
 	const aiScene* scene;
 	Assimp::Importer importer;
@@ -48,4 +49,5 @@ public:
 	~Mesh(void);
 
 	void render(int renderMode = GL_TRIANGLES);
+	void renderExternTex(int texIDExtern, int renderMode = GL_TRIANGLES);
 };

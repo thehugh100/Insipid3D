@@ -59,7 +59,7 @@ void NetworkServer::tick(float deltaTime)
 {
     updateTimer += deltaTime;
 
-    if (updateTimer > 1.f / engine->variables->getVarOrCreate("server_tickrate", "8.0", Variable::valFloat)->getFloat()) //64 ticks a second
+    if (updateTimer > 1.f / engine->variables->getVarOrCreate("server_tickrate", "64.0", Variable::valFloat)->getFloat()) //64 ticks a second
     {
         serverTicks++;
         updateTimer = 0;

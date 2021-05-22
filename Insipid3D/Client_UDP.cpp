@@ -321,7 +321,7 @@ void Client_UDP::tick(float deltaTime)
 {
 	updateTimer += deltaTime;
 
-	if (updateTimer > 1.f / engine->variables->getVarOrCreate("client_tickrate", "8.0", Variable::valFloat)->getFloat()) //60 ticks a second
+	if (updateTimer > 1.f / engine->variables->getVarOrCreate("client_tickrate", "64.0", Variable::valFloat)->getFloat()) //64 ticks a second
 	{
 		updateTimer = 0;
 		if (active)

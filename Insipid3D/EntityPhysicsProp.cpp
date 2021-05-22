@@ -102,6 +102,7 @@ void EntityPhysicsProp::init()
 	btMotionState* motion = new btDefaultMotionState(t);
 	btRigidBody::btRigidBodyConstructionInfo info(mass, motion, pConvexHullShape, inertia);
 	body = new btRigidBody(info);
+	body->setUserPointer(this);
 	engine->getMap()->collisionState->world->addRigidBody(body);
 
 	delete hull;
@@ -165,9 +166,7 @@ nlohmann::json EntityPhysicsProp::serialize()
 
 glm::vec3 EntityPhysicsProp::getPosition()
 {
-	btTransform t;
-	body->getMotionState()->getWorldTransform(t);
-	return Util::vec3Conv(t.getOrigin());
+	return Util::vec3Conv(body->getWorldTransform().getOrigin());
 }
 
 void EntityPhysicsProp::render()

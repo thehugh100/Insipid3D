@@ -25,7 +25,7 @@ void EntityGrenade::tick()
 			set = 1;
 			explosionTime = engine->getElapsedTimeMS() + 2000.0f;
 			body->setRestitution(1.0f);
-			body->setCcdMotionThreshold(0.2f);
+			body->setCcdMotionThreshold(0.1f);
 			body->setCcdSweptSphereRadius(0.4f);
 			body->setAngularVelocity(Util::vec3Conv(Util::randVec() * 5.f));
 

@@ -3,6 +3,7 @@
 
 void EntityManager::tick()
 {
+	std::vector<Entity*> clearList;
 	size_t size = entities.size();
 	for (int i = 0; i < size; ++i)
 	{
@@ -10,6 +11,19 @@ void EntityManager::tick()
 			entities[i]->init();
 
 		entities[i]->tick();
+
+		if (!entities[i]->active)
+		{
+			clearList.push_back(entities[i]);
+		}
+	}
+
+	//TODO: fix the millions of memory leaks this no doubt causes;
+	for (auto& i : clearList)
+	{
+		std::cout << "Clearning up idx " << i->id << ": " << i->entityType << std::endl;
+		auto it = std::find(entities.begin(), entities.end(), i);
+		entities.erase(it);
 	}
 }
 

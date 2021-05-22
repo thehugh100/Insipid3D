@@ -51,6 +51,8 @@ void CollisionState::loadMesh()
 		btRigidBody * body = new btRigidBody(0, motionstate, trimeshShape);
 		body->setRestitution(0.2);
 		body->setFriction(0.9);
+		body->setUserIndex(0); //map
+		body->setUserPointer(nullptr);
 		world->addRigidBody(body);
 	}
 }

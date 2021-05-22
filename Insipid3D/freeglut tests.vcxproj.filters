@@ -130,9 +130,6 @@
       <Filter>Source Files\Network</Filter>
     </ClCompile>
     <ClCompile Include="EntityClientCam.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityClientCam.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
     <ClCompile Include="NetEvents.cpp">
@@ -158,6 +155,15 @@
     </ClCompile>
     <ClCompile Include="ClientUtils.cpp">
       <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityMissile.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityFlare.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityClientCam.cpp">
+      <Filter>Source Files\entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="Base64.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityMissile.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityFlare.h">
+      <Filter>Header Files\entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

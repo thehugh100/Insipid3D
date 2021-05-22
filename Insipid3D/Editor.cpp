@@ -279,8 +279,8 @@ void Editor::render()
 
 	if (!engine->console->consoleShowing)
 	{
-		engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), 2, 720 - 18, dbg.str(), glm::vec3(0.f));
-		engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), 3, 720 - 19, dbg.str());
+		engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), 2, engine->screen.y - 18, dbg.str(), glm::vec3(0.f));
+		engine->drawDebugText(engine->fontManager->getFont("fonts/Roboto_Mono/RobotoMono-Regular.ttf", 18), 3, engine->screen.y - 19, dbg.str());
 	}
 
 	glDepthMask(GL_TRUE);

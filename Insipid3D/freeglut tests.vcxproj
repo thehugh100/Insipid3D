@@ -182,9 +182,11 @@
     <ClCompile Include="EntityDebugCrate.cpp" />
     <ClCompile Include="EntityExplosion.cpp" />
     <ClCompile Include="EntityExplosiveBarrel.cpp" />
+    <ClCompile Include="EntityFlare.cpp" />
     <ClCompile Include="EntityGrenade.cpp" />
     <ClCompile Include="EntityLight.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EntityMissile.cpp" />
     <ClCompile Include="EntityPhysicsProp.cpp" />
     <ClCompile Include="EntityPoint.cpp" />
     <ClCompile Include="EntityTraits.cpp" />
@@ -229,9 +231,11 @@
     <ClInclude Include="EntityDebugCrate.h" />
     <ClInclude Include="EntityExplosion.h" />
     <ClInclude Include="EntityExplosiveBarrel.h" />
+    <ClInclude Include="EntityFlare.h" />
     <ClInclude Include="EntityGrenade.h" />
     <ClInclude Include="EntityLight.h" />
     <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="EntityMissile.h" />
     <ClInclude Include="EntityPhysicsProp.h" />
     <ClInclude Include="EntityPoint.h" />
     <ClInclude Include="EntityTraits.h" />

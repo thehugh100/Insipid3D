@@ -173,6 +173,17 @@ void Mesh::MeshEntry::render(int renderMode, int lightmap)
 	glBindVertexArray(0);
 }
 
+void Mesh::MeshEntry::renderExternTex(int texIDExtern, int renderMode)
+{
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texIDExtern);
+
+	glBindVertexArray(vao);
+
+	glDrawElements(renderMode, elementCount, GL_UNSIGNED_INT, (GLvoid*)0);
+	glBindVertexArray(0);
+}
+
 /**
 *	Mesh constructor, loads the specified filename if supported by Assimp
 **/
@@ -249,5 +260,13 @@ void Mesh::render(int renderMode)
 		if (hasLightmap) li = lightmap;
 
 		meshEntries.at(i)->render(renderMode, li);
+	}
+}
+
+void Mesh::renderExternTex(int texIDExtern, int renderMode)
+{
+	for (int i = 0; i < meshEntries.size(); ++i)
+	{
+		meshEntries.at(i)->renderExternTex(texIDExtern, renderMode);
 	}
 }

@@ -44,6 +44,8 @@
 #include "EntityExplosiveBarrel.h"
 #include "EntityGrenade.h"
 #include "EntityExplosion.h"
+#include "EntityMissile.h"
+#include "EntityFlare.h"
 #include "Player.h"
 
 #include "Console.h"
@@ -80,6 +82,11 @@ void render()
 			if (engine->input->keyPressed(GLFW_KEY_Q) && !engine->console->consoleShowing)
 			{
 				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/crate.glb", engine->camera->pos + engine->camera->lookVec, 80));
+				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
+			}
+			if (engine->input->keyPressed(GLFW_KEY_M) && !engine->console->consoleShowing)
+			{
+				EntityMissile* e = (EntityMissile*)engine->entityManger->addEntity(new EntityMissile(engine->camera->pos + engine->camera->lookVec));
 				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
 			}
 			if (engine->input->keyPressed(GLFW_KEY_B) && !engine->console->consoleShowing)
@@ -220,6 +227,8 @@ int main(int argc, char** argv)
 	//engine->cameraController = new Player(engine);
 
 	//engine->networkClient->connect("");
+
+	//engine->entityManger->addEntity(new EntityFlare(glm::vec3(0,10,0)));
 
 	render();
 
