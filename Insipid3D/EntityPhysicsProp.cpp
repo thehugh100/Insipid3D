@@ -88,11 +88,30 @@ void EntityPhysicsProp::init()
 {
 	model = engine->meshManager->getMesh(modelName);
 
-	btConvexHullShape convexHullShape((btScalar*)model->meshEntries[0]->meshRef->mVertices, model->meshEntries[0]->meshRef->mNumVertices, 3 * sizeof(float));
-	convexHullShape.setMargin(0);
-	btShapeHull* hull = new btShapeHull(&convexHullShape);
-	hull->buildHull(0);
-	btConvexHullShape* pConvexHullShape = new btConvexHullShape((const btScalar*)hull->getVertexPointer(), hull->numVertices(), sizeof(btVector3));
+	btConvexHullShape* pConvexHullShape;
+
+	Mesh* eHull = engine->meshManager->getMesh(modelName + ".hull.glb");
+
+	if (eHull != nullptr && eHull->meshEntries.size() != 0)
+	{
+		btConvexHullShape convexHullShape((btScalar*)eHull->meshEntries[0]->meshRef->mVertices, eHull->meshEntries[0]->meshRef->mNumVertices, 3 * sizeof(float));
+		convexHullShape.setMargin(0);
+		btShapeHull* hull = new btShapeHull(&convexHullShape);
+		hull->buildHull(0, 1);
+		pConvexHullShape = new btConvexHullShape((const btScalar*)hull->getVertexPointer(), hull->numVertices(), sizeof(btVector3));
+		delete hull;
+	}
+	else
+	{
+		btConvexHullShape convexHullShape((btScalar*)model->meshEntries[0]->meshRef->mVertices, model->meshEntries[0]->meshRef->mNumVertices, 3 * sizeof(float));
+		convexHullShape.setMargin(0);
+		btShapeHull* hull = new btShapeHull(&convexHullShape);
+		hull->buildHull(0);
+		pConvexHullShape = new btConvexHullShape((const btScalar*)hull->getVertexPointer(), hull->numVertices(), sizeof(btVector3));
+		delete hull;
+	}
+
+	
 
 	btTransform t;
 	t.setIdentity();
@@ -105,7 +124,6 @@ void EntityPhysicsProp::init()
 	body->setUserPointer(this);
 	engine->getMap()->collisionState->world->addRigidBody(body);
 
-	delete hull;
 	initialised = 1;
 }
 

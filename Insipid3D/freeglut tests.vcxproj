@@ -203,6 +203,7 @@
     <ClCompile Include="NetEvents.cpp" />
     <ClCompile Include="NetworkClient.cpp" />
     <ClCompile Include="NetworkServer.cpp" />
+    <ClCompile Include="PID.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RayTrace.cpp" />
     <ClCompile Include="Serializer.cpp" />
@@ -253,6 +254,7 @@
     <ClInclude Include="NetEvents.h" />
     <ClInclude Include="NetworkClient.h" />
     <ClInclude Include="NetworkServer.h" />
+    <ClInclude Include="PID.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Raytrace.h" />
     <ClInclude Include="Serializer.h" />

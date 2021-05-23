@@ -22,8 +22,7 @@ void EntityManager::tick()
 	for (auto& i : clearList)
 	{
 		std::cout << "Clearning up idx " << i->id << ": " << i->entityType << std::endl;
-		auto it = std::find(entities.begin(), entities.end(), i);
-		entities.erase(it);
+		removeEntity(i);
 	}
 }
 

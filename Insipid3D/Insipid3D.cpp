@@ -86,7 +86,7 @@ void render()
 			}
 			if (engine->input->keyPressed(GLFW_KEY_M) && !engine->console->consoleShowing)
 			{
-				EntityMissile* e = (EntityMissile*)engine->entityManger->addEntity(new EntityMissile(engine->camera->pos + engine->camera->lookVec));
+				EntityMissile* e = (EntityMissile*)engine->entityManger->addEntity(new EntityMissile(engine->camera->pos + engine->camera->lookVec + glm::vec3(0,1,0)));
 				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
 			}
 			if (engine->input->keyPressed(GLFW_KEY_B) && !engine->console->consoleShowing)
@@ -96,6 +96,13 @@ void render()
 			if (engine->input->keyPressed(GLFW_KEY_C) && !engine->console->consoleShowing)
 			{
 				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/box.glb", engine->camera->pos + engine->camera->lookVec, 35));
+				e->body->setCcdMotionThreshold(0.2f);
+				e->body->setCcdSweptSphereRadius(0.4f);
+				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
+			}
+			if (engine->input->keyPressed(GLFW_KEY_V) && !engine->console->consoleShowing)
+			{
+				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/m3.glb", engine->camera->pos + engine->camera->lookVec, 250));
 				e->body->setCcdMotionThreshold(0.2f);
 				e->body->setCcdSweptSphereRadius(0.4f);
 				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
@@ -203,7 +210,7 @@ int main(int argc, char** argv)
 	engine->window = window;
 	engine->screen = glm::vec2(width, height);
 	engine->input->window = window;
-	engine->loadMap("worlds/test_world.glb");
+	engine->loadMap("worlds/grass2.glb");
 
 	if (argc > 1)
 	{
