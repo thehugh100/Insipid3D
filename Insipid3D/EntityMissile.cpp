@@ -128,7 +128,7 @@ void EntityMissile::tick()
 		if ((jolt >= 10.0f && !beingGrabbed && !triggered && stage > 0) || (engine->getElapsedTimeMS() - launchedTime) > 8000.f) // force required to explode or time limit expired, don't explode if we're grabbing it
 		{
 			triggered = 1;
-			engine->entityManger->addEntity(new EntityExplosion(getPosition(), 8500.f));
+			engine->entityManger->addEntity(new EntityExplosion(getPosition(), 20000.f));
 			destroy();
 			return;
 		}
@@ -178,7 +178,16 @@ void EntityMissile::tick()
 		pidYaw->tick(yaw);
 		yawCorrection = pidYaw->output;
 
-		pid->setTarget(targetOrientation.y + 0.15f);
+		float overshoot = 0.15f;
+
+		if (deltaOrient.y < -3 || deltaOrient.y > 3)
+			overshoot = 0;
+
+		if (orientation.y < -.85f || orientation.y > .85f)
+			overshoot = 0;
+		std::cout << orientation.y << std::endl;
+
+		pid->setTarget(targetOrientation.y + overshoot);
 		pid->tick(orientation.y);
 
 		deltaOrient.y = pid->output;
@@ -246,7 +255,7 @@ void EntityMissile::render()
 
 	glm::mat4 model = glm::mat4(1);
 	model = glm::translate(model, targetPos);
-	model = glm::scale(model, glm::vec3(2));
+	model = glm::scale(model, glm::vec3(.5));
 
 	glUniformMatrix4fv(glGetUniformLocation(flatShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
 	glUniformMatrix4fv(glGetUniformLocation(flatShader, "view"), 1, GL_FALSE, glm::value_ptr(engine->camera->getViewMatrix()));

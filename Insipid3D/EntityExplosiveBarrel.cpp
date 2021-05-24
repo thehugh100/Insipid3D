@@ -12,7 +12,7 @@ EntityExplosiveBarrel::EntityExplosiveBarrel(glm::vec3 origin_)
 	entityTraits.setTrait("EntityExplosiveBarrel");
 	modelName = "models/barrel.glb";
 	origin = origin_;
-	mass = 136;
+	mass = 186;
 	oldVelocity = glm::vec3(0.f);
 	velocity = glm::vec3(0.f);
 	triggered = 0;

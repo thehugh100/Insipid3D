@@ -213,9 +213,7 @@ void EntityPhysicsProp::render()
 		glUniform4fv(glGetUniformLocation(shader, "sunVec"), 1, glm::value_ptr(glm::vec4(engine->getMap()->sunVec, brightnessMultiplier)));
 
 		engine->getMap()->getLightsShaderUniforms(shader, getPosition());
-
 		model->render();
-
 		if (!backfaceCull)
 			glEnable(GL_CULL_FACE);
 

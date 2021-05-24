@@ -107,6 +107,13 @@ void render()
 				e->body->setCcdSweptSphereRadius(0.4f);
 				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
 			}
+			if (engine->input->keyPressed(GLFW_KEY_H) && !engine->console->consoleShowing)
+			{
+				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new EntityPhysicsProp("models/buggy.glb", engine->camera->pos + engine->camera->lookVec, 250));
+				e->body->setCcdMotionThreshold(0.2f);
+				e->body->setCcdSweptSphereRadius(0.4f);
+				//e->body->setLinearVelocity(Util::vec3Conv(engine->camera->lookVec * 20.0f));
+			}
 			if (engine->input->keyPressed(GLFW_KEY_G) && !engine->console->consoleShowing)
 			{
 				EntityPhysicsProp* e = (EntityPhysicsProp*)engine->entityManger->addEntity(new

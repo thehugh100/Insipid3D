@@ -24,17 +24,17 @@ void main()
 	vec3 norm = normalize(normal);
 	
 	float shininess = 0.7;
-	vec3 ambient = vec3(0.24, 0.24, 0.24);
-	vec3 sunCol = vec3(1., 0.95, 0.9) * 1.3;
+	vec3 ambient = vec3(0.33, 0.33, 0.33);
+	vec3 sunCol = vec3(1., 0.95, 0.9) * 1.1;
 
 
 	vec3 sunDir   = -sunVec.xyz;
 	vec3 viewDir    = normalize(cameraPos - fragPos);
-	float diff = max(dot(norm, sunDir), 0.0);
+	float diff = max(dot(norm, sunDir), 0.2);
 	vec3 diffuse = diff * sunCol * sunVec.w;
 	vec3 reflectDir = reflect(-sunDir, norm); 
 	vec3 halfwayDir = normalize(sunDir + viewDir);  
-    float spec = pow(max(dot(normal, halfwayDir), 0.0), 36.0) * 1.5;
+    float spec = pow(max(dot(normal, halfwayDir), 0.0), 36.0) * 1.4;
 	vec3 specular = sunCol * spec * sunVec.w;
 
 	for(int i = 0; i < numLights; i++)
@@ -55,5 +55,5 @@ void main()
 
 	vec3 objColor = (texture2D(tex, texCoord).rgb) * (ambient + (diffuse + (specular * shininess)));
 
-    FragCol = vec4(objColor, 1.);
+    FragCol = vec4(objColor, texture2D(tex, texCoord).a);
 } 
